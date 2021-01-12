@@ -1,0 +1,36 @@
+SVM = support vector machine
+decision boundary (가운데 선)
+decision boundary와 가까이 있는 데이터와의 간격이 가까우면 잘못 분류 될수 있음.
+즉 margin을 가능한 크게 해야함
+margin을 형성하는 decision boundary와 가장 가까운 데이터를 support vector라고 한다.
+SVM은 분류할 때 support vector만 사용하기에 아무리 많은 train data가 있더라도 계산량이 상당히 줄어듦.
+
+데이터의 분포가 linearly separable하지 않을 때? 
+저차원 상에 있는 데이터를 고차원 상으로 바꿔 주어야 함!
+그러나 이렇게 바꿀 때 데이터의 계산량이 너무 많음.
+따라서 저차원을 고차원으로 바꿀때 드는 비용을 최소화하는 커널 트릭 사용
+SVM Parameter에는 두가지가 있는데 cost와 감마 이다.
+
+cost란 decision boundary와 margin에 간격을 어느정도로 할지 결정하는 것
+
+ - cost 적을 때
+	margin은 넓을 수가 있는데 train error가 더 많아질 확률이 높다.(잘못 구별될 확률이 높아짐)
+  
+ - cost가 높을 때
+	margin을 좁게 형성 train시 에러율은 적다. 최대한 많은 데이터를 분류를 잘되게 할 수 있기 때문.
+but 아직 보지못한 데이터에 대한 분류는 잘못될 확률이 높다.
+
+감마란 train data 하나당 영향을 끼치는 범위를 조절하는 변수
+적을때 영향을 끼치는 범위가 넓음
+높을때는 영향을 끼치는 범위가 좁음
+
+감마는 가우시안 분포에서 현재 데이터를 중앙에 있는 가장 높은 꼭대기에 있는 데이터로 간주할 경우 얼마까지의 이웃을 포함할 지를 결정합니다.
+단 감마의 값이 커지면 표준편차를 줄이는 효과고 
+작아지면 표준편차를 높히는 효과가 일어납니다. 
+즉 표준편차가 높아지면 주변 이웃을 포용하게 되어 포괄적으로 더 많은 영역을 포함하게 된다.
+
+Grid Search - find optimal parameters
+두개의 파라미터중 최적의 파라미터를 선정하느냐?
+cost 감마 테이블을 형성하여 train data에서 어느정도 떼어서 validation 할수도 있고
+가장 성능이 좋은 것을 추징하면 됨.
+grid search같은 경우에 sklearn 쓰면 한줄로 구현 가능
