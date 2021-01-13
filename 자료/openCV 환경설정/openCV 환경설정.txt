@@ -1,0 +1,89 @@
+android에서 openCV 실행을 위한 환경설정
+
+1. SDK Manager
+ 1-1. SDK Tools 탭에서 NDK(Side by Side), CMake 설치
+2. 프로젝트 생성시 Natice C++ 선택
+3. Language - Java, 
+   Minimum - Lollipop(API 21), 
+   C++ Standard - Default 선택
+
+4. OpenCV 모듈 연결
+ 4-1. opencv-4.3.0-android-sdk.zip 압축해제 후 C:\ 에 폴더 넣기
+ 4-2. 안드로이드 스튜디오 File -> New -> import Module 에서 폴더 아이콘 클릭 후 "C:\OpenCV-android-sdk\sdk" 폴더 선택 -> finish
+ 4-3. 안드로이드 스튜디오 File -> Project Structure 선택
+  4-3-1. 왼쪽에서 Dependencies -> Modules 항목 중 app 선택
+  4-3-2. 화면 가운데 창의 '+' 버튼 클릭 후 "3 Module Dependency" 선택
+  4-3-3. sdk 항목 체크 후 확인
+
+
+C++ 코드 사용법
+-> 기존의 안드로이드 스튜디오 JAVA 버전으로 코딩을 진행하고, 
+C++로 구현하고자 하는 기능의 함수를 public native void 함수명(매개변수명); 이런 방식으로 선언.
+'Create JNI function for 함수명'을 통해 native-lib.cpp 파일에 함수가 자동으로 생성되고, 이 파일에서 함수를 작성
+
+
+
+5. 프로젝트 창으로 폴더를 봤을 때 기준 app -> cpp -> CMakeList.txt 파일에서 set(pathPROJECT  ... ) 부분을 자신의 프로젝트 위치로 수정(다른사람의 파일을 복붙해서 그대로 사용할 시)
+6. File -> Sync Project with Grade Files 클릭
+
+
+7. dilb 모듈 연결
+ 7-1. dlib-19.21.zip 압축 해제 후 C:\ 에 폴더 넣기
+ 7-2. C:\Users\사용자이름\AppData\Local\Android\Sdk\ndk\ 폴더 안에있는 NDK의 폴더이름 확인
+	(여러개일 경우 숫자 높은것이 최신버전의 ndk, 숨김폴더에 주의) (ex) 22.0.7026061 )
+ 7-3. cmd 창에서 C:\로 이동 후 아래 3줄 실행
+	cd dlib-19.21
+	mkdir build
+	cd build
+ 7-4. 아래의 긴 명령어 실행(마지막에 .. 까지 포함해서 실행해야 함)
+
+	C:\Users\123rk\AppData\Local\Android\Sdk\cmake\3.10.2.4988404\bin\cmake -DBUILD_SHARED_LIBS=1 -DCMAKE_TOOLCHAIN_FILE=C:\Users\123rk\AppData\Local\Android\Sdk\ndk\22.0.7026061\build\cmake\android.toolchain.cmake -DANDROID_NDK=C:\Users\123rk\AppData\Local\Android\Sdk\ndk\22.0.7026061 -GNinja  -DCMAKE_BUILD_TYPE=Release -DCMAKE_MAKE_PROGRAM=ninja -DCMAKE_CXX_FLAGS=-std=c++11 -frtti -fexceptions -DANDROID_ABI=x86 -DANDROID_PLATFORM=android-30  -DDLIB_NO_GUI_SUPPORT=OFF -DANDROID_TOOLCHAIN=clang  -DANDROID_STL=c++_shared -DANDROID_CPP_FEATURES=rtti exceptions -DCMAKE_INSTALL_PREFIX=C:\dlib-native ..
+
+ 이때, 1. 중간중간의 123rk 부분을 자신의 user명으로 수정,  
+       2. 22.0.7026061 부분을 자신의 ndk 폴더 이름으로 수정
+       3. DANDROID_ABI=x86 부분의 x86 부분을 자신의 플랫폼으로 수정 
+	(이부분에서 막힘 나중에 수정해서 다시 실행해봐야 함)
+
+ 정상적으로 실행이 됬을 경우 
+	-- Configuring done
+	-- Generating done
+	-- Build files have been written to: C:/Users/123rk/dlib-19.21/build
+	위와 같은 문장이 출력됨.
+
+ 7-5. 같은 위치에서 아래 명령어 실행. 123rk 부분을 자신의 user명으로 수정
+	C:\Users\123rk\AppData\Local\Android\Sdk\cmake\3.10.2.4988404\bin\ninja.exe -j4
+정상적으로 실행됬을 경우 [128/128] Linking CXX shared library dlib\libdlib.so 라고 출력됨
+
+ 7-6. 결과물 설치
+  7-6-1. 같은 위치에서 아래 명령어 실행. 123rk 부분을 자신의 user명으로 수정
+	C:\Users\123rk\AppData\Local\Android\Sdk\cmake\3.10.2.4988404\bin\ninja.exe install
+  7-6-2. 정상적으로 빌드가 완료됬을 경우 C:\dlib-native 폴더가 생성되어있고, include폴더, lib 폴더가 있음
+
+8. dataset 저장
+ 8-1. 프로젝트 창으로 폴더를 봤을 때 기준 app -> src -> main 폴더 안에 assets 디렉토리 생성(표정분석시 사용하는 dataset을 저장하는 폴더)
+ 8-2. assets 폴더 안에 shape_predictor_68_face_landmarks.dat 파일 저장
+
+9. 미리 빌드해놓은 dlib 프로젝트에 복사
+ 9-1. 프로젝트의 바로 안에 dilb-native 폴더 복붙.(프로젝트 - app과 같은 폴더라인 안에 있도록)
+ 
+
+10. build,gradle에 옵션 추가
+        externalNativeBuild {
+            	cmake {
+	                arguments "-DANDROID_STL=c++_shared" , "-DANDROID_TOOLCHAIN=clang"
+            	    cppFlags "-std=c++11 -fexceptions"
+	            }
+        }
+        ndk {
+            abiFilters "arm64-v8a"
+        }
+
+
+
+
+출처
+https://webnautes.tistory.com/1054
+https://webnautes.tistory.com/1229
+
+환경설정을 한 이후 1229 페이지의 실습내용을 따라 작성하면 실행됨
+에뮬레이터에서는 안되고 실제 안드로이드 핸드폰에서만 확인 가능
