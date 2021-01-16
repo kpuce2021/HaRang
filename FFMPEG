@@ -1,0 +1,18 @@
+1.FFMPEG 설치 참고
+https://blog.naver.com/chandong83/222095346417
++Android Studio에서 NDK 설치
+  Setting->Android SDK->SDK Tools에서 CMAKE, LLDB, NDK항목 설치
+
+2.ffmpeg 명령어
+1)동영상 자르기
+  ffmpeg -i [자를 동영상 경로] -ss [시작시간] -to [끝시간] [잘릴 동영상 이름]
+  ex) ffmpeg -i D:\Input.mkv -ss 00:00:00 -to 00:01:00 D:\Output.mkv
+2) 동영상 확장자 변환
+  -ffmpeg -i [변환할 동영상 경로] -c copy -strict -2[변환된 동영상 경로]
+  ex) ffmpeg -i D:\test.mkv -c copy -strict -2 D:\test.mp4
+  -1)에서 replace이용 가능
+3) 동영상 이미지로 변환
+   ffmpeg -ss [시작시간] -i [이미지로 변환할 동영상 경로] -f[ 프레임레이트][저장할 이미지 이름]
+   ex) ffmpeg -ss 00:00:00 -i D:\ -f 1 image_%05d.jpg
+   ->동영상 처음부터 끝까지 각 프레임마다 한장씩 image_00001.jpg, image_00002.jpg..다음과 같이 이름을 가진 이미지로 변환해줌.
+ 
