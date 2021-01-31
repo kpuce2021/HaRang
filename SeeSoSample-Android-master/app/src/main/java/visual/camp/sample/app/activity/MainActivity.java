@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewLayoutChecker viewLayoutChecker = new ViewLayoutChecker();
     private HandlerThread backgroundThread = new HandlerThread("background");
     private Handler backgroundHandler;
+    public static long testTimestamp=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -475,6 +476,7 @@ public class MainActivity extends AppCompatActivity {
             setCameraPreview(preview);
         }
         this.gazeTracker.setCallbacks(gazeCallback, calibrationCallback, statusCallback);
+        gazeTracker.setTrackingFPS(30);
         startTracking();
         hideProgress();
     }
@@ -497,7 +499,7 @@ public class MainActivity extends AppCompatActivity {
         hideProgress();
     }
 
-    private final OneEuroFilterManager oneEuroFilterManager = new OneEuroFilterManager(2);
+    /*private final OneEuroFilterManager oneEuroFilterManager = new OneEuroFilterManager(2);
     private GazeCallback gazeCallback = new GazeCallback() {
         @Override
         public void onGaze(GazeInfo gazeInfo) {
@@ -512,6 +514,43 @@ public class MainActivity extends AppCompatActivity {
                                 showGazePoint(filteredPoint[0], filteredPoint[1], gazeInfo.screenState);
                                 Log.i(TAG, "screenState " + gazeInfo.screenState);
                                 Log.i(TAG, "timestamp " + gazeInfo.timestamp);
+                            }
+                        } else {
+                            showGazePoint(gazeInfo.x, gazeInfo.y, gazeInfo.screenState);
+                        }
+                    }
+                } else {
+                    showTrackingWarning();
+                }
+                Log.i(TAG, "check eyeMovement " + gazeInfo.eyeMovementState);
+
+            }
+        }
+    };*/
+    private final OneEuroFilterManager oneEuroFilterManager = new OneEuroFilterManager(2);
+    private GazeCallback gazeCallback = new GazeCallback() {
+        @Override
+        public void onGaze(GazeInfo gazeInfo) {
+            if (isGazeNonNull()) {
+                TrackingState state = gazeInfo.trackingState;
+                if (state == TrackingState.SUCCESS) {
+                    hideTrackingWarning();
+                    if (!gazeTracker.isCalibrating()) {
+                        if (isUseGazeFilter) {
+                            if (oneEuroFilterManager.filterValues(gazeInfo.timestamp, gazeInfo.x, gazeInfo.y)) {
+                                //test
+                                float[] filteredPoint = oneEuroFilterManager.getFilteredValues();
+                                showGazePoint(filteredPoint[0], filteredPoint[1], gazeInfo.screenState);
+                                if(testTimestamp== -1){ //처음 진입했을 때
+                                    testTimestamp=gazeInfo.timestamp;
+                                    Log.i(TAG, "screenState " + gazeInfo.screenState);
+                                    Log.i(TAG, "timestamp " + gazeInfo.timestamp);
+                                }else if(Math.abs(testTimestamp%1000 - (gazeInfo.timestamp)%1000) <34){ //뒷 3글자 같을 때
+                                    Log.i(TAG, "같을때 screenState " + gazeInfo.screenState);
+                                    Log.i(TAG, "같을때 timestamp " + gazeInfo.timestamp);
+                                }
+                                //end test
+
                             }
                         } else {
                             showGazePoint(gazeInfo.x, gazeInfo.y, gazeInfo.screenState);
@@ -549,6 +588,7 @@ public class MainActivity extends AppCompatActivity {
             // When calibration is finished, calibration data is stored to SharedPreference
             CalibrationDataStorage.saveCalibrationData(getApplicationContext(), calibrationData);
             hideCalibrationView();
+            gazeTracker.setTrackingFPS(30);
             showToast("calibrationFinished", true);
         }
     };
@@ -587,6 +627,7 @@ public class MainActivity extends AppCompatActivity {
         // todo change licence key
         String licenseKey = "dev_0ytwe7hi54giz96fr0ubpu0kogskb7q44zu2qzgc";
         GazeTracker.initGazeTracker(getApplicationContext(), gazeDevice, licenseKey, initializationCallback);
+
     }
 
     private void releaseGaze() {
@@ -611,6 +652,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean startCalibration() {
         boolean isSuccess = false;
+        gazeTracker.setTrackingFPS(30);
         if (isGazeNonNull()) {
             isSuccess = gazeTracker.startCalibration(calibrationType);
             if (!isSuccess) {
