@@ -499,7 +499,7 @@ public class MainActivity extends AppCompatActivity {
         hideProgress();
     }
 
-    /*private final OneEuroFilterManager oneEuroFilterManager = new OneEuroFilterManager(2);
+    private final OneEuroFilterManager oneEuroFilterManager = new OneEuroFilterManager(2);
     private GazeCallback gazeCallback = new GazeCallback() {
         @Override
         public void onGaze(GazeInfo gazeInfo) {
@@ -526,8 +526,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
-    };*/
-    private final OneEuroFilterManager oneEuroFilterManager = new OneEuroFilterManager(2);
+    };
+   /* private final OneEuroFilterManager oneEuroFilterManager = new OneEuroFilterManager(2);
     private GazeCallback gazeCallback = new GazeCallback() {
         @Override
         public void onGaze(GazeInfo gazeInfo) {
@@ -563,7 +563,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
-    };
+    };*/
 
     private CalibrationCallback calibrationCallback = new CalibrationCallback() {
         @Override
