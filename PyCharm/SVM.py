@@ -105,7 +105,7 @@ train_sizes, train_scores, test_scores =\
                                X=X_train,
                                y=y_train,
                                train_sizes=np.linspace(0.1, 1.0, 10),
-                               cv=4,
+                               cv=2,
                                n_jobs=1)
 
 train_mean = np.mean(train_scores, axis=1)
@@ -191,7 +191,7 @@ param_grid = [{'svc__C': param_range, # 수정
 gs = GridSearchCV(estimator=pipe_svm, # 수정
                   param_grid=param_grid,
                   scoring='accuracy',
-                  cv=10,
+                  cv=2,
                   n_jobs=-1)
 
 gs = gs.fit(X_train, y_train)
