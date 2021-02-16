@@ -63,7 +63,7 @@ plt.show()
 
 from sklearn.cluster import AgglomerativeClustering
 
-ac = AgglomerativeClustering(n_clusters=3,Untitled1
+ac = AgglomerativeClustering(n_clusters=3,
                              affinity='euclidean',
                              linkage='complete')
 labels = ac.fit_predict(utilities_df)
