@@ -71,8 +71,7 @@ public class AccountSignupActivity extends AppCompatActivity {
                 intent.putExtra("USER_ID",editId.getText());
                 startActivity(intent);
                 Log.i(TAG,"start emailck");
-                finish();
-                Log.i(TAG,"end signup failure");
+                //finish();
             }
         });
     }
