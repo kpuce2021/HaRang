@@ -1,7 +1,6 @@
 package com.example.harang;
 
 
-import android.accounts.Account;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,12 +27,21 @@ public class Fragment3 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final Button btnLogintest = view.findViewById(R.id.setfbtnlogin);
+        final Button btnLogintest = view.findViewById(R.id.setBtnLogin);
+        final Button btnOpencvTest = view.findViewById(R.id.setBtnEyeblink);
 
         btnLogintest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), AccountLoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnOpencvTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), EyeblinkActivity.class);
                 startActivity(intent);
             }
         });
