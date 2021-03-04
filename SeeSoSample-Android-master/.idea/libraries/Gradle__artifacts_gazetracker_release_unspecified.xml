@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: artifacts:gazetracker-release:unspecified">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/gazetracker-release/build/.transforms/f53014fab911a39ba67c81f8f67a81c1/jetified-gazetracker-release/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/gazetracker-release/build/.transforms/f53014fab911a39ba67c81f8f67a81c1/jetified-gazetracker-release/res" />
+      <root url="file://$PROJECT_DIR$/gazetracker-release/build/.transforms/f53014fab911a39ba67c81f8f67a81c1/jetified-gazetracker-release/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/gazetracker-release/build/.transforms/f53014fab911a39ba67c81f8f67a81c1/jetified-gazetracker-release/jars/libs/full.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/gazetracker-release/build/.transforms/f53014fab911a39ba67c81f8f67a81c1/jetified-gazetracker-release/jars/libs/full.jar!/camp/visual/gazetracker" />
+    </SOURCES>
+  </library>
+</component>

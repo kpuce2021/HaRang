@@ -14,7 +14,7 @@ utilities_df.shape
 utilities_df.keys()
 
 utilities_df = utilities_df.drop (['percent'], axis=1)
-
+# utilities_df = utilities_df.drop (['percent'], axis=1)
 # columns = ['eyesopen', 'emotion', 'percent', 'mstate', 'sstate']
 columns = ['eyesopen', 'emotion', 'mstate', 'sstate']
 columns

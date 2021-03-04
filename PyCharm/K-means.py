@@ -9,6 +9,11 @@ from sklearn.preprocessing import StandardScaler  # 연속변수의 표준화
 ## 모델구축
 from sklearn.cluster import KMeans
 
+
+## df = pd.read_csv('harang.csv')
+## df.to_hdf('./harang.h5', 'data')
+## utilities_df = pd.read_hdf('./harang.h5')
+
 utilities_df = pd.read_csv('harang.csv')
 utilities_df.head()
 
