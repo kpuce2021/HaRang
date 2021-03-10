@@ -1,0 +1,47 @@
+AWS S3 객체 구성
+Key: 파일의 이름
+Value: 파일의 데이터
+Version Id: 파일의 버전 아이디
+Metadata: 파일의 정보를 담은 데이터
+ACL: 파일의 권한을 담은 데이터
+Torrents: 토렌트 공유를 위한 데이터
+
+객체 스토리지 서비스: 파일만 가능
+하나의 객체는 0byte ~ 5TB의 용량을 가짐
+Bucket이라는 단위로 구분하며 Bucket 명은 전세계 어디에도 중복된 이름이 존재 할 수 없음
+Web Hosting시 도메인과 Bucket 명이 같아야 함
+
+버전관리
+모든 버전을 관리(삭제 포함)
+기본적으로 비활성화여서 별도로 활성화를 시켜야함.
+한번 활성화시 비활성화 불가능
+수명 주기 관리와 연동 가능
+
+S3 Static Hosting
+기본적으로 파일은 두가지 웹 URL을 가지고 있음
+여기서 bucket-name, Region, keyname은 가변적
+https://bucket-name.s3.Region.amazonaws.com/keyname
+https://s3.Region.amazonaws.com/bucket-name/keyname
+
+버킷 관련 API(조회, 생성, 삭제)
+
+파일 관련 API(업로드, 업데이트, 삭제)
+업로드 성공시 HTTP 200코드 반환
+큰 용량의 파일의 경우 Multipart Upload 가능(개당 5gb 제한)
+
+Put(새로 생성): 읽기 후 쓰기(Read and Write)\
+파일을 올리고 성공한 즉시 읽기 가능
+먼저 Put한 요청이 우선권
+
+Update/Delete: 최종 일관성(Eventual Consistency)
+파일을 삭제하거나 업데이트 후 일정 시간 후에 결과가 반영됨(1초 미만)
+원자성 확보 불가능
+
+S3 Athena
+S3를 SQL 언어로 조회할 수 있는 서비스
+SQL 쿼리 사용
+Serverless
+로그를 조회하거나 분석하는데 주로 활용
+
+
+
