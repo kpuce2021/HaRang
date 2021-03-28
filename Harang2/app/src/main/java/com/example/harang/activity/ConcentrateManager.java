@@ -230,11 +230,11 @@ public class ConcentrateManager{
 
 
 
-//    public void printTest(){
-//        for(int i=0;i<eyeSecondCount;i++){
-//            Log.i("test값", eyetrackData[i]+" "+estateData[i]+" "+mstateData[i]);
-//        }
-//    }
+    public void printTest(){
+        for(int i=0;i<eyeSecondCount;i++){
+            Log.i("test값", eyetrackData[i]+" "+estateData[i]+" "+mstateData[i]);
+        }
+    }
 
 
 

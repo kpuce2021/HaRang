@@ -112,7 +112,7 @@ public class DemoActivity extends AppCompatActivity {
 
   private final GazeCallback gazeCallback = new GazeCallback() {
     @Override
-    public void onGaze(GazeInfo gazeInfo) {000000000000000000000000000000000000
+    public void onGaze(GazeInfo gazeInfo) {
       /*
       if (oneEuroFilterManager.filterValues(gazeInfo.timestamp, gazeInfo.x, gazeInfo.y)) {
         float[] filtered = oneEuroFilterManager.getFilteredValues();

@@ -107,16 +107,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        gazeTrackerManager.removeCameraPreview(preview);
-        gazeTrackerManager.removeCallbacks(gazeCallback, calibrationCallback, statusCallback);
+        //gazeTrackerManager.removeCameraPreview(preview);
+        //gazeTrackerManager.removeCallbacks(gazeCallback, calibrationCallback, statusCallback);
         Log.i(TAG, "onStop");
+        gazeTrackerManager.removeCallbacks(gazeCallback);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        releaseHandler();
-        viewLayoutChecker.releaseChecker();
+        //releaseHandler();
+        //viewLayoutChecker.releaseChecker();
     }
 
     // handler
