@@ -3,9 +3,12 @@ package com.example.harang.activity;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,6 +35,8 @@ public class DemoActivity extends AppCompatActivity {
       2, 30, 0.5F, 0.001F, 1.0F);
 
   private ConcentrateManager concentrateManager;
+  private VideoView videoView;
+  private MediaController mediaController;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -86,19 +91,14 @@ public class DemoActivity extends AppCompatActivity {
   private void initView() {
     gazePathView = findViewById(R.id.gazePathView);
 
-    AssetManager am = getResources().getAssets();
-    InputStream is = null;
+    videoView = findViewById(R.id.videoView);
+    mediaController = new MediaController(this);
+    mediaController.setAnchorView(videoView);
+    Uri uri = Uri.parse("android.resource://"+getPackageName()+"/raw/home");
+    videoView.setMediaController(mediaController);
+    videoView.setVideoURI(uri);
+    videoView.start();
 
-    try {
-      is = am.open("palace_seoul.jpg");
-      Bitmap bm = BitmapFactory.decodeStream(is);
-      ImageView catView = findViewById(R.id.catImage);
-      catView.setImageBitmap(bm);
-      is.close();
-
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
   }
 
   private void setOffsetOfView() {
@@ -112,13 +112,18 @@ public class DemoActivity extends AppCompatActivity {
 
   private final GazeCallback gazeCallback = new GazeCallback() {
     @Override
-    public void onGaze(GazeInfo gazeInfo) {
+    public void onGaze(GazeInfo gazeInfo) {000000000000000000000000000000000000
+      /*
       if (oneEuroFilterManager.filterValues(gazeInfo.timestamp, gazeInfo.x, gazeInfo.y)) {
         float[] filtered = oneEuroFilterManager.getFilteredValues();
         gazePathView.onGaze(filtered[0], filtered[1], gazeInfo.eyeMovementState == EyeMovementState.FIXATION);
         
         //이 부분에서 concentrateManager 실행
       }
+       */
+      Log.i(TAG, "check eyeMovement " + gazeInfo.eyeMovementState);
+      Log.i(TAG, "screenState " + gazeInfo.screenState);
     }
+
   };
 }
