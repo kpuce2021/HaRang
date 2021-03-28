@@ -1,0 +1,102 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.amazonaws.demo.s3transferutility"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="18"
+8-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:5:5-67
+11-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:6:5-79
+12-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:6:22-76
+13    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+13-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:7:5-77
+13-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:7:22-74
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:8:5-80
+14-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:8:22-77
+15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+15-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:9:5-81
+15-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:9:22-78
+16    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+17
+18    <application
+18-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:11:5-44:19
+19        android:name="com.amazonaws.demo.s3transferutility.MyApplication"
+19-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:12:9-38
+20        android:allowBackup="true"
+20-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:13:9-35
+21        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
+21-->[com.android.support:support-compat:28.0.0] C:\Users\minu\.gradle\caches\transforms-2\files-2.1\09c1f5634c674c46b74176ad3d1ddced\support-compat-28.0.0\AndroidManifest.xml:22:18-91
+22        android:debuggable="true"
+23        android:icon="@drawable/ic_launcher"
+23-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:14:9-45
+24        android:label="@string/app_name"
+24-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:15:9-41
+25        android:requestLegacyExternalStorage="true"
+25-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:16:9-52
+26        android:testOnly="true" >
+27        <activity android:name="com.amazonaws.demo.s3transferutility.VideoActivity" />
+27-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:17:9-60
+27-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:17:19-48
+28        <activity android:name="com.amazonaws.demo.s3transferutility.MainActivity" >
+28-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:18:9-24:20
+28-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:18:19-47
+29            <intent-filter>
+29-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:19:13-23:29
+30                <action android:name="android.intent.action.MAIN" />
+30-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:20:17-69
+30-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:20:25-66
+31
+32                <category android:name="android.intent.category.LAUNCHER" />
+32-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:22:17-77
+32-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:22:27-74
+33            </intent-filter>
+34        </activity>
+35        <activity
+35-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:25:9-27:57
+36            android:name="com.amazonaws.demo.s3transferutility.DownloadActivity"
+36-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:26:13-45
+37            android:label="@string/download_activity" />
+37-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:27:13-54
+38        <activity
+38-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:28:9-30:55
+39            android:name="com.amazonaws.demo.s3transferutility.UploadActivity"
+39-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:29:13-43
+40            android:label="@string/upload_activity" />
+40-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:30:13-52
+41        <activity
+41-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:31:9-33:67
+42            android:name="com.amazonaws.demo.s3transferutility.DownloadSelectionActivity"
+42-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:32:13-54
+43            android:label="@string/download_selection_activity" />
+43-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:33:13-64
+44        <activity
+44-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:34:9-36:53
+45            android:name="com.amazonaws.demo.s3transferutility.ShowActivity"
+45-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:35:13-41
+46            android:label="@string/show_activity" />
+46-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:36:13-50
+47
+48        <service
+48-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:38:9-40:38
+49            android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
+49-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:39:13-93
+50            android:enabled="true" />
+50-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:40:13-35
+51        <service
+51-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:41:9-43:38
+52            android:name="com.amazonaws.demo.s3transferutility.MyService"
+52-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:42:13-38
+53            android:enabled="true" />
+53-->C:\Github\HaRang\S3TransferUtilitySample\AndroidManifest.xml:43:13-35
+54    </application>
+55
+56</manifest>

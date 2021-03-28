@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.amazonaws.demo.s3transferutility"
+    android:targetSandboxVersion="2"
+    android:versionCode="1"
+    android:versionName="1.0.0" >
+
+    <uses-sdk
+        android:minSdkVersion="18"
+        android:targetSdkVersion="29" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name="com.amazonaws.demo.s3transferutility.MyApplication"
+        android:allowBackup="true"
+        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
+        android:debuggable="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:testOnly="true" >
+        <activity android:name="com.amazonaws.demo.s3transferutility.VideoActivity" />
+        <activity android:name="com.amazonaws.demo.s3transferutility.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.amazonaws.demo.s3transferutility.DownloadActivity"
+            android:label="@string/download_activity" />
+        <activity
+            android:name="com.amazonaws.demo.s3transferutility.UploadActivity"
+            android:label="@string/upload_activity" />
+        <activity
+            android:name="com.amazonaws.demo.s3transferutility.DownloadSelectionActivity"
+            android:label="@string/download_selection_activity" />
+        <activity
+            android:name="com.amazonaws.demo.s3transferutility.ShowActivity"
+            android:label="@string/show_activity" />
+
+        <service
+            android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
+            android:enabled="true" />
+        <service
+            android:name="com.amazonaws.demo.s3transferutility.MyService"
+            android:enabled="true" />
+    </application>
+
+</manifest>
