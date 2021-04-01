@@ -65,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        gazeTrackerManager = GazeTrackerManager.makeNewInstance(this); //생성을 이 부분에서만 실행
+        //gazeTrackerManager = GazeTrackerManager.makeNewInstance(this); //생성을 이 부분에서만 실행
+        gazeTrackerManager = GazeTrackerManager.getInstance(); //생성을 이 부분에서만 실행
         //이 이후에 gazeManager를 이용할 경우 getInstance를 통해서 값 받아오기
         Log.i(TAG, "gazeTracker version: " + GazeTracker.getVersionName());
 

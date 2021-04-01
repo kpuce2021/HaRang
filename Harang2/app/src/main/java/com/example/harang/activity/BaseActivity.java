@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.harang.GazeTrackerManager;
 import com.example.harang.R;
 import com.example.harang.activity.Fragment1;
 import com.example.harang.activity.Fragment2;
@@ -22,12 +23,12 @@ public class BaseActivity extends AppCompatActivity {
     private Fragment1 fragment1;
     private Fragment2 fragment2;
     private Fragment3 fragment3;
-
+    private GazeTrackerManager gazeTrackerManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-
+        gazeTrackerManager = GazeTrackerManager.makeNewInstance(this); //생성을 이 부분에서만 실행
         bottomNavigationView = findViewById(R.id.bottomNavi);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

@@ -15,17 +15,37 @@
         android:layout_height="wrap_content">
         <EditText
             android:id="@+id/edtText1"
-            android:hint="tstate"
+            android:hint="e_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <EditText
             android:id="@+id/edtText2"
-            android:hint="mstate"
+            android:hint="v_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <EditText
             android:id="@+id/edtText3"
-            android:hint="sstate"
+            android:hint="s_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/edtText4"
+            android:hint="d_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/edtText5"
+            android:hint="concentration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/edtText6"
+            android:hint="e_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/edtText7"
+            android:hint="mstate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <LinearLayout

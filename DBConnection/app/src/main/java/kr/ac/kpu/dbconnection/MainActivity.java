@@ -30,11 +30,11 @@ import kr.ac.kpu.dbconnection.RequestHttpURLConnection;
 public class MainActivity extends AppCompatActivity {
 
     private TextView txtView;
-    private EditText editText1, editText2, editText3;
+    private EditText editText1, editText2, editText3, editText4, editText5, editText6, editText7;
     Button insertBtn;
 
-    private static String IP = "ec2-3-35-167-226.ap-northeast-2.compute.amazonaws.com"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
-
+   // private static String IP = "ec2-13-125-182-211.ap-northeast-2.compute.amazonaws.com"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
+    private static String IP = "13.125.182.211"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
         editText1 = findViewById(R.id.edtText1);
         editText2 = findViewById(R.id.edtText2);
         editText3 = findViewById(R.id.edtText3);
+        editText4 = findViewById(R.id.edtText4);
+        editText5 = findViewById(R.id.edtText5);
+        editText6 = findViewById(R.id.edtText6);
+        editText7 = findViewById(R.id.edtText7);
+
         insertBtn = findViewById(R.id.insertBtn);
 
         // String url = "http://" + IP + "/php파일명.php";
@@ -60,11 +65,11 @@ public class MainActivity extends AppCompatActivity {
         insertBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insertoToDatabase(editText1.getText().toString(),editText2.getText().toString(),editText3.getText().toString());
+                insertoToDatabase(editText1.getText().toString(),editText2.getText().toString(),editText3.getText().toString(),editText4.getText().toString(),editText5.getText().toString(),editText6.getText().toString(),editText7.getText().toString());
             }
         });
     }
-    private void insertoToDatabase(final String ed1, String ed2, String ed3) {
+    private void insertoToDatabase(final String ed1, String ed2, String ed3, String ed4, String ed5, String ed6, String ed7) {
         class InsertData extends AsyncTask<String, Void, String> {
             ProgressDialog loading;
 
@@ -87,11 +92,20 @@ public class MainActivity extends AppCompatActivity {
                     String edt1Text = (String) params[0];
                     String edt2Text = (String) params[1];
                     String edt3Text = (String) params[2];
+                    String edt4Text = (String) params[3];
+                    String edt5Text = (String) params[4];
+                    String edt6Text = (String) params[5];
+                    String edt7Text = (String) params[6];
+
 
                     String link = "http://"+IP+"/insert.php";
-                    String data = URLEncoder.encode("tstate", "UTF-8") + "=" + URLEncoder.encode(edt1Text, "UTF-8");
-                    data += "&" + URLEncoder.encode("mstate", "UTF-8") + "=" + URLEncoder.encode(edt2Text, "UTF-8");
-                    data += "&" + URLEncoder.encode("sstate", "UTF-8") + "=" + URLEncoder.encode(edt3Text, "UTF-8");
+                    String data = URLEncoder.encode("e_id", "UTF-8") + "=" + URLEncoder.encode(edt1Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("v_id", "UTF-8") + "=" + URLEncoder.encode(edt2Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("s_id", "UTF-8") + "=" + URLEncoder.encode(edt3Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("d_time", "UTF-8") + "=" + URLEncoder.encode(edt4Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("concentration", "UTF-8") + "=" + URLEncoder.encode(edt5Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("e_status", "UTF-8") + "=" + URLEncoder.encode(edt6Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("mstate", "UTF-8") + "=" + URLEncoder.encode(edt7Text, "UTF-8");
 
                     URL url = new URL(link);
                     URLConnection conn = url.openConnection();
@@ -120,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         InsertData task = new InsertData();
-        task.execute(ed1,ed2,ed3);
+        task.execute(ed1,ed2,ed3,ed4,ed5,ed6,ed7);
     }
 
     class selectDatabase extends AsyncTask<Void, Void, String> {
@@ -153,17 +167,23 @@ public class MainActivity extends AppCompatActivity {
         try {
             String result = "";
             JSONObject jsonObject = new JSONObject(string);
-            JSONArray jsonArray = jsonObject.getJSONArray("seeso");
+            JSONArray jsonArray = jsonObject.getJSONArray("data_eyetrack");
 
             for (int i=0; i < jsonArray.length(); i++) {
                 JSONObject output = jsonArray.getJSONObject(i);
-                result += output.getString("seeso_id")
+                result += output.getString("e_id")
                         + " / "
-                        + output.getString("tstate")
+                        + output.getString("v_id")
+                        + " / "
+                        + output.getString("s_id")
+                        + " / "
+                        + output.getString("d_time")
+                        + " / "
+                        + output.getString("concentration")
+                        + " / "
+                        + output.getString("e_status")
                         + " / "
                         + output.getString("mstate")
-                        + " / "
-                        + output.getString("sstate")
                         + "\n";
             }
 

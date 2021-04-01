@@ -43,14 +43,14 @@ public class Fragment2 extends Fragment {
 
         btnDownload.setOnClickListener(view -> startActivity(new Intent(getContext(), DownloadActivity.class)));
         btnUpload.setOnClickListener(view -> startActivity(new Intent(getContext(), UploadActivity.class)));
-        btnShow.setOnClickListener(new View.OnClickListener() {
+        /*btnShow.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ShowActivity.class);
                 startActivity(intent);
             }
-        });
-        // btnShow.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ShowActivity.class)));
+        });*/
+         btnShow.setOnClickListener(view -> startActivity(new Intent(getContext(), ShowActivity.class)));
     }
 }
