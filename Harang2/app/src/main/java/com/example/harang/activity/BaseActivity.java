@@ -9,9 +9,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.harang.R;
-import com.example.harang.activity.Fragment1;
-import com.example.harang.activity.Fragment2;
-import com.example.harang.activity.Fragment3;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BaseActivity extends AppCompatActivity {
@@ -19,7 +16,7 @@ public class BaseActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private Fragment1 fragment1;
+    private StuVideolistFragment fragment1;
     private Fragment2 fragment2;
     private Fragment3 fragment3;
 
@@ -47,7 +44,7 @@ public class BaseActivity extends AppCompatActivity {
 
             }
         });
-        fragment1 = new Fragment1();
+        fragment1 = new StuVideolistFragment();
         fragment2 = new Fragment2();
         fragment3 = new Fragment3();
         setFragment(0);//첫 프래그먼트 화면 지정

@@ -44,8 +44,6 @@ public class VideoActivity extends AppCompatActivity {
         Log.i(TAG, "gazeTracker version: " + GazeTracker.getVersionName());
 
         concentrateManager = ConcentrateManager.makeNewInstance(this);
-
-
     }
 
     @Override
