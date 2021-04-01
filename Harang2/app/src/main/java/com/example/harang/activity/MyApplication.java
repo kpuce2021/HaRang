@@ -44,6 +44,7 @@ public class MyApplication extends Application {
 
             // Foreground service required starting from Android Oreo
             startForegroundService(tsIntent);
+            //startService(tsIntent);
         } else {
             startService(tsIntent);
         }
