@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.MediaController;
-import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,8 +31,6 @@ public class DemoActivity extends AppCompatActivity {
   private final ViewLayoutChecker viewLayoutChecker = new ViewLayoutChecker();
   private GazePathView gazePathView;
   private GazeTrackerManager gazeTrackerManager;
-  private TextView textView1;
-  GazeInfo gazeInfo = null;
   private final OneEuroFilterManager oneEuroFilterManager = new OneEuroFilterManager(
       2, 30, 0.5F, 0.001F, 1.0F);
 
@@ -45,7 +42,6 @@ public class DemoActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_demo);
-    textView1 = findViewById(R.id.textView);
     gazeTrackerManager = GazeTrackerManager.getInstance();
     Log.i(TAG, "gazeTracker version: " + GazeTracker.getVersionName());
 
@@ -98,11 +94,13 @@ public class DemoActivity extends AppCompatActivity {
     videoView = findViewById(R.id.videoView);
     mediaController = new MediaController(this);
     mediaController.setAnchorView(videoView);
-    Uri uri = Uri.parse("android.resource://" + getPackageName() + "/raw/home");
+    Uri uri = Uri.parse("android.resource://"+getPackageName()+"/raw/home");
     videoView.setMediaController(mediaController);
     videoView.setVideoURI(uri);
     videoView.start();
+
   }
+
   private void setOffsetOfView() {
     viewLayoutChecker.setOverlayView(gazePathView, new ViewLayoutChecker.ViewLayoutListener() {
       @Override

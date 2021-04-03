@@ -22,7 +22,7 @@ import camp.visual.gazetracker.filter.OneEuroFilterManager;
 import camp.visual.gazetracker.gaze.GazeInfo;
 import camp.visual.gazetracker.util.ViewLayoutChecker;
 
-public class VideoActivity extends Activity {
+public class VideoActivity extends AppCompatActivity {
     private static final String TAG = DemoActivity.class.getSimpleName();
     private final ViewLayoutChecker viewLayoutChecker = new ViewLayoutChecker();
     private GazePathView gazePathView;
@@ -44,6 +44,8 @@ public class VideoActivity extends Activity {
         Log.i(TAG, "gazeTracker version: " + GazeTracker.getVersionName());
 
         concentrateManager = ConcentrateManager.makeNewInstance(this);
+
+
     }
 
     @Override
