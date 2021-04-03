@@ -9,9 +9,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.harang.R;
-import com.example.harang.activity.Fragment1;
-import com.example.harang.activity.Fragment2;
-import com.example.harang.activity.Fragment3;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BaseActivity extends AppCompatActivity {
@@ -19,9 +16,9 @@ public class BaseActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private Fragment1 fragment1;
-    private Fragment2 fragment2;
-    private Fragment3 fragment3;
+    private StudentFragment1 studentFragment1;
+    private StudentFragment2 studentFragment2;
+    private StudentFragment3 studentFragment3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +44,9 @@ public class BaseActivity extends AppCompatActivity {
 
             }
         });
-        fragment1 = new Fragment1();
-        fragment2 = new Fragment2();
-        fragment3 = new Fragment3();
+        studentFragment1 = new StudentFragment1();
+        studentFragment2 = new StudentFragment2();
+        studentFragment3 = new StudentFragment3();
         setFragment(0);//첫 프래그먼트 화면 지정
     }
 
@@ -59,15 +56,15 @@ public class BaseActivity extends AppCompatActivity {
         ft = fm.beginTransaction();
         switch(n){
             case 0:
-                ft.replace(R.id.main_frame, fragment1);
+                ft.replace(R.id.main_frame, studentFragment1);
                 ft.commit();
                 break;
             case 1:
-                ft.replace(R.id.main_frame, fragment2);
+                ft.replace(R.id.main_frame, studentFragment2);
                 ft.commit();
                 break;
             case 2:
-                ft.replace(R.id.main_frame, fragment3);
+                ft.replace(R.id.main_frame, studentFragment3);
                 ft.commit();
                 break;
         }
