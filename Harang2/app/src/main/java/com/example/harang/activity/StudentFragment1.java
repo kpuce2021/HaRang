@@ -42,14 +42,17 @@ public class StudentFragment1 extends Fragment {
 
         // 첫 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(getContext(), R.drawable.ic_baseline_account_box_24),
-                "Box", "Account Box Black 36dp") ;
+                "첫번째 강의", 80, 100);
         // 두 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(getContext(), R.drawable.ic_baseline_account_circle_24),
-                "Circle", "Account Circle Black 36dp") ;
+                "두번째 강의", 50, 0) ;
         // 세 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(getContext(), R.drawable.ic_baseline_assignment_ind_24),
-                "Ind", "Assignment Ind Black 36dp") ;
+                "세번째 강의", 70,70) ;
 
+        
+        
+        //버튼 별 리스너 생성 필요
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
