@@ -2,10 +2,12 @@ package com.example.harang.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -76,6 +78,7 @@ public class VideoActivity extends AppCompatActivity {
         super.onStop();
         gazeTrackerManager.removeCallbacks(gazeCallback);
         Log.i(TAG, "onStop");
+
     }
 
     @Override
@@ -129,7 +132,28 @@ public class VideoActivity extends AppCompatActivity {
 
 
 
+
     }
+
+    private void getPlayTime(String path) {
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        retriever.setDataSource(path);
+        String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+        long timeInmillisec = Long.parseLong(time);
+        long duration = timeInmillisec / 1000;
+
+        Log.i(TAG, "시간" + duration);
+
+        if(duration==videoView.getCurrentPosition()/1000){
+            gazeTrackerManager.stopGazeTracking();
+        }
+
+    }
+//현재시간 로그찍기 위함임, 삭제해도 무관
+    private void current(){
+        Log.i(TAG, "현재 시간"+videoView.getCurrentPosition()/1000);
+    }
+
 
     //원래 데모 버전
     private void setOffsetOfView() {
@@ -175,6 +199,10 @@ public class VideoActivity extends AppCompatActivity {
              * --> 9777 부분만 필요하므로
              * (timestamp/1000)%10000 부분이 초에 해당함.
              * */
+
+            String path = getExternalFilesDir(null).toString()  + "/"; // 기본적인 절대경로 얻어오기
+            getPlayTime(path+playTitle);
+            current();
         }
 
     };
