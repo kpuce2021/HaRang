@@ -81,7 +81,10 @@ public class VideoActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.i(TAG, "onDestroy");
         concentrateManager.printTest();
+        Log.i("test값", "setClipvideoData");
+        concentrateManager.setClipvideoData();
     }
 
     private void initView() {
