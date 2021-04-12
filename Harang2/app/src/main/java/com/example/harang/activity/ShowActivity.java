@@ -25,8 +25,7 @@ public class ShowActivity extends ListActivity {
         myList = new ArrayList();
 
         // String path = getExternalFilesDir(null).toString();
-        //String path = Environment.getExter
-        // nalStorageDirectory().getAbsolutePath().toString() + "/files/";
+        //String path = Environment.getExternalStorageDirectory().getAbsolutePath().toString() + "/files/";
         String path = getExternalFilesDir(null).toString()  + "/";
         //String path = "/storage/3064-3263/Download";
         // String path = "/sdcard/Android/data/com.amazonaws.demo.s3transferutility/files";

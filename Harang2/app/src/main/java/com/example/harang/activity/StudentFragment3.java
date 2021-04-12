@@ -14,13 +14,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.harang.R;
 
-public class Fragment3 extends Fragment {
+public class StudentFragment3 extends Fragment {
     private View view;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       view = inflater.inflate(R.layout.fragment3, container, false);
+       view = inflater.inflate(R.layout.stu_fragment3, container, false);
 
        return view;
     }

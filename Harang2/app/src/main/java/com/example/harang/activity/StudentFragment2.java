@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.harang.R;
 
-public class Fragment2 extends Fragment {
+public class StudentFragment2 extends Fragment {
     private View view;
 
     private Button btnDownload;
@@ -24,7 +24,7 @@ public class Fragment2 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       view = inflater.inflate(R.layout.fragment2, container, false);
+       view = inflater.inflate(R.layout.stu_fragment2, container, false);
        return view;
     }
 
@@ -43,14 +43,14 @@ public class Fragment2 extends Fragment {
 
         btnDownload.setOnClickListener(view -> startActivity(new Intent(getContext(), DownloadActivity.class)));
         btnUpload.setOnClickListener(view -> startActivity(new Intent(getContext(), UploadActivity.class)));
-        /*btnShow.setOnClickListener(new View.OnClickListener() {
+        btnShow.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ShowActivity.class);
                 startActivity(intent);
             }
-        });*/
-         btnShow.setOnClickListener(view -> startActivity(new Intent(getContext(), ShowActivity.class)));
+        });
+        // btnShow.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ShowActivity.class)));
     }
 }
