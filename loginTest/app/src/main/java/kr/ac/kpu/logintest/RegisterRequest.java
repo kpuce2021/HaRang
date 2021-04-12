@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterRequest extends StringRequest {
-    private static String IP = "13.125.182.211"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
+    private static String IP = "3.36.118.238"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
     // 서버 URL 설정 ( PHP 파일 연동 )
     final static private String URL = "http://" +IP+ "/register.php";
     private Map<String, String> map;
