@@ -6,6 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity">
 
+    <RadioGroup
+        android:id="@+id/rg_login"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/et_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_professor_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="교수" />
+
+        <RadioButton
+            android:id="@+id/rb_student_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="학생" />
+    </RadioGroup>
+
     <EditText
         android:id="@+id/et_id"
         android:layout_width="wrap_content"

@@ -4,25 +4,25 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterRequest extends StringRequest {
-    private static String IP = "13.124.149.160"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
+public class StudentLoginRequest extends StringRequest {
+
     // 서버 URL 설정 ( PHP 파일 연동 )
-    final static private String URL = "http://" +IP+ "/register.php";
+    private static String IP = "15.164.145.147"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
+
+    final static private String URL = "http://" +IP+ "/s_login.php";
     private Map<String, String> map;
 
 
-    public RegisterRequest(String id, String password, String s_name, Response.Listener<String> listener) {
+    public StudentLoginRequest(String id, String password, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
         map.put("id",id);
         map.put("password", password);
-        map.put("s_name", s_name);
-        //map.put("userAge", userAge + "");
+
     }
 
     @Override
