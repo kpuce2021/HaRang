@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
+import static com.example.harang.activity.BaseActivity.StudentId;
 
 public class RequestHttpURLConnection {
 
@@ -25,7 +26,7 @@ public class RequestHttpURLConnection {
          * */
         // 보낼 데이터가 없으면 파라미터를 비운다.
         if (_params == null)
-            sbParams.append("");
+            sbParams.append("id="+StudentId);
             // 보낼 데이터가 있으면 파라미터를 채운다.
         else {
             // 파라미터가 2개 이상이면 파라미터 연결에 &가 필요하므로 스위칭할 변수 생성.

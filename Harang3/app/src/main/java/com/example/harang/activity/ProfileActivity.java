@@ -15,7 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ProfileActivity extends AppCompatActivity {
-    private TextView tv_total, tv_seperate;
+    private TextView tv_total, tv_seperate, tv_total_percent, tv_seperate_percent;
     private ProgressBar pb_total, pb_seperate;
     private static String IP = "3.214.234.24"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
 
@@ -28,9 +28,12 @@ public class ProfileActivity extends AppCompatActivity {
         tv_seperate = findViewById(R.id.tv_seperate);
         pb_total = findViewById(R.id.pb_total);
         pb_seperate = findViewById(R.id.pb_seperate);
+        tv_total_percent = findViewById(R.id.tv_total_percent);
+        tv_seperate_percent = findViewById(R.id.tv_seperate_percent);
 
-        String url = "http://" + IP + "/profile.php";
+        String url = "http://" + IP + "/profileTest.php";
         selectDatabase selectDatabase = new selectDatabase(url, null);
+        selectDatabase.execute();
     }
 
     class selectDatabase extends AsyncTask<Void, Void, String> {
@@ -60,39 +63,29 @@ public class ProfileActivity extends AppCompatActivity {
     // 받아온 json 데이터를 파싱합니다.
     public void doJSONParser(String string) {
         try {
-           // String result = "";
-            String total = "";
-            String seperate = "";
+            int total = 0;
+            int seperate = 0;
             JSONObject jsonObject = new JSONObject(string);
             JSONArray jsonArray = jsonObject.getJSONArray("data_concentrate");
 
             for (int i=0; i < jsonArray.length(); i++) {
                 JSONObject output = jsonArray.getJSONObject(i);
-
-                total += output.getString("c_total");
-                seperate += output.getString("c_seperate");
-               /* result += output.getString("e_id")
-                        + " / "
-                        + output.getString("v_id")
-                        + " / "
-                        + output.getString("s_id")
-                        + " / "
-                        + output.getString("d_time")
-                        + " / "
-                        + output.getString("concentration")
-                        + " / "
-                        + output.getString("e_status")
-                        + " / "
-                        + output.getString("mstate")
-                        + "\n";*/
-
-
+                total += output.getInt("c_total");
+                seperate += output.getInt("c_seperate");
             }
-            pb_total.setProgress(Integer.parseInt(total));
-            pb_seperate.setProgress(Integer.parseInt(seperate));
-        /*    txtView = findViewById(R.id.txtView);
-            txtView.setText(result);*/
-
+            if(jsonArray.length() != 0){
+                total /= jsonArray.length();
+                seperate /= jsonArray.length();
+                pb_total.setProgress(total);
+                pb_seperate.setProgress(seperate);
+                tv_total_percent.setText(Integer.toString(total));
+                tv_seperate_percent.setText(Integer.toString(seperate));
+            } else{
+                pb_total.setProgress(0);
+                pb_seperate.setProgress(0);
+                tv_total_percent.setText("0");
+                tv_seperate_percent.setText("0");
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

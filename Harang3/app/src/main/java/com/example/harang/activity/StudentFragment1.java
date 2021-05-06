@@ -115,8 +115,9 @@ public class StudentFragment1 extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-//            textView.setText(s); // 파서 없이 전체 출력
-            doJSONParser(s); // 파서로 전체 출력
+            if(s != null) {
+                doJSONParser(s); // 파서로 전체 출력
+            }
         }
     }
 
@@ -128,38 +129,38 @@ public class StudentFragment1 extends Fragment {
             JSONObject jsonObject = new JSONObject(string);
             JSONArray jsonArray = jsonObject.getJSONArray("data_video");
 
-            listCount = jsonArray.length();
-            menuItems = new String[listCount];
+                listCount = jsonArray.length();
+                menuItems = new String[listCount];
 
-            VideoListViewItem item;
-            if (items == null) {
-                items = new ArrayList<VideoListViewItem>() ;
-            }
-
-            for (int i=0; i < jsonArray.length(); i++) {
-                JSONObject output = jsonArray.getJSONObject(i);
-                /*result += output.getString("v_name")+ " / "+ output.getString("v_textfield")+ " / "+ output.getString("v_calendar")+ "\n";*/
-                menuItems[i] = output.getString("v_name");
-
-                item = new VideoListViewItem();
-                item.setVideoThumbnail(ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_account_box_24));
-                item.setVideoName(output.getString("v_name"));
-                item.setTotalProgress(10);
-                item.setConcentProgress(20);
-                items.add(item) ;
-
-            }
-
-            //adapter 생성
-            adapter = new VideoListViewAdapter(mActivity, R.layout.video_listview_item, items) ;
-            // 리스트뷰 참조 및 Adapter달기
-            listview = (ListView) view.findViewById(R.id.video_list);
-            listview.setAdapter(adapter);
-            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView parent, View view, int position, long id) {
+                VideoListViewItem item;
+                if (items == null) {
+                    items = new ArrayList<VideoListViewItem>();
                 }
-            });
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject output = jsonArray.getJSONObject(i);
+                    /*result += output.getString("v_name")+ " / "+ output.getString("v_textfield")+ " / "+ output.getString("v_calendar")+ "\n";*/
+                    menuItems[i] = output.getString("v_name");
+
+                    item = new VideoListViewItem();
+                    item.setVideoThumbnail(ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_account_box_24));
+                    item.setVideoName(output.getString("v_name"));
+                    item.setTotalProgress(10);
+                    item.setConcentProgress(20);
+                    items.add(item);
+
+                }
+
+                //adapter 생성
+                adapter = new VideoListViewAdapter(mActivity, R.layout.video_listview_item, items);
+                // 리스트뷰 참조 및 Adapter달기
+                listview = (ListView) view.findViewById(R.id.video_list);
+                listview.setAdapter(adapter);
+                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView parent, View view, int position, long id) {
+                    }
+                });
 
         } catch (JSONException e) {
             e.printStackTrace();
