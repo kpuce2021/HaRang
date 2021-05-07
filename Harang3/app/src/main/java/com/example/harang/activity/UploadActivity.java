@@ -149,16 +149,16 @@ public class UploadActivity extends ListActivity {
                 "checked", "fileName", "progress", "bytes", "state", "percentage"
         },
                 new int[] {
-                        /*
-                        R.id.radioButton1,*/ R.id.textFileName, R.id.progressBar1, R.id.textBytes,
+
+                        R.id.radioButton1, R.id.textFileName, R.id.progressBar1, R.id.textBytes,
                         R.id.textState, R.id.textPercentage
                 });
         simpleAdapter.setViewBinder((view, data, textRepresentation) -> {
-            switch (view.getId()) {/*
+            switch (view.getId()) {
                 case R.id.radioButton1:
                     RadioButton radio = (RadioButton) view;
                     radio.setChecked((Boolean) data);
-                    return true;*/
+                    return true;
                 case R.id.progressBar1:
                     ProgressBar progress = (ProgressBar) view;
                     progress.setProgress((Integer) data);
