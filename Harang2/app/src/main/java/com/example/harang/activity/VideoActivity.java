@@ -3,6 +3,7 @@ package com.example.harang.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaMetadataRetriever;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +26,7 @@ import camp.visual.gazetracker.gaze.GazeInfo;
 import camp.visual.gazetracker.util.ViewLayoutChecker;
 
 public class VideoActivity extends AppCompatActivity {
-    private static final String TAG = DemoActivity.class.getSimpleName();
+    private static final String TAG = "VideoActivity";
     private final ViewLayoutChecker viewLayoutChecker = new ViewLayoutChecker();
     private GazePathView gazePathView;
     private GazeTrackerManager gazeTrackerManager;
@@ -133,6 +134,17 @@ public class VideoActivity extends AppCompatActivity {
         videoView.requestFocus(); // 포커스 얻어오기
         videoView.start(); // 동영상 재생
 
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                Log.i(TAG, "종료 동작");
+                gazeTrackerManager.stopGazeTracking();
+                Intent intent = new Intent(VideoActivity.this, BaseActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
 
 
@@ -143,18 +155,25 @@ public class VideoActivity extends AppCompatActivity {
         retriever.setDataSource(path);
         String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
         long timeInmillisec = Long.parseLong(time);
-        long duration = timeInmillisec / 1000;
+        //long duration = timeInmillisec / 1000;
+        duration = timeInmillisec;
 
-        Log.i(TAG, "시간" + duration);
-
-        if(duration==videoView.getCurrentPosition()/1000){
+        /*
+        if(duration==videoView.getCurrentPosition()){
             gazeTrackerManager.stopGazeTracking();
+            Intent intent = new Intent(VideoActivity.this, BaseActivity.class);
+            startActivity(intent);
+            finish();
         }
+         */
 
     }
+
+    private static long duration;
 //현재시간 로그찍기 위함임, 삭제해도 무관
     private void current(){
-        Log.i(TAG, "현재 시간"+videoView.getCurrentPosition()/1000);
+        Log.i(TAG, "현재 시간"+videoView.getCurrentPosition()+"전체시간 : "+duration);
+
     }
 
 
