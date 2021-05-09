@@ -26,6 +26,8 @@ public class BaseActivity extends AppCompatActivity {
     private StudentFragment3 studentFragment3;
 
     public static String StudentId;
+    public static String s_id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class BaseActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         StudentId = intent.getStringExtra("user_id");
+        s_id = intent.getStringExtra("s_id");
 
 
         bottomNavigationView = findViewById(R.id.bottomNavi);
