@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     Button insertBtn;
 
    // private static String IP = "ec2-13-125-182-211.ap-northeast-2.compute.amazonaws.com"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
-    private static String IP = "13.125.182.211"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
+    private static String IP = "15.164.145.147"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
