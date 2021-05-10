@@ -8,12 +8,13 @@ import com.example.harang.view.PointView;
 
 import java.lang.ref.WeakReference;
 import java.sql.Time;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import camp.visual.gazetracker.GazeTracker;
 import camp.visual.gazetracker.gaze.GazeInfo;
@@ -36,6 +37,11 @@ public class ConcentrateManager{
     static private ConcentrateManager mInstance = null; //인스턴스
     private final WeakReference<Context> mContext;
     //객체를 다른 액티비티에서 이어서 쓸 수 있지만 생성자로 모두 초기화해서 몇초 동안의 값이 저장되었는지에 대한 정보가 필요함
+    /*
+    estateData : 초 단위로 overwrite되어 저장되는 eyeMovementState (fixation - 1, saccade - 0) 정보
+    mstateData : 초 단위로 overwrite되어 저장되는 screenState (INSIDE_OF_SCREEN - 1, OUTSIDE_OF_SCREEN - 0) 정보
+    eyetrackData : 초 단위로 들어온 위 2가지 정보의 and 연산값 저장
+    */
     static Integer[] concentData = new Integer[7000];
     static Integer[] eyetrackData = new Integer[7000];//나중에 크기를 동적으로 지정할 필요가 있음
     static Integer[] estateData = new Integer[7000]; //null값 사용을 위해
@@ -77,10 +83,10 @@ public class ConcentrateManager{
         
         if(gazeInfo.eyeMovementState == EyeMovementState.FIXATION){
             estate = 1;
-        }else{
+        }else if(gazeInfo.eyeMovementState == EyeMovementState.SACCADE || gazeInfo.eyeMovementState == EyeMovementState.UNKNOWN || gazeInfo.eyeMovementState == null){
             estate = 0;
         }
-        if(gazeInfo.screenState == ScreenState.INSIDE_OF_SCREEN){
+        if(gazeInfo.screenState == ScreenState.INSIDE_OF_SCREEN || gazeInfo.screenState == ScreenState.OUTSIDE_OF_SCREEN || gazeInfo.screenState == null){
             mstate = 1;
         }else{
             mstate = 0;
@@ -89,6 +95,9 @@ public class ConcentrateManager{
         estateData[timestamp - initTimestamp] = estate;
         mstateData[timestamp - initTimestamp] = mstate;
 
+        
+        
+        //TODO estate, msate가 모두 1이어도 값이 0으로 되는 경우가 있어서 나중에 수정 필요
         //overwrite를 하기위해 기존에 배열 해당 인덱스에 값이 존재할 경우 비교
         if(eyetrackData[timestamp - initTimestamp] == null){ //처음 값을 집어넣을 때
             eyetrackData[timestamp - initTimestamp] =estate & mstate; //둘다 1일때만 1
@@ -165,7 +174,6 @@ public class ConcentrateManager{
             concentLine = Integer.parseInt(String.valueOf((Double.valueOf(eyeSecondCount)/3600)*10));
         }
 
-
         //2. 집중시간이 적은 구간을 집중안함으로 변경하기위한 for문
         for(int i=0;i<eyeSecondCount;i++){ //전체 영상 구간 반복문
             //값을 계속 확인하면서 집중유지시간 체크
@@ -187,6 +195,7 @@ public class ConcentrateManager{
         유지시간을 기준으로 내림차순 정렬
         위에서부터 3가지 정보가 하이라이트 영상 시간 
         */
+
         Integer startSec = 0;
         maintainSec = 0;
         HashMap<Integer,Integer> mSecList = new HashMap<Integer,Integer>();
@@ -209,22 +218,29 @@ public class ConcentrateManager{
             maintainSec = 0; //한 집중구간이 끝난 후 누적시간 초기화
         }
 
+
         // hashmap에서 value 값이 큰 순서로 정렬
 
-        List<Integer> valueList = new ArrayList<>(mSecList.keySet());
-        Collections.sort(valueList, (k1, k2) -> (mSecList.get(k1).compareTo(mSecList.get(k2))));
-        // <== 위 연산 결과로 유지시간이 높은 순으로 시작시간이 valueList에 저장됨
+        List<Integer> valueList = new ArrayList<>();
+        valueList.addAll(mSecList.keySet()); //키값 저장
 
+        Collections.sort(valueList, new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                Object v1 = mSecList.get(o1);
+                Object v2 = mSecList.get(o2);
 
+                return ((Comparable) v1).compareTo(v2);
+            }
+        });
 
+        Iterator it = valueList.iterator();
 
+        while(it.hasNext()){
+            String temp = (String) it.next();
+            Log.i("test값", temp + " = " + mSecList.get(temp));
+        }
 
-
-
-
-
-
-    
     }
 
 

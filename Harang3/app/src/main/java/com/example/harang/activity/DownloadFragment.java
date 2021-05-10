@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.ListFragment;
 
 import com.amazonaws.mobile.config.AWSConfiguration;
@@ -57,6 +58,9 @@ public class DownloadFragment extends ListFragment {
     private static Context mContext;
     private static Bundle bundle;
     private static String VideoName;
+    private static String studentId;
+    private static String s_id;
+    private static String v_id;
 
     //Download Video
     private static View view;
@@ -81,6 +85,9 @@ public class DownloadFragment extends ListFragment {
         transferRecordMaps = new ArrayList<>();
         bundle = getArguments();  //번들 받기. getArguments() 메소드로 받음.
         VideoName = bundle.getString("videoName");
+        studentId = bundle.getString("studentId");
+        s_id = bundle.getString("s_id");
+        v_id = bundle.getString("v_id");
 
 
 
@@ -107,7 +114,7 @@ public class DownloadFragment extends ListFragment {
         new GetFileListTask().execute();
 
         initData();
-        beginDownload(VideoName+".mp4");
+        //beginDownload(VideoName+".mp4");
     }
 
 
@@ -126,7 +133,6 @@ public class DownloadFragment extends ListFragment {
 
 
     private void checkBundleInList(){
-
         if(bundle != null){
             //Name 받기.
             boolean temp = false;
@@ -138,7 +144,7 @@ public class DownloadFragment extends ListFragment {
             }
             if(temp){//해당 영상이 있을 경우
                 Log.i(TAG,VideoName+".mp4 있음");
-                //beginDownload(name+".mp4");
+                beginDownload(VideoName+".mp4");
 
             }else{
                 Log.i(TAG,VideoName+".mp4 XXXXX");
@@ -193,8 +199,15 @@ public class DownloadFragment extends ListFragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, VideoActivity.class);
-                intent.putExtra("title", VideoName+".mp4");
+                intent.putExtra("VideoName", VideoName+".mp4");
+                intent.putExtra("studentId", studentId);
+                intent.putExtra("s_id", s_id);
+                intent.putExtra("v_id", v_id);
                 startActivity(intent);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().remove(DownloadFragment.this).commit();
+
+
             }
         });
     }
@@ -250,13 +263,15 @@ public class DownloadFragment extends ListFragment {
     public static void beginDownload(String key){
         File file = new File(mContext.getExternalFilesDir(null).toString() + "/" + key);
 
-        TransferObserver observer = transferUtility.download(key, file);
+        //TransferObserver observer = transferUtility.download(key, file);
+
 
         Intent intent = new Intent(mContext, MyService.class);
         intent.putExtra(MyService.INTENT_KEY_NAME, key);
         intent.putExtra(MyService.INTENT_TRANSFER_OPERATION, MyService.TRANSFER_OPERATION_DOWNLOAD);
         intent.putExtra(MyService.INTENT_FILE, file);
         mContext.startService(intent);
+        //observer.setTransferListener(new DownloadListener());
 
     }
 

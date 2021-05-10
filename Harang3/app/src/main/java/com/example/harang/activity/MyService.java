@@ -124,7 +124,7 @@ public class MyService extends Service {
         public void onError(int id, Exception e) {
             Log.e(TAG, "onError: " + id, e);
             if (notifyUploadActivityNeeded) {
-                DownloadFragment.initData();
+                UploadActivity.initData();
                 notifyUploadActivityNeeded = false;
             }
         }
