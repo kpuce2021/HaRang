@@ -178,12 +178,6 @@ public class StudentFragment1 extends Fragment {
             // 리스트뷰 참조 및 Adapter달기
             listview = (ListView) view.findViewById(R.id.video_list);
             listview.setAdapter(adapter);
-            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView parent, View view, int position, long id) {
-                }
-            });
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

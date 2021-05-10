@@ -213,15 +213,22 @@ public class ConcentrateManager{
         }
 
         maintainSec = 0;
-        int clipCount = 1; //클립구간 갯수에 대한 정보 필요********
+        int clipCount = 2; //클립구간 갯수에 대한 정보 필요********
         int[] concent_start = new int[clipCount];
         int[] concent_end = new int[clipCount];
 
-        /* db에 저장되어있는 교수자가 입력한 영상에 대한 기록 받아오기 */
+        /*
+        //db에 저장되어있는 교수자가 입력한 영상에 대한 기록 받아오기
         for(int i=0;i<clipCount;i++){ //클립영상 구간 받아오기
             concent_start[i] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
             concent_end[i] = 10; //db에서 받아오는 작업 필요**********
         }
+        */
+        concent_start[0] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
+        concent_end[0] = 8; //db에서 받아오는 작업 필요**********
+
+        concent_start[1] = 13; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
+        concent_end[1] = 20; //db에서 받아오는 작업 필요**********
 
         //3. 비집중 부분을 리스트에 넣기 ("start" : 시작 초, "length" : 유지 시간)
         mSecList = new ArrayList<>(); //클립영상 리스트
@@ -287,7 +294,7 @@ public class ConcentrateManager{
         for(int i=0;i<eyeSecondCount;i++){
             Log.i(TAG, +eyetrackData.get(i)+" "+estateData.get(i)+" "+mstateData.get(i));
         }
-
+        BaseActivity.totalList.put(v_id,mSecList);
         concentDB();
     }
 

@@ -39,8 +39,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.BaseActivity">
-        </activity>
+        <activity android:name=".activity.BaseActivity"></activity>
+        <activity android:name=".activity.ClipVideoActivity"></activity>
 
         <activity android:name=".activity.MediaActivity"
             android:screenOrientation="portrait">

@@ -1,17 +1,11 @@
 package com.example.harang.activity;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.harang.R;
@@ -19,7 +13,7 @@ import com.example.harang.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class VideoListViewAdapter extends ArrayAdapter{
+public class ClipvideoListAdapter extends ArrayAdapter {
     private static ArrayList<HashMap<String,String>> menuInfolist;
 
     // 버튼 클릭 이벤트를 위한 Listener 인터페이스 정의.
@@ -30,14 +24,14 @@ public class VideoListViewAdapter extends ArrayAdapter{
     // 생성자로부터 전달된 resource id 값을 저장.
     int resourceId ;
     // 생성자로부터 전달된 ListBtnClickListener  저장.
-    private ListBtnClickListener listBtnClickListener ;
+    private ClipvideoListAdapter.ListBtnClickListener listBtnClickListener ;
 
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
-    private ArrayList<VideoListViewItem> listViewItemList = new ArrayList<VideoListViewItem>() ;
+    private ArrayList<ClipvideoListItem> listViewItemList = new ArrayList<ClipvideoListItem>() ;
 
 
     // ListViewAdapter의 생성자
-    public VideoListViewAdapter(Context context, int resource, ArrayList<VideoListViewItem> list) {
+    public ClipvideoListAdapter(Context context, int resource, ArrayList<ClipvideoListItem> list) {
         super(context, resource, list);
         // resource id 값 복사. (super로 전달된 resource를 참조할 방법이 없음.)
         this.listViewItemList = list;
@@ -59,50 +53,28 @@ public class VideoListViewAdapter extends ArrayAdapter{
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.video_listview_item, parent, false);
+            convertView = inflater.inflate(R.layout.clipvideo_listview_item, parent, false);
         }
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        ImageView videoThumbnail = (ImageView) convertView.findViewById(R.id.video_thumbnail);
         TextView videoName = (TextView) convertView.findViewById(R.id.video_name);
-        ProgressBar totalProgressBar = (ProgressBar) convertView.findViewById(R.id.total_progressBar);
-        ProgressBar concentProgressBar = (ProgressBar) convertView.findViewById(R.id.concent_progressBar);
+        TextView startTime = (TextView) convertView.findViewById(R.id.startTime);
+        TextView endTime = (TextView) convertView.findViewById(R.id.endTime);
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        final VideoListViewItem listViewItem = (VideoListViewItem) getItem(position);
+        final ClipvideoListItem listViewItem = (ClipvideoListItem) getItem(position);
 
-        // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득 - 원래꺼
-        //VideoListViewItem listViewItem = listViewItemList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
-        videoThumbnail.setImageDrawable(listViewItem.getVideoThumbnail());
         videoName.setText(listViewItem.getVideoName());
-        totalProgressBar.setProgress(listViewItem.getTotalProgress());
-        concentProgressBar.setProgress(listViewItem.getConcentProgress());
-
-        Button allVideo = (Button) convertView.findViewById(R.id.all_btn);
-        Button clipVideo = (Button) convertView.findViewById(R.id.clip_btn);
+        startTime.setText("시작시간 : "+String.valueOf(listViewItem.getStartTime()));
+        endTime.setText("종료시간 : "+String.valueOf(listViewItem.getEndTime()));
 
 
         Bundle bundle = new Bundle();
         bundle.putString("videoName", listViewItem.getVideoName());
         bundle.putString("studentId",BaseActivity.StudentId);
         bundle.putString("s_id",BaseActivity.s_id);
-        bundle.putString("v_id",listViewItem.getVid());
-        //버튼 별 클릭 리스너
-        allVideo.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-
-                ((BaseActivity)getContext()).replaceFragment(DownloadFragment.newInstance(),bundle);
-                Log.i("pageTest",Integer.toString(pos) + "번 전체재생 버튼 선택.");
-            }
-        });
-        clipVideo.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                ((BaseActivity)getContext()).replaceFragment(CliplistFragment.newInstance(),bundle);
-                Log.i("pageTest",Integer.toString(pos) + "번 클립재생 버튼 선택.");
-            }
-        });
 
         return convertView;
     }
@@ -120,13 +92,14 @@ public class VideoListViewAdapter extends ArrayAdapter{
     }
 
     // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
-    public void addItem(Drawable thumbnail, String name, int total, int concent) {
-        VideoListViewItem item = new VideoListViewItem();
+    public void addItem(String name, int start, int length,int percent) {
+        ClipvideoListItem item = new ClipvideoListItem();
 
-        item.setVideoThumbnail(thumbnail);
         item.setVideoName(name);
-        item.setTotalProgress(total);
-        item.setConcentProgress(concent);
+        item.setStartTime(start);
+        item.setVideoLength(length);
+        item.setEndTime(start+length-1);
+
 
         listViewItemList.add(item);
     }
