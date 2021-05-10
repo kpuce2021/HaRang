@@ -20,6 +20,6 @@ android {
 }
 
 dependencies {
-    compile project(path: ':FFmpegAndroid64')
+    api project(path: ':FFmpegAndroid64')
 }
 

@@ -1,5 +1,6 @@
 package com.example.harang.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -18,10 +19,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
 
 import com.example.harang.R;
+import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegCommandAlreadyRunningException;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+
 
 public class CliplistFragment extends Fragment {
     public static CliplistFragment newInstance() {
@@ -44,6 +49,7 @@ public class CliplistFragment extends Fragment {
     private static ClipvideoListAdapter adapter; //리스트 어답터
     private static ArrayList<ClipvideoListItem> items;
     private static ListView listview;
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -142,18 +148,21 @@ public class CliplistFragment extends Fragment {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
-                Intent intent = new Intent(mActivity,ClipVideoActivity.class);
-                intent.putExtra("VideoName", VideoName);
-                intent.putExtra("studentId", studentId);
-                intent.putExtra("s_id", s_id);
-                intent.putExtra("s_id", v_id);
+                //영상 자르기
+                try {
+                    convertAudio(VideoName, v_id, position);
 
-                startActivity(intent);
+                } catch (FFmpegCommandAlreadyRunningException | IOException e) {
+                    Log.i("cliptest","ffmpeg 실패 : "+e.getMessage());
+                    e.printStackTrace();
+                }
             }
         });
-
-
-
     }
 
+    private void convertAudio(String VideoName, String v_id, int position) throws FFmpegCommandAlreadyRunningException, IOException {
+        FfmpegUtil.requestPermission(mActivity, Manifest.permission.READ_EXTERNAL_STORAGE);
+        FfmpegUtil.requestPermission(mActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        AndroidAudioConverter.load(mContext, VideoName ,v_id, position);
+    }
 }
