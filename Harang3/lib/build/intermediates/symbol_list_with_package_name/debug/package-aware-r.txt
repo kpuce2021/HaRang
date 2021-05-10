@@ -1,0 +1,3 @@
+cafe.adriel.androidaudioconverter
+string app_name
+string shipped_ffmpeg_version
