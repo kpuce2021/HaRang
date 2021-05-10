@@ -17,8 +17,10 @@ import android.widget.TextView;
 import com.example.harang.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class VideoListViewAdapter extends ArrayAdapter{
+    private static ArrayList<HashMap<String,String>> menuInfolist;
 
     // 버튼 클릭 이벤트를 위한 Listener 인터페이스 정의.
     public interface ListBtnClickListener {
@@ -41,8 +43,6 @@ public class VideoListViewAdapter extends ArrayAdapter{
         this.listViewItemList = list;
         this.resourceId = resource ;
     }
-
-
 
     // Adapter에 사용되는 데이터의 개수를 리턴. : 필수 구현
     @Override
@@ -70,7 +70,7 @@ public class VideoListViewAdapter extends ArrayAdapter{
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         final VideoListViewItem listViewItem = (VideoListViewItem) getItem(position);
-        
+
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득 - 원래꺼
         //VideoListViewItem listViewItem = listViewItemList.get(position);
 
@@ -86,6 +86,9 @@ public class VideoListViewAdapter extends ArrayAdapter{
 
         Bundle bundle = new Bundle();
         bundle.putString("videoName", listViewItem.getVideoName());
+        bundle.putString("studentId",BaseActivity.StudentId);
+        bundle.putString("s_id",BaseActivity.s_id);
+        bundle.putString("v_id",listViewItem.getVid());
         //버튼 별 클릭 리스너
         allVideo.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -96,7 +99,7 @@ public class VideoListViewAdapter extends ArrayAdapter{
         });
         clipVideo.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                ((BaseActivity)getContext()).replaceFragment(DownloadFragment.newInstance(),bundle);
+                ((BaseActivity)getContext()).replaceFragment(CliplistFragment.newInstance(),bundle);
                 Log.i("pageTest",Integer.toString(pos) + "번 클립재생 버튼 선택.");
             }
         });

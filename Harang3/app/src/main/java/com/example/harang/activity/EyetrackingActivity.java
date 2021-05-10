@@ -56,7 +56,9 @@ public class EyetrackingActivity extends AppCompatActivity {
     private HandlerThread backgroundThread = new HandlerThread("background");
     private Handler backgroundHandler;
 
-    
+    private static String studentId;
+    private static String s_id;
+
     //test중
     private ConcentrateManager concentrateManager;
 
@@ -64,6 +66,10 @@ public class EyetrackingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        studentId = intent.getStringExtra("studentId");
+        s_id = intent.getStringExtra("s_id");
 
         gazeTrackerManager = GazeTrackerManager.makeNewInstance(this); //생성을 이 부분에서만 실행
         //이 이후에 gazeManager를 이용할 경우 getInstance를 통해서 값 받아오기
@@ -74,15 +80,15 @@ public class EyetrackingActivity extends AppCompatActivity {
         initHandler();
 
         //concentrateManager = new ConcentrateManager(this); //실행되는 버전
-        concentrateManager = ConcentrateManager.makeNewInstance(this);
+        //concentrateManager = ConcentrateManager.makeNewInstance(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         if (preview.isAvailable()) {
-          // When if textureView available
-          gazeTrackerManager.setCameraPreview(preview);
+            // When if textureView available
+            gazeTrackerManager.setCameraPreview(preview);
         }
         gazeTrackerManager.setGazeTrackerCallbacks(gazeCallback, calibrationCallback, statusCallback);
         Log.i(TAG, "onStart");
@@ -486,11 +492,11 @@ public class EyetrackingActivity extends AppCompatActivity {
 
     // gazeTracker
     private boolean isTrackerValid() {
-      return gazeTrackerManager.hasGazeTracker();
+        return gazeTrackerManager.hasGazeTracker();
     }
 
     private boolean isTracking() {
-      return gazeTrackerManager.isTracking();
+        return gazeTrackerManager.isTracking();
     }
 
     private final InitializationCallback initializationCallback = new InitializationCallback() {
@@ -515,48 +521,48 @@ public class EyetrackingActivity extends AppCompatActivity {
 
     private final OneEuroFilterManager oneEuroFilterManager = new OneEuroFilterManager(2);
     private final GazeCallback gazeCallback = new GazeCallback() {
-      @Override
-      public void onGaze(GazeInfo gazeInfo) {
-        processOnGaze(gazeInfo);
-        Log.i(TAG, gazeInfo.eyeMovementState+" "+gazeInfo.screenState+" "+gazeInfo.timestamp+" "+(Long.valueOf(gazeInfo.timestamp).intValue()/1000)%10000);
-        //timestamp 값이 뒤에서 4번째 숫자가 초에 해당하는 부분임
-        //아이트래킹 로그 출력부분
-          
-          //test중
-          concentrateManager.getEyetrackingData(gazeInfo,(Long.valueOf(gazeInfo.timestamp).intValue()/1000)%10000); //아이트래킹 정보 저장
-          /*
-          * 1초
-          * 1분 = 60초
-          * 1시간 = 60분 = 3600초
-          * 2시간 = 120분 = 7200초
-          *
-          * timestamp = 1616599777831
-          * --> 9777 부분만 필요하므로
-          * (timestamp/1000)%10000 부분이 초에 해당함.
-          * */
+        @Override
+        public void onGaze(GazeInfo gazeInfo) {
+            processOnGaze(gazeInfo);
+            Log.i(TAG, gazeInfo.eyeMovementState+" "+gazeInfo.screenState+" "+gazeInfo.timestamp+" "+(Long.valueOf(gazeInfo.timestamp).intValue()/1000)%10000);
+            //timestamp 값이 뒤에서 4번째 숫자가 초에 해당하는 부분임
+            //아이트래킹 로그 출력부분
 
-      }
+            //test중
+            //concentrateManager.getEyetrackingData(gazeInfo,(Long.valueOf(gazeInfo.timestamp).intValue()/1000)%10000); //아이트래킹 정보 저장
+            /*
+             * 1초
+             * 1분 = 60초
+             * 1시간 = 60분 = 3600초
+             * 2시간 = 120분 = 7200초
+             *
+             * timestamp = 1616599777831
+             * --> 9777 부분만 필요하므로
+             * (timestamp/1000)%10000 부분이 초에 해당함.
+             * */
+
+        }
     };
 
     private void processOnGaze(GazeInfo gazeInfo) {
-      if (gazeInfo.trackingState == TrackingState.SUCCESS) {
-        hideTrackingWarning();
-        if (!gazeTrackerManager.isCalibrating()) {
-          float[] filtered_gaze = filterGaze(gazeInfo);
-          showGazePoint(filtered_gaze[0], filtered_gaze[1], gazeInfo.screenState);
+        if (gazeInfo.trackingState == TrackingState.SUCCESS) {
+            hideTrackingWarning();
+            if (!gazeTrackerManager.isCalibrating()) {
+                float[] filtered_gaze = filterGaze(gazeInfo);
+                showGazePoint(filtered_gaze[0], filtered_gaze[1], gazeInfo.screenState);
+            }
+        } else {
+            showTrackingWarning();
         }
-      } else {
-        showTrackingWarning();
-      }
     }
 
     private float[] filterGaze(GazeInfo gazeInfo) {
-      if (isUseGazeFilter) {
-        if (oneEuroFilterManager.filterValues(gazeInfo.timestamp, gazeInfo.x, gazeInfo.y)) {
-          return oneEuroFilterManager.getFilteredValues();
+        if (isUseGazeFilter) {
+            if (oneEuroFilterManager.filterValues(gazeInfo.timestamp, gazeInfo.x, gazeInfo.y)) {
+                return oneEuroFilterManager.getFilteredValues();
+            }
         }
-      }
-      return new float[]{gazeInfo.x, gazeInfo.y};
+        return new float[]{gazeInfo.x, gazeInfo.y};
     }
 
     private CalibrationCallback calibrationCallback = new CalibrationCallback() {
@@ -620,12 +626,12 @@ public class EyetrackingActivity extends AppCompatActivity {
     }
 
     private void releaseGaze() {
-      gazeTrackerManager.deinitGazeTracker();
-      setViewAtGazeTrackerState();
+        gazeTrackerManager.deinitGazeTracker();
+        setViewAtGazeTrackerState();
     }
 
     private void startTracking() {
-      gazeTrackerManager.startGazeTracking();
+        gazeTrackerManager.startGazeTracking();
     }
 
     private void stopTracking() {
@@ -634,48 +640,48 @@ public class EyetrackingActivity extends AppCompatActivity {
     }
 
     private boolean startCalibration() {
-      boolean isSuccess = gazeTrackerManager.startCalibration(calibrationType, criteria);
-      if (!isSuccess) {
-        showToast("calibration start fail", false);
-      }
-      setViewAtGazeTrackerState();
-      return isSuccess;
+        boolean isSuccess = gazeTrackerManager.startCalibration(calibrationType, criteria);
+        if (!isSuccess) {
+            showToast("calibration start fail", false);
+        }
+        setViewAtGazeTrackerState();
+        return isSuccess;
     }
 
     // Collect the data samples used for calibration
     private boolean startCollectSamples() {
-      boolean isSuccess = gazeTrackerManager.startCollectingCalibrationSamples();
-      setViewAtGazeTrackerState();
-      return isSuccess;
+        boolean isSuccess = gazeTrackerManager.startCollectingCalibrationSamples();
+        setViewAtGazeTrackerState();
+        return isSuccess;
     }
 
     private void stopCalibration() {
-      gazeTrackerManager.stopCalibration();
-      hideCalibrationView();
-      setViewAtGazeTrackerState();
+        gazeTrackerManager.stopCalibration();
+        hideCalibrationView();
+        setViewAtGazeTrackerState();
     }
 
     private void setCalibration() {
-      LoadCalibrationResult result = gazeTrackerManager.loadCalibrationData();
-      switch (result) {
-        case SUCCESS:
-          showToast("setCalibrationData success", false);
-          break;
-        case FAIL_DOING_CALIBRATION:
-          showToast("calibrating", false);
-          break;
-        case FAIL_NO_CALIBRATION_DATA:
-          showToast("Calibration data is null", true);
-          break;
-        case FAIL_HAS_NO_TRACKER:
-          showToast("No tracker has initialized", true);
-          break;
-      }
-      setViewAtGazeTrackerState();
+        LoadCalibrationResult result = gazeTrackerManager.loadCalibrationData();
+        switch (result) {
+            case SUCCESS:
+                showToast("setCalibrationData success", false);
+                break;
+            case FAIL_DOING_CALIBRATION:
+                showToast("calibrating", false);
+                break;
+            case FAIL_NO_CALIBRATION_DATA:
+                showToast("Calibration data is null", true);
+                break;
+            case FAIL_HAS_NO_TRACKER:
+                showToast("No tracker has initialized", true);
+                break;
+        }
+        setViewAtGazeTrackerState();
     }
 
     private void showGuiDemo() {
-      Intent intent = new Intent(getApplicationContext(), DemoActivity.class);
-      startActivity(intent);
+        Intent intent = new Intent(getApplicationContext(), DemoActivity.class);
+        startActivity(intent);
     }
 }

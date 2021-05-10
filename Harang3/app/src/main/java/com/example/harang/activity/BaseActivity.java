@@ -15,6 +15,8 @@ import com.example.harang.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -26,6 +28,8 @@ public class BaseActivity extends AppCompatActivity {
     private StudentFragment3 studentFragment3;
 
     public static String StudentId;
+    public static String s_id;
+    public static HashMap<String,ArrayList<HashMap<String,Integer>>> totalList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,8 @@ public class BaseActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         StudentId = intent.getStringExtra("user_id");
+        s_id = intent.getStringExtra("s_id");
+        totalList = new HashMap<>(); ////key : v_id, value : mSecList 내용
 
 
         bottomNavigationView = findViewById(R.id.bottomNavi);

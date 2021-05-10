@@ -134,11 +134,11 @@ public class DownloadActivity extends ListActivity {
                     RadioButton radio = (RadioButton) view;
                     radio.setChecked((Boolean) data);
                     return true;
+                case R.id.textFileName:
                 case R.id.progressBar1:
                     ProgressBar progress = (ProgressBar) view;
                     progress.setProgress((Integer) data);
                     return true;
-                case R.id.textFileName:
                 case R.id.textBytes:
                 case R.id.textState:
                 case R.id.textPercentage:
