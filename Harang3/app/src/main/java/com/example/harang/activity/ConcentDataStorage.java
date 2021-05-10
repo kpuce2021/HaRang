@@ -2,72 +2,76 @@ package com.example.harang.activity;
 
 
 import android.content.Context;
-import android.os.Build;
+import android.content.SharedPreferences;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
+import androidx.annotation.Nullable;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.Arrays;
+/*
+* 학생 집중 정보 테이블 data_concentrate 정보를 db에 저장하기 전 임시로 디바이스 내부에 저장
+* 집중정보 아이디 제외 다른정보를 계산 후 저장
+*
+*
+* */
+/* 나중에 이곳에서 클립영상 데이터도 같이 수행 - 집중 구간 계산 관련*/
 public class ConcentDataStorage {
-    private static String IP = "3.214.234.24"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
-    // 서버 URL 설정 ( PHP 파일 연동 )
-    final static private String URL = "http://" +IP+ "/videoConcentrate.php";
-    private static HashMap<String, String> map;
-    private static int flag = 1;
+    private static final String TAG = ConcentDataStorage.class.getSimpleName();
+    private static final String CONCENT_DATA = "concentData";
 
+    /*
+    임시로 sharedPreferences에 저장
+    * 학생 집중 정보 테이블 data_concentrate에 저장되는 정보
+    double[] concentData에  v_id부터 순서대로 저장
+    * c_id - 집중 정보 아이디
+    * v_id - 영상 아이디
+    * s_id - 학습자 아이디
+    * c_total - 전체 집중률
+    * c_seperate - 구간 집중률
+    *
+    * */
 
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public static void initConcentDataStorage(String v_id, String s_id, HashMap<Integer,Integer> eyetrackData,
-                                              HashMap<Integer,Integer> estateData, HashMap<Integer,Integer> mstateData,
-                                              int eyeSecondCount, ArrayList<HashMap<String,Integer>> mSecList, double c_total, double c_seperate, Context mContext){
-
-        Log.i("db_test","cds 진입");
-        if(flag == 1) {
-            Response.Listener<String> responseListener = new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONObject jsonObject = new JSONObject(response);
-                        boolean success = jsonObject.getBoolean("success");
-                        if (success) {
-                            //Log.i("db_test", "what : " + jsonObject.getString("what"));
-                            Log.i("db_test", "mysql error : " + jsonObject.getString("error"));
-//                            Log.i("db_test", "test0 : " + jsonObject.getString("test0"));
-                        } else {
-                            Log.i("db_test", "server connect failllll!!!!!!");
-                            return;
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        Log.i("db_test", "catch : " + e.getMessage());
-                    }
-                }
-            };
-
-
-            VideoConcentrateRequest vcr = new VideoConcentrateRequest(v_id, s_id, eyetrackData, estateData, mstateData,
-                    eyeSecondCount, mSecList, c_total, c_seperate, responseListener);
-            vcr.setShouldCache(false);
-            RequestQueue queue = Volley.newRequestQueue(mContext);
-            queue.add(vcr);
+    /* sharedPreferences에 정보 저장 */
+    public static void saveConcneData(Context context, double[] concentData){
+        if(concentData !=null && concentData.length>0) {
+            SharedPreferences.Editor editor = context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit(); //신규 editor 생성
+            editor.putString(CONCENT_DATA, Arrays.toString(concentData));
+            editor.apply();
+        } else{
+            Log.e(TAG, "집중 정보 없음 오류");
         }
-        flag = 0;
     }
 
+
+    /*
+    아래 순서로 정보 불러짐
+    * v_id - 영상 아이디
+    * s_id - 학습자 아이디
+    * c_total - 전체 집중률
+    * c_seperate - 구간 집중률
+    *
+    * */
+    /* sharedPreferences에서 정보 로드 */
+    public static @Nullable
+    double[] loadConcentData(Context context){
+        SharedPreferences prefs = context.getSharedPreferences(TAG, Context.MODE_PRIVATE);
+        String saveData = prefs.getString(CONCENT_DATA, null);
+
+        if (saveData != null) {
+            try {
+                String[] split = saveData.substring(1, saveData.length() - 1).split(", ");
+                double[] array = new double[split.length];
+                for (int i = 0; i < split.length; i++) {
+                    array[i] = Double.parseDouble(split[i]);
+                }
+                return array;
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e(TAG, "집중 정보 형식이 맞지 않을 때 오류");
+            }
+        }
+        return null;
+
+
+    }
 }

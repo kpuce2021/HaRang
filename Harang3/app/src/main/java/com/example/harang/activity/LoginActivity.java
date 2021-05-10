@@ -4,7 +4,6 @@ package com.example.harang.activity;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -111,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     // TODO : 인코딩 문제때문에 한글 DB인 경우 로그인 불가
-                    //System.out.println("harang" + response);
+                    System.out.println("harang" + response);
                     JSONObject jsonObject = new JSONObject(response);
                     boolean success = jsonObject.getBoolean("success");
                     if (success) { // 로그인에 성공한 경우
@@ -152,14 +151,11 @@ public class LoginActivity extends AppCompatActivity {
                     if (success) { // 로그인에 성공한 경우
                         String user_id = jsonObject.getString("id");
                         String user_pass = jsonObject.getString("password");
-                        String user_primaryKey = jsonObject.getString("s_id");
 
                         Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
                         intent.putExtra("user_id", user_id);
                         intent.putExtra("user_pass", user_pass);
-                        intent.putExtra("s_id", user_primaryKey);
-
                         startActivity(intent);
                     } else { // 로그인에 실패한 경우
                         Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();

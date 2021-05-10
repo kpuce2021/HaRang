@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -15,7 +14,6 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.harang.GazeTrackerManager;
@@ -45,9 +43,6 @@ public class VideoActivity extends AppCompatActivity {
     private VideoView videoView;
     private MediaController mediaController;
     private static String playTitle;
-    private static String studentId;
-    private static String s_id;
-    private static String v_id;
 
     private PointView viewPoint;
     private CalibrationViewer viewCalibration;
@@ -58,15 +53,16 @@ public class VideoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_video);
 
         gazeTrackerManager = GazeTrackerManager.getInstance();
+        Log.i(TAG, "gazeTracker version: " + GazeTracker.getVersionName());
 
         concentrateManager = ConcentrateManager.makeNewInstance(this);
-        concentrateManager.getContext(VideoActivity.this);
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        Log.i(TAG, "onStart");
         gazeTrackerManager.setGazeTrackerCallbacks(gazeCallback);
         initView();
     }
@@ -76,28 +72,31 @@ public class VideoActivity extends AppCompatActivity {
         super.onResume();
         gazeTrackerManager.startGazeTracking();
         setOffsetOfView();
+        Log.i(TAG, "onResume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         gazeTrackerManager.stopGazeTracking();
+        Log.i(TAG, "onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         gazeTrackerManager.removeCallbacks(gazeCallback);
+        Log.i(TAG, "onStop");
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy");
-
-        concentrateManager.accessDB();
+        concentrateManager.printTest();
+        Log.i("test값", "setClipvideoData");
+        concentrateManager.setClipvideoData();
     }
 
     private void initView() {
@@ -105,13 +104,22 @@ public class VideoActivity extends AppCompatActivity {
         viewPoint = findViewById(R.id.view_point);
         viewCalibration = findViewById(R.id.view_calibration);
 
+        /*
+        // VideoView : 동영상을 재생하는 뷰
+        videoView = findViewById(R.id.s3VideoView);
+        mediaController = new MediaController(this);
+        mediaController.setAnchorView(videoView);
+        videoView.setMediaController(mediaController); // Video View 에 사용할 컨트롤러 지정
+
+        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/raw/home");
+
+        videoView.setVideoURI(uri);
+        videoView.start();
+        */
+
 
         Intent intent = getIntent();
-        playTitle = intent.getStringExtra("VideoName");
-        studentId = intent.getStringExtra("studentId");
-        s_id = intent.getStringExtra("s_id");
-        v_id = intent.getStringExtra("v_id");
-        concentrateManager.getUserInfo(v_id,s_id);
+        playTitle = intent.getStringExtra("title");
 
         // VideoView : 동영상을 재생하는 뷰
         videoView = (VideoView) findViewById(R.id.s3VideoView);
@@ -126,7 +134,7 @@ public class VideoActivity extends AppCompatActivity {
         // 절대 경로 = SDCard 폴더 = "stroage/emulated/0"
         //          ** 이 경로는 폰마다 다를수 있습니다.**
         // 외부메모리의 파일에 접근하기 위한 권한이 필요 AndroidManifest.xml에 등록
-        Log.d(TAG, "절대 경로 : " + path);
+        Log.d("test", "절대 경로 : " + path);
 
         videoView.setVideoPath(path+playTitle);
         // VideoView 로 재생할 영상
@@ -137,6 +145,7 @@ public class VideoActivity extends AppCompatActivity {
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
+                Log.i(TAG, "종료 동작");
                 gazeTrackerManager.stopGazeTracking();
 
                 Intent intent = new Intent(VideoActivity.this, FfmpegActivity.class);
@@ -157,8 +166,17 @@ public class VideoActivity extends AppCompatActivity {
         retriever.setDataSource(path);
         String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
         long timeInmillisec = Long.parseLong(time);
+        //long duration = timeInmillisec / 1000;
         duration = timeInmillisec;
 
+        /*
+        if(duration==videoView.getCurrentPosition()){
+            gazeTrackerManager.stopGazeTracking();
+            Intent intent = new Intent(VideoActivity.this, BaseActivity.class);
+            startActivity(intent);
+            finish();
+        }
+         */
 
     }
 
@@ -180,10 +198,28 @@ public class VideoActivity extends AppCompatActivity {
         });
     }
 
+    //main에 있던 버전
+    //null point exception
+    /*
+    private void setOffsetOfView() {
+        viewLayoutChecker.setOverlayView(viewPoint, new ViewLayoutChecker.ViewLayoutListener() {
+            @Override
+            public void getOffset(int x, int y) {
+                viewPoint.setOffset(x, y);
+                //viewCalibration.setOffset(x, y);
+            }
+        });
+    }
+     */
+
 
     private final GazeCallback gazeCallback = new GazeCallback() {
         @Override
         public void onGaze(GazeInfo gazeInfo) {
+            Log.i(TAG, gazeInfo.eyeMovementState+" "+gazeInfo.screenState+" "+gazeInfo.timestamp+" "+(Long.valueOf(gazeInfo.timestamp).intValue()/1000)%10000);
+            //timestamp 값이 뒤에서 4번째 숫자가 초에 해당하는 부분임
+            //아이트래킹 로그 출력부분
+
             //test중
             concentrateManager.getEyetrackingData(gazeInfo,(Long.valueOf(gazeInfo.timestamp).intValue()/1000)%10000); //아이트래킹 정보 저장
             /*
@@ -199,6 +235,7 @@ public class VideoActivity extends AppCompatActivity {
 
             String path = getExternalFilesDir(null).toString()  + "/"; // 기본적인 절대경로 얻어오기
             getPlayTime(path+playTitle);
+            current();
         }
 
     };

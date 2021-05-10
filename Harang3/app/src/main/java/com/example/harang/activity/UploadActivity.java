@@ -78,7 +78,7 @@ public class UploadActivity extends ListActivity {
 
     // Reference to the utility class
     static Util util;
-
+    
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
