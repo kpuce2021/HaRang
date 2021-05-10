@@ -139,9 +139,12 @@ public class VideoActivity extends AppCompatActivity {
             public void onCompletion(MediaPlayer mp) {
                 gazeTrackerManager.stopGazeTracking();
 
-                Intent intent = new Intent(VideoActivity.this, FfmpegActivity.class);
+                /*Intent intent = new Intent(VideoActivity.this, FfmpegActivity.class);
                 intent.putExtra("path", path);
-                intent.putExtra("playTitle", playTitle);
+                intent.putExtra("playTitle", playTitle);*/
+                Intent intent = new Intent(getApplicationContext(),BaseActivity.class);
+                intent.putExtra("user_id", studentId);
+                intent.putExtra("s_id", s_id);
                 startActivity(intent);
                 finish();
             }
