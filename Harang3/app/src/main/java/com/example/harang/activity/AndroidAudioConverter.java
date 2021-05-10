@@ -68,7 +68,10 @@ public class AndroidAudioConverter {
             Log.i("ffmpeg","startTime : "+startTime);
             Log.i("ffmpeg","endTime : "+endTime);
             Log.i("ffmpeg","clipPath : "+clipPath);
-
+            File files = new File(filePath);
+            if(files.exists()==true) { //파일이 있을시
+                Runtime.getRuntime().exec("rm " + clipPath);
+            }
             String[] cmd = {"-i", filePath, "-ss", startTime, "-to", endTime, clipPath };
             FFmpeg.getInstance(context).execute(cmd, new FFmpegExecuteResponseHandler() {
                 @Override
