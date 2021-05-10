@@ -20,6 +20,7 @@ public class ClipVideoActivity extends AppCompatActivity {
     private static String studentId;
     private static String s_id;
     private static String v_id;
+    private static int position;
 
 
     private VideoView videoView;
@@ -45,6 +46,7 @@ public class ClipVideoActivity extends AppCompatActivity {
         studentId = intent.getStringExtra("studentId");
         s_id = intent.getStringExtra("s_id");
         v_id = intent.getStringExtra("v_id");
+        position = intent.getIntExtra("position",0);
 
         // VideoView : 동영상을 재생하는 뷰
         videoView = (VideoView) findViewById(R.id.clipVideoView);
@@ -59,9 +61,9 @@ public class ClipVideoActivity extends AppCompatActivity {
         // 절대 경로 = SDCard 폴더 = "stroage/emulated/0"
         //          ** 이 경로는 폰마다 다를수 있습니다.**
         // 외부메모리의 파일에 접근하기 위한 권한이 필요 AndroidManifest.xml에 등록
-        Log.d(TAG, "절대 경로 : " + path);
+        Log.d(TAG, "절대 경로 : " + path+v_id+"-"+position + ".mp4");
 
-        videoView.setVideoPath(path+playTitle+".mp4");
+        videoView.setVideoPath(path+v_id+"-"+position + ".mp4");
         // VideoView 로 재생할 영상
         // 아까 동영상 [상세정보] 에서 확인한 경로
         

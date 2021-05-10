@@ -1,3 +1,5 @@
+include ':lib'
+include ':FFmpegAndroid64'
 include ':libgaze-release'
 include ':gazetracker-release'
 include ':app'

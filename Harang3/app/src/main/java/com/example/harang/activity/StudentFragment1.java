@@ -97,6 +97,7 @@ public class StudentFragment1 extends Fragment {
         ContentValues addRowValue = new ContentValues();
         Log.i(TAG,"BaseActivity.StudentId : "+BaseActivity.StudentId);
         addRowValue.put("id",BaseActivity.StudentId);
+        //addRowValue.put("id",MyApplication.user_id);
 
         selectDatabase selectDatabase = new selectDatabase(url, addRowValue);
         selectDatabase.execute(); // AsyncTask는 .excute()로 실행된다

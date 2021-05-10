@@ -1,5 +1,6 @@
 package com.example.harang.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaMetadataRetriever;
@@ -7,7 +8,9 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
+import android.view.View;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -20,7 +23,13 @@ import com.example.harang.R;
 import com.example.harang.view.CalibrationViewer;
 import com.example.harang.view.GazePathView;
 import com.example.harang.view.PointView;
+import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
+import com.github.hiteshsondhi88.libffmpeg.FFmpegExecuteResponseHandler;
+import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegCommandAlreadyRunningException;
 
+import java.io.File;
+
+import cafe.adriel.androidaudioconverter.AndroidAudioConverter;
 import camp.visual.gazetracker.GazeTracker;
 import camp.visual.gazetracker.callback.GazeCallback;
 import camp.visual.gazetracker.filter.OneEuroFilterManager;
@@ -52,7 +61,6 @@ public class VideoActivity extends AppCompatActivity {
 
         concentrateManager = ConcentrateManager.makeNewInstance(this);
         concentrateManager.getContext(VideoActivity.this);
-
 
     }
 
@@ -130,6 +138,10 @@ public class VideoActivity extends AppCompatActivity {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 gazeTrackerManager.stopGazeTracking();
+
+                /*Intent intent = new Intent(VideoActivity.this, FfmpegActivity.class);
+                intent.putExtra("path", path);
+                intent.putExtra("playTitle", playTitle);*/
                 Intent intent = new Intent(getApplicationContext(),BaseActivity.class);
                 intent.putExtra("user_id", studentId);
                 intent.putExtra("s_id", s_id);
