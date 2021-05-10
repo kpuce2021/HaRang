@@ -15,9 +15,14 @@
 
 package com.example.harang.activity;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.util.Log;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.mobile.client.AWSMobileClient;
@@ -189,5 +194,12 @@ public class Util {
                         + getBytesString(observer.getBytesTotal()));
         map.put("state", observer.getState());
         map.put("percentage", progress + "%");
+    }
+
+    public static void requestPermission(Activity activity, String permission) {
+        if (ContextCompat.checkSelfPermission(activity, permission)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[]{permission}, 0);
+        }
     }
 }

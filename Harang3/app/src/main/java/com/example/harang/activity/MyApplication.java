@@ -15,6 +15,9 @@ import java.util.UUID;
 
 public class MyApplication extends Application {
     // Overriding this method is totally optional!
+
+    public static String user_id;
+    public static String user_pass;
     @Override
     public void onCreate() {
         super.onCreate();
