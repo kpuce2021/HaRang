@@ -84,7 +84,7 @@ public class FfmpegActivity extends AppCompatActivity {
 //        };
         Toast.makeText(this, "Converting audio file...", Toast.LENGTH_SHORT).show();
         //Runtime.getRuntime().exec("chmod -R 777 " + "/data/data/com.example.harang/files/ffmpeg");
-        AndroidAudioConverter.load(this, path + playTitle);
+        AndroidAudioConverter.load(this, path ,playTitle);
 //       AndroidAudioConverter.with(this)
 //                .setFile(wavFile)
 //                .setFormat(AudioFormat.MP3)

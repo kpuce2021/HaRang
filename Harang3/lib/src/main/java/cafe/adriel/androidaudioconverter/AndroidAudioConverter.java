@@ -32,7 +32,7 @@ public class AndroidAudioConverter {
         return loaded;
     }
 
-    public static void load(final Context context, final String file_path) {
+    public static void load(final Context context, final String file_path, final String file_name) {
         try {
             FFmpeg.getInstance(context).loadBinary(new FFmpegLoadBinaryResponseHandler() {
                 @Override
@@ -43,7 +43,7 @@ public class AndroidAudioConverter {
                 @Override
                 public void onSuccess() {
                     Log.i(Tag, "Binary load success");
-                    cmdExcute(context, file_path);
+                    cmdExcute(context, file_path, file_name);
 
                 }
 
@@ -64,9 +64,9 @@ public class AndroidAudioConverter {
         }
     }
 
-    private static void cmdExcute(Context context, String file_path) {
+    private static void cmdExcute(Context context,String file_path, String file_name) {
         try {
-            String[] cmd = {"-i", file_path, "-ss", "00:00:01", "-to", "00:00:07", file_path.replace(".mp4", ".avi")};
+            String[] cmd = {"-i", file_path + file_name, "-ss", "00:00:01", "-to", "00:00:07", file_path + "clip.mp4"};
             FFmpeg.getInstance(context).execute(cmd, new FFmpegExecuteResponseHandler() {
                 @Override
                 public void onSuccess(String message) {
