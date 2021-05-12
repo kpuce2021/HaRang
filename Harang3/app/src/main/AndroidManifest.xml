@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Harang"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.MyInfoActivity"></activity>
+        <activity android:name=".activity.ModifyActivity" />
+        <activity android:name=".activity.p_BaseActivity" />
         <activity android:name=".activity.FfmpegActivity"></activity>
         <activity
             android:name=".activity.EyetrackingActivity"
