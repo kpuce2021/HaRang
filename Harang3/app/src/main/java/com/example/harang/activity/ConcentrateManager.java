@@ -169,7 +169,7 @@ public class ConcentrateManager{
         c_seperate = 0; //db에 저장하는 작업 필요******
         for(int i=0;i<clipCount;i++){
             concent_start[i] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
-            concent_end[i] = 10; //db에서 받아오는 작업 필요**********
+            concent_end[i] = 60; //db에서 받아오는 작업 필요**********
             c_seperate += getConcentrateRate(concent_start[i],concent_end[i]);
         }
         Log.i(TAG,"전체집중률 : "+c_total+", 구간집중률 : "+c_seperate);
@@ -213,7 +213,8 @@ public class ConcentrateManager{
         }
 
         maintainSec = 0;
-        int clipCount = 2; //클립구간 갯수에 대한 정보 필요********
+        //클립영상 시간설정
+        int clipCount = 1; //클립구간 갯수에 대한 정보 필요********
         int[] concent_start = new int[clipCount];
         int[] concent_end = new int[clipCount];
 
@@ -225,10 +226,10 @@ public class ConcentrateManager{
         }
         */
         concent_start[0] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
-        concent_end[0] = 8; //db에서 받아오는 작업 필요**********
+        concent_end[0] = 60; //db에서 받아오는 작업 필요**********
 
-        concent_start[1] = 13; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
-        concent_end[1] = 20; //db에서 받아오는 작업 필요**********
+        //concent_start[1] = 13; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
+        //concent_end[1] = 20; //db에서 받아오는 작업 필요**********
 
         //3. 비집중 부분을 리스트에 넣기 ("start" : 시작 초, "length" : 유지 시간)
         mSecList = new ArrayList<>(); //클립영상 리스트
@@ -287,12 +288,20 @@ public class ConcentrateManager{
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void accessDB(){
+        Log.i(TAG,"아이트래킹 수집 데이터 리스트");
+        Log.i(TAG, " 초 | 집중결과 | 고정 | 화면응시");
+        for(int i=0;i<eyeSecondCount;i++){
+            Log.i(TAG, String.format("%03d",i)+" |    "+eyetrackData.get(i)+"    |   "+estateData.get(i)+"  |    "+mstateData.get(i)+"   ");
+        }
+        BaseActivity.totalList.put(v_id,mSecList);
+
         setClipvideoData();
         setConcentrate();
 
-        Log.i(TAG,"수집 데이터 리스트");
+        Log.i(TAG,"집중 정보 변경 후");
+        Log.i(TAG, " 초 | 집중결과 | 고정 | 화면응시");
         for(int i=0;i<eyeSecondCount;i++){
-            Log.i(TAG, +eyetrackData.get(i)+" "+estateData.get(i)+" "+mstateData.get(i));
+            Log.i(TAG, String.format("%03d",i)+" |    "+eyetrackData.get(i)+"    |   "+estateData.get(i)+"  |    "+mstateData.get(i)+"   ");
         }
         BaseActivity.totalList.put(v_id,mSecList);
         concentDB();
@@ -303,5 +312,4 @@ public class ConcentrateManager{
         ConcentDataStorage cds = new ConcentDataStorage();
         cds.initConcentDataStorage(v_id,StudentId,eyetrackData,estateData,mstateData,eyeSecondCount,mSecList,c_total,c_seperate,mContext);
     }
-
 }

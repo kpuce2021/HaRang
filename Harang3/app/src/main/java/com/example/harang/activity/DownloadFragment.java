@@ -54,6 +54,7 @@ public class DownloadFragment extends ListFragment {
     private static ArrayList<HashMap<String, Object>> transferRecordMaps;
     private static Util util;
     private static String bucket;
+
     //context 정의
     private static Context mContext;
     private static Bundle bundle;
@@ -306,5 +307,4 @@ public class DownloadFragment extends ListFragment {
         }
         simpleAdapter.notifyDataSetChanged();
     }
-
 }

@@ -30,13 +30,17 @@ public class VideoConcentrateRequest extends StringRequest {
         map.put("vid",v_id);
         map.put("sid", s_id);
 
+        int cvCount = 0;
         if(mSecList.size() < 2){ //2개보다 적을 경우
-            map.put("cvCount",Integer.toString(mSecList.size()));
+            cvCount = mSecList.size();
         }else{ //2개 이상일 경우
+            cvCount = 2;
             map.put("cvCount","2");
         }
+        map.put("cvCount",Integer.toString(cvCount));
 
-        for(int i=0;(i<mSecList.size() && i<2);i++){
+
+        for(int i=0;i<cvCount;i++){
             map.put("cvtime"+i, Integer.toString(mSecList.get(i).get("length")));
             map.put("cvstime"+i, Integer.toString(mSecList.get(i).get("start")));
         }

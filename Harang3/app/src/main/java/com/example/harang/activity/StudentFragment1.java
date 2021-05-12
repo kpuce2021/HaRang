@@ -64,6 +64,7 @@ public class StudentFragment1 extends Fragment {
         StudentId = BaseActivity.StudentId;
         s_id = BaseActivity.s_id;
         accessDB(StudentId);
+
         //todo menuItemsInfo에 값이 들어있으면 서버에 접속을 안하는 방식으로 속도 올리기
         Button eyetracking = view.findViewById(R.id.eyetracking);
         eyetracking.setOnClickListener(new View.OnClickListener() {

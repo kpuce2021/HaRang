@@ -92,7 +92,6 @@ public class VideoListViewAdapter extends ArrayAdapter{
         //버튼 별 클릭 리스너
         allVideo.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-
                 ((BaseActivity)getContext()).replaceFragment(DownloadFragment.newInstance(),bundle);
                 Log.i("pageTest",Integer.toString(pos) + "번 전체재생 버튼 선택.");
             }
