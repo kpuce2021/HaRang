@@ -168,7 +168,7 @@ public class VideoActivity extends AppCompatActivity {
     private static long duration;
     //현재시간 로그찍기 위함임, 삭제해도 무관
     private void current(){
-        Log.i(TAG, "현재 시간"+videoView.getCurrentPosition()+"전체시간 : "+duration);
+        Log.i("printTest", "현재 시간"+videoView.getCurrentPosition()+"전체시간 : "+duration);
 
     }
 
