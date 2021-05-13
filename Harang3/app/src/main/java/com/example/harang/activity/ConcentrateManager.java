@@ -163,13 +163,17 @@ public class ConcentrateManager{
         c_total = getConcentrateRate(0,eyeSecondCount); //db에 저장하는 작업 필요******
 
         //2. 구간 집중률
-        int clipCount = 1; //클립구간 갯수에 대한 정보 필요********
+        int clipCount = 2; //클립구간 갯수에 대한 정보 필요********
         int[] concent_start = new int[clipCount];
         int[] concent_end = new int[clipCount];
         c_seperate = 0; //db에 저장하는 작업 필요******
+        concent_start[0] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
+            concent_end[0] = 120;
+        concent_start[1] = 180; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
+            concent_end[1] = 270;
         for(int i=0;i<clipCount;i++){
-            concent_start[i] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
-            concent_end[i] = 60; //db에서 받아오는 작업 필요**********
+//            concent_start[i] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
+//            concent_end[i] = 60; //db에서 받아오는 작업 필요**********
             c_seperate += getConcentrateRate(concent_start[i],concent_end[i]);
         }
         Log.i(TAG,"전체집중률 : "+c_total+", 구간집중률 : "+c_seperate);
@@ -214,7 +218,7 @@ public class ConcentrateManager{
 
         maintainSec = 0;
         //클립영상 시간설정
-        int clipCount = 1; //클립구간 갯수에 대한 정보 필요********
+        int clipCount = 2; //클립구간 갯수에 대한 정보 필요********
         int[] concent_start = new int[clipCount];
         int[] concent_end = new int[clipCount];
 
@@ -225,8 +229,13 @@ public class ConcentrateManager{
             concent_end[i] = 10; //db에서 받아오는 작업 필요**********
         }
         */
+        //concent_start[0] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
+        //concent_end[0] = 60; //db에서 받아오는 작업 필요**********
+
         concent_start[0] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
-        concent_end[0] = 60; //db에서 받아오는 작업 필요**********
+        concent_end[0] = 120;
+        concent_start[1] = 180; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
+        concent_end[1] = 270;
 
         //concent_start[1] = 13; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
         //concent_end[1] = 20; //db에서 받아오는 작업 필요**********
