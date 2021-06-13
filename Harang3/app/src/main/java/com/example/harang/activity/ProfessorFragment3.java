@@ -54,7 +54,7 @@ public class ProfessorFragment3 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_professor3, container, false);
+        view = inflater.inflate(R.layout.p_fragment3, container, false);
 
         Button btn_modify = view.findViewById(R.id.btn_modify);
         Button btn_refresh = view.findViewById(R.id.btn_refresh);
@@ -78,7 +78,7 @@ public class ProfessorFragment3 extends Fragment {
         btn_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ProfessorEnrollModifyActivity.class);
+                Intent intent = new Intent(getActivity(), PEnrollModifyActivity.class);
                 startActivity(intent);
             }
         });
@@ -86,7 +86,7 @@ public class ProfessorFragment3 extends Fragment {
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                accessDB(p_id);
+                accessDB(p_id); //목록 로딩용!!!
                 deleteUI();
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -119,9 +119,7 @@ public class ProfessorFragment3 extends Fragment {
                     boolean success = jsonObject.getBoolean("success");
                     if (success) {
 
-                        if (studentMap == null) {
-                            studentMap = new ArrayList<HashMap<String, String>>();
-                        }
+                        studentMap = new ArrayList<HashMap<String, String>>();
 
                         studentCount = Integer.parseInt(jsonObject.getString("count"));
                         for(int i=0;i<studentCount;i++){
@@ -130,12 +128,18 @@ public class ProfessorFragment3 extends Fragment {
                             Log.i("db_test", " s_id : " + output.getString("s_id"));
                             Log.i("db_test", " id : " + output.getString("id"));
                             Log.i("db_test", " s_name : " + output.getString("s_name"));
+                            Log.i("db_test", " ");
 
                             studentItems.put("s_id",output.getString("s_id"));
                             studentItems.put("id",output.getString("id"));
                             studentItems.put("s_name",output.getString("s_name"));
 
                             studentMap.add(studentItems);
+
+                            /*
+                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            ft.attach(ProfessorFragment3.this);
+                            ft.commit();*/
                         }
                     } else {
                         Log.i("db_test", "server connect fail");

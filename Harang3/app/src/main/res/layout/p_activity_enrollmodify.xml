@@ -23,12 +23,12 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="167dp"
-        android:layout_height="74dp"
+        android:layout_width="94dp"
+        android:layout_height="48dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
         android:entries="@array/arr2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"></Spinner>
@@ -39,49 +39,64 @@
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="18dp"
         android:background="@drawable/edit_round"
-        app:layout_constraintEnd_toStartOf="@+id/btn_search"
-        app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <Button
         android:id="@+id/btn_search"
         android:layout_width="99dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_add"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
         android:onClick="onClick"
         android:text="검색"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.335" />
+        app:layout_constraintVertical_bias="0.253" />
 
     <Button
-        android:id="@+id/btn_add"
+        android:id="@+id/btn_save"
         android:layout_width="99dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="16dp"
         android:onClick="onClick"
-        android:text="저장"
-        app:layout_constraintBottom_toTopOf="@+id/btn_search"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:text="추가"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_search" />
+
+    <Button
+        android:id="@+id/btn_refresh"
+        android:layout_width="99dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="40dp"
+        android:onClick="onClick"
+        android:text="새로고침"
+        app:layout_constraintEnd_toStartOf="@+id/btn_save"
+        app:layout_constraintTop_toBottomOf="@+id/btn_search" />
 
     <TableLayout
+        android:id="@+id/modifyTableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/table_inside"
         android:stretchColumns="*"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView7"
-        tools:layout_editor_absoluteX="8dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_save">
 
         <TableRow
             android:layout_width="match_parent"
@@ -110,14 +125,14 @@
                 android:gravity="center"
                 android:text="아이디"
                 android:textSize="18sp" />
-            <Spinner
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/table_inside_gray"
                 android:gravity="center"
-                android:entries="@array/arr3"></Spinner>
-
-
+                android:text="선택"
+                android:textSize="18sp" />
 
         </TableRow>
 
@@ -129,14 +144,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/table_inside"
-                android:gravity="center"
-
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/table_inside"
                 android:gravity="center" />
 
             <TextView
@@ -144,6 +151,19 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/table_inside"
                 android:gravity="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/table_inside"
+                android:gravity="center" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
         </TableRow>
 
 

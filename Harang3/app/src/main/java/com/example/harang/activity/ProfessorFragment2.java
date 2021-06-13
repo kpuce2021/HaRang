@@ -26,7 +26,7 @@ public class ProfessorFragment2 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_professor2, container, false);
+        view = inflater.inflate(R.layout.p_fragment2, container, false);
 
         Spinner spinner = view.findViewById(R.id.spinner);
         //TextView text_result = view.findViewById(R.id.text_result);

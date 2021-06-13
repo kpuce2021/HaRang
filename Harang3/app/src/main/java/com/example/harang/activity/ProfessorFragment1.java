@@ -50,7 +50,7 @@ public class ProfessorFragment1 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_professor1, container, false);
+        view = inflater.inflate(R.layout.p_fragment1, container, false);
         p_id = p_BaseActivity.p_id;
         Log.d("ViewCreate",p_id);
         return view;
