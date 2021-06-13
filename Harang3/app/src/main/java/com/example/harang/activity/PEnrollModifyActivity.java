@@ -50,6 +50,8 @@ public class PEnrollModifyActivity extends AppCompatActivity {
         Spinner spinner = findViewById(R.id.spinner);
         EditText editText = findViewById(R.id.editText);
 
+        accessDB(p_id);
+
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +64,7 @@ public class PEnrollModifyActivity extends AppCompatActivity {
                     searchDB(p_id,"id",editText.getText().toString());
                 }
 
-                initUI();
+
                 //새로고침
             }
         });
@@ -71,7 +73,6 @@ public class PEnrollModifyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 accessDB(p_id);
-                initUI();
 
                 //새로고침
             }
@@ -93,8 +94,9 @@ public class PEnrollModifyActivity extends AppCompatActivity {
                         if(checkchild[i].isChecked()){
                             //검색 후 목록은 인덱스 순서가 아니라서 error 발생
                             TableRow titleRow = (TableRow)tableLayout.getChildAt(i+1);
-                            TextView titleTextView = (TextView) titleRow.getChildAt(0); //인덱스 번호
-                            checkList.add(studentMap.get(Integer.parseInt(titleTextView.getText().toString())).get("s_id"));
+                            TextView sidTv = (TextView) titleRow.getChildAt(0); //s_id 번호 : 5
+
+                            checkList.add(sidTv.getText().toString());
                         }
                     }
                     updateDB(p_id, checkList);//수강신청 db 업로드
@@ -160,6 +162,7 @@ public class PEnrollModifyActivity extends AppCompatActivity {
     
     
     //DB 연결
+    //학생 추가
     private void updateDB(String p_id, ArrayList<String> checkList) {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
@@ -192,6 +195,7 @@ public class PEnrollModifyActivity extends AppCompatActivity {
 
     }
 
+    //목록 읽어오기
     private void accessDB(String p_id){
         //table 값 불러오기
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -218,6 +222,7 @@ public class PEnrollModifyActivity extends AppCompatActivity {
 
                             studentMap.add(studentItems);
                         }
+                        initUI();
                     } else {
                         Log.i("db_test", "server connect fail");
                         return;
@@ -241,6 +246,7 @@ public class PEnrollModifyActivity extends AppCompatActivity {
 
     }
 
+    //검색
     private void searchDB(String p_id, String flag, String searchString){
         //table 값 불러오기
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -267,6 +273,7 @@ public class PEnrollModifyActivity extends AppCompatActivity {
 
                             studentMap.add(studentItems);
                         }
+                        initUI();
                     } else {
                         Log.i("db_test", "server connect fail");
                         return;

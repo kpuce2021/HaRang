@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/table_inside_gray"
                 android:gravity="center"
-                android:text="이름"
+                android:text="아이디"
                 android:textSize="18sp" />
 
             <TextView
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/table_inside_gray"
                 android:gravity="center"
-                android:text="아이디"
+                android:text="이름"
                 android:textSize="18sp" />
 
             <TextView
@@ -118,45 +118,7 @@
         </TableRow>
 
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/table_inside"
-                android:gravity="center"
-                android:text="1"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/table_inside"
-                android:gravity="center"
-                android:text="이름"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/table_inside"
-                android:gravity="center"
-                android:text="아이디"
-                android:textSize="18sp" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/table_inside"
-                android:visibility="invisible"
-                android:gravity="center"
-                android:text="삭제"
-                android:textSize="18sp" />
-
-
-        </TableRow>
 
     </TableLayout>
 

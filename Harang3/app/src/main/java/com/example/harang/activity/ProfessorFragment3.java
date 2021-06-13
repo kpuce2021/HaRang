@@ -62,19 +62,21 @@ public class ProfessorFragment3 extends Fragment {
         //id 받아오기
         ProfessorId = p_BaseActivity.ProfessorId;
         p_id = p_BaseActivity.p_id;
+        
+        //목록 불러오기
+        accessDB(p_id);
 
+        //새로고침 버튼
         btn_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 accessDB(p_id);
-                initUI();
 
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.attach(ProfessorFragment3.this);
-                ft.commit();
             }
         });
 
+
+        //수정 액태비티 띄우기
         btn_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,15 +85,13 @@ public class ProfessorFragment3 extends Fragment {
             }
         });
 
+
+        //삭제 버튼 띄우기
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                accessDB(p_id); //목록 로딩용!!!
                 deleteUI();
 
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.attach(ProfessorFragment3.this);
-                ft.commit();
             }
         });
         return view;
@@ -141,6 +141,7 @@ public class ProfessorFragment3 extends Fragment {
                             ft.attach(ProfessorFragment3.this);
                             ft.commit();*/
                         }
+                        initUI();
                     } else {
                         Log.i("db_test", "server connect fail");
                         return;
@@ -205,6 +206,7 @@ public class ProfessorFragment3 extends Fragment {
                 @Override
                 public void onClick(View v) { //map에서 i번째 s_id 넘겨줌.
                     deleteEnrollmentDB(studentMap.get(finalI).get("s_id"));
+                    accessDB(p_id);
                 }
             });
             btnchild[i].setVisibility(View.INVISIBLE);
