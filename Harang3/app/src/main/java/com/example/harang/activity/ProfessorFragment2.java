@@ -11,6 +11,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,7 +37,9 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,9 +62,10 @@ public class ProfessorFragment2 extends Fragment {
     private static String p_id;
     private static ArrayList<HashMap<String,String>> videoMap;
     private static HashMap<String,String> videoItems;
+    private static List<Integer> sortKeyList;
     int videoCount;
 
-    private static ArrayList<VideoListViewItem> items;
+    private static String[] items = {"최신순", "이름순", "집중도순"};
     private static ListView listview;
 
     @Nullable
@@ -71,23 +76,41 @@ public class ProfessorFragment2 extends Fragment {
         ProfessorId = p_BaseActivity.ProfessorId;
         p_id = p_BaseActivity.p_id;
 
-        Spinner spinner = view.findViewById(R.id.spinner);
+        //데이터로딩
         accessDB(p_id);
 
 
-        //TextView text_result = view.findViewById(R.id.text_result);
-
-        /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        Spinner spinner = view.findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                mContext, android.R.layout.simple_spinner_item, items
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                text_result.setText(adapterView.getItemAtPosition(i).toString());
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                //기본 : 최신순
+                HashMap<Integer,String> listSet = new HashMap<>();
+
+                for(int i=0;i<videoCount;i++){
+                    if(position == 0){//최신순
+                        listSet.put(i,videoMap.get(i).get("v_calendar"));
+                    }else if(position == 1){//이름순
+                        listSet.put(i,videoMap.get(i).get("v_name"));
+                    }else if(position==2){ //집중순
+                        listSet.put(i,videoMap.get(i).get("v_concent"));
+                    }
+                }
+                sortKeyList = new ArrayList<>(listSet.keySet());
+                Collections.sort(sortKeyList, (o1, o2) -> (listSet.get(o1).compareTo(listSet.get(o2))));
+
+                initUI();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
-        });*/
+        });
         return view;
     }
 
@@ -156,6 +179,14 @@ public class ProfessorFragment2 extends Fragment {
                             ft.attach(ProfessorFragment3.this);
                             ft.commit();*/
                         }
+
+                        HashMap<Integer,String> listSet = new HashMap<>();
+                        for(int i=0;i<videoCount;i++){
+                            listSet.put(i,videoMap.get(i).get("v_calendar"));
+                        }
+                        sortKeyList = new ArrayList<>(listSet.keySet());
+                        Collections.sort(sortKeyList, (o1, o2) -> (listSet.get(o1).compareTo(listSet.get(o2))));
+
                         initUI();
                     } else {
                         Log.i("db_test", "server connect fail");
@@ -215,22 +246,21 @@ public class ProfessorFragment2 extends Fragment {
             inlinearLayout.setOrientation(LinearLayout.VERTICAL);
 
             //textview
-
             for(int j=0;j<5;j++){
                 tv[j] = new TextView(mContext);
                 tv[j].setTextSize(18);
             }
 
 
-            tv[0].setText("제목 : " + videoMap.get(i).get("v_name"));
+            tv[0].setText("제목 : " + videoMap.get(sortKeyList.get(i)).get("v_name"));
             inlinearLayout.addView(tv[0]);
-            tv[1].setText("업로드 날짜 : " + videoMap.get(i).get("v_calendar"));
+            tv[1].setText("업로드 날짜 : " + videoMap.get(sortKeyList.get(i)).get("v_calendar"));
             inlinearLayout.addView(tv[1]);
             tv[2].setText(videoMap.get(i).get("v_textfield"));
             inlinearLayout.addView(tv[2]);
-            tv[3].setText("전체 출석률 : " + videoMap.get(i).get("v_attend") + "%");
+            tv[3].setText("전체 출석률 : " + videoMap.get(sortKeyList.get(i)).get("v_attend") + "%");
             inlinearLayout.addView(tv[3]);
-            tv[4].setText("전체 학생 집중도 : " + videoMap.get(i).get("v_concent") + "%");
+            tv[4].setText("전체 학생 집중도 : " + videoMap.get(sortKeyList.get(i)).get("v_concent") + "%");
             inlinearLayout.addView(tv[4]);
 
             outlinearLayout.addView(inlinearLayout);
