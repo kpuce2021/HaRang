@@ -3,10 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants"
-    android:paddingBottom="5dp"
+    android:paddingBottom="20dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="5dp" >
+    android:paddingTop="20dp"
+    android:background="@drawable/border_layout">
 
     <!-- This radio button is set to clickable:false so that the onclick listener of the entire row
     will be called -->

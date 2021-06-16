@@ -6,11 +6,11 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="23"
-8-->C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+8-->C:\Users\Jieun\AndroidStudioProjects\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="28" />
-9-->C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+9-->C:\Users\Jieun\AndroidStudioProjects\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
 10
 11    <application />
-11-->C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:3:5-20
+11-->C:\Users\Jieun\AndroidStudioProjects\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:3:5-20
 12
 13</manifest>

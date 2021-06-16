@@ -1,41 +1,41 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
+ADDED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
 	package
-		ADDED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml:3:5-48
-		INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml:3:5-48
+		INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
-		INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
+		INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
-		INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml:1:1-7:12
+		INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml:2:5-63
+		ADDED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml:2:5-63
 application
-ADDED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml:5:5-52
+ADDED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml:5:5-52
 	android:label
-		ADDED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml:5:18-50
+		ADDED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml:5:18-50
 uses-sdk
-INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
-INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
-INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
-INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Jieun\Documents\GitHub\HaRang\Harang3\lib\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jieun\AndroidStudioProjects\Harang3\lib\src\main\AndroidManifest.xml

@@ -189,6 +189,7 @@ public class VideoActivity extends AppCompatActivity {
         public void onGaze(GazeInfo gazeInfo) {
             //test중
             concentrateManager.getEyetrackingData(gazeInfo,(Long.valueOf(gazeInfo.timestamp).intValue()/1000)%10000); //아이트래킹 정보 저장
+            Log.i("printTests", gazeInfo.eyeMovementState+" "+gazeInfo.screenState+" "+gazeInfo.timestamp+" "+(Long.valueOf(gazeInfo.timestamp).intValue()/1000)%10000);
             /*
              * 1초
              * 1분 = 60초

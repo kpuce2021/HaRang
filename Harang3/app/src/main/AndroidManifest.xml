@@ -21,7 +21,7 @@
         android:theme="@style/Theme.Harang"
         android:usesCleartextTraffic="true">
         <activity android:name=".activity.MyInfoActivity"></activity>
-        <activity android:name=".activity.ModifyActivity" />
+        <activity android:name=".activity.PEnrollModifyActivity" />
         <activity android:name=".activity.p_BaseActivity" />
         <activity android:name=".activity.FfmpegActivity"></activity>
         <activity
@@ -36,7 +36,10 @@
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".activity.LoginActivity"
-            android:windowSoftInputMode="adjustNothing">
+            android:windowSoftInputMode="adjustNothing"/>
+        <activity android:name=".SplashActivity"
+            android:theme="@style/splashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
