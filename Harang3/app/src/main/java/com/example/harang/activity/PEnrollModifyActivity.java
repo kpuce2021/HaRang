@@ -1,5 +1,6 @@
 package com.example.harang.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -135,9 +136,10 @@ public class PEnrollModifyActivity extends AppCompatActivity {
                     ViewGroup.LayoutParams.MATCH_PARENT));
             for(int j=0;j<3;j++){
                 tv[j] = new TextView(this);
-                tv[j].setBackgroundResource(R.drawable.table_inside);
+                //tv[j].setBackgroundResource(R.drawable.table_inside);
                 tv[j].setGravity(Gravity.CENTER);
-                tv[j].setTextSize(18);
+                tv[j].setTextSize(15);
+                tv[j].setTextColor(Color.BLACK);
             }
 
             tv[0].setText(studentMap.get(i).get("s_id"));

@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FFFFCC">
 
     <TextView
         android:layout_width="164dp"
@@ -14,6 +15,8 @@
         android:layout_alignParentBottom="true"
         android:text="내 정보"
         android:textSize="30dp"
+        android:fontFamily="@font/wemakeprice_bold"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/modify_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.125"
@@ -21,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.278" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/modify_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,12 +34,14 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
         android:onClick="btnClick"
+        android:background="@drawable/rounded_button"
         android:text="정보수정"
+        android:fontFamily="@font/wemakeprice_regular"
         app:layout_constraintBottom_toBottomOf="@+id/logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,6 +49,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:text="로그아웃"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/wemakeprice_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

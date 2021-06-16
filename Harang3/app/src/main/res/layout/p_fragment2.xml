@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"/>
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#FFFFCC">
+    <TextView
+        android:layout_width="277dp"
+        android:layout_height="55dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="56dp"
+        android:fontFamily="@font/wemakeprice_bold"
+        android:text="  강의 목록"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="150dp"
             android:layout_height="40dp"
-            android:entries="@array/arr"></Spinner>
+            android:background="#FFFFCC"
+            android:entries="@array/arr">
+        </Spinner>
 
     <!-- 공간 띄우기용 -->
         <TextView
@@ -27,64 +42,7 @@
                 android:id="@+id/scrollLinear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border_layout"
                 android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_layout">
-
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="130dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/img1"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:backgroundTint="@color/purple_200">
-                        <TextView
-                            android:text="제목 : 2월 25일 수업"
-                            android:textSize="18sp"
-                            android:id="@+id/title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="업로드 날짜 : 2/25"
-                            android:textSize="18sp"
-                            android:id="@+id/calendar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="강의설명란입니다강의설명란입니다 "
-                            android:textSize="18sp"
-                            android:id="@+id/detailtext"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="전체 출석률 : 65%"
-                            android:textSize="18sp"
-                            android:id="@+id/partcipate"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="전체 학생 집중도 : 89%"
-                            android:textSize="18sp"
-                            android:id="@+id/concentrate"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </ScrollView>
 

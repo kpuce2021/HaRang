@@ -3,6 +3,7 @@ package com.example.harang.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -185,9 +186,10 @@ public class ProfessorFragment3 extends Fragment {
                     ViewGroup.LayoutParams.MATCH_PARENT));
             for(int j=0;j<3;j++){
                 tv[j] = new TextView(mContext);
-                tv[j].setBackgroundResource(R.drawable.table_inside);
+                //tv[j].setBackgroundResource(R.drawable.table_inside);
                 tv[j].setGravity(Gravity.CENTER);
-                tv[j].setTextSize(18);
+                tv[j].setTextSize(15);
+                tv[j].setTextColor(Color.BLACK);
             }
 
             tv[0].setText(studentMap.get(i).get("s_id"));
@@ -210,9 +212,10 @@ public class ProfessorFragment3 extends Fragment {
                 }
             });
             btnchild[i].setVisibility(View.INVISIBLE);
-            btnchild[i].setBackgroundResource(R.drawable.table_inside);
+            //btnchild[i].setBackgroundResource(R.drawable.button_round);
             btnchild[i].setGravity(Gravity.CENTER);
-            btnchild[i].setTextSize(18);
+            btnchild[i].setTextSize(15);
+            btnchild[i].setTextColor(Color.BLACK);
             btnchild[i].setHeight(tv[0].getHeight());
             tableRow.addView(btnchild[i]);
 
