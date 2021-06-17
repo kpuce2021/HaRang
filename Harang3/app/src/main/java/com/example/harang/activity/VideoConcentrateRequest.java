@@ -1,6 +1,7 @@
 package com.example.harang.activity;
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -57,6 +58,7 @@ public class VideoConcentrateRequest extends StringRequest {
             map.put("estate"+i, Integer.toString(estateData.get(i)));
             map.put("mstate"+i, Integer.toString(mstateData.get(i)));
         }
+
     }
 
     @Override
