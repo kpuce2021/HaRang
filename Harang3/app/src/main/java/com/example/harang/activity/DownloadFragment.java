@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +33,7 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferType;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
+import com.example.harang.GazeTrackerManager;
 import com.example.harang.R;
 
 import java.io.File;
@@ -69,6 +71,7 @@ public class DownloadFragment extends ListFragment {
     private static TransferUtility transferUtility;
     private static List<TransferObserver> observers;
     private static ArrayList<HashMap<String, Object>> downloadMaps;
+    private GazeTrackerManager gazeTrackerManager;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -200,14 +203,20 @@ public class DownloadFragment extends ListFragment {
         buttonOK.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View v) {
-                Intent intent = new Intent(mContext, VideoActivity.class);
-                intent.putExtra("VideoName", VideoName+".mp4");
-                intent.putExtra("studentId", studentId);
-                intent.putExtra("s_id", s_id);
-                intent.putExtra("v_id", v_id);
-                startActivity(intent);
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().remove(DownloadFragment.this).commit();
+                gazeTrackerManager = GazeTrackerManager.getInstance();
+                if(gazeTrackerManager == null){
+                    Toast.makeText(getContext(),"초점 조절 먼저 진행해주세요",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(mContext, VideoActivity.class);
+                    intent.putExtra("VideoName", VideoName + ".mp4");
+                    intent.putExtra("studentId", studentId);
+                    intent.putExtra("s_id", s_id);
+                    intent.putExtra("v_id", v_id);
+                    startActivity(intent);
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager.beginTransaction().remove(DownloadFragment.this).commit();
+                }
             }
         });
     }

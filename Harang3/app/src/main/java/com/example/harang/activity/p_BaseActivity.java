@@ -23,6 +23,7 @@ public class p_BaseActivity extends AppCompatActivity {
     private ProfessorFragment2 professorFragment2;
     private ProfessorFragment3 professorFragment3;
     private ProfessorFragment4 professorFragment4;
+    private BackPressedEvent backPressedEvent;
 
     public static String ProfessorId;
     public static String p_id;
@@ -36,7 +37,7 @@ public class p_BaseActivity extends AppCompatActivity {
         ProfessorId = intent.getStringExtra("user_id");
         p_id = intent.getStringExtra("user_primaryKey");
         //p_id = intent.getStringExtra("p_id");
-
+        backPressedEvent = new BackPressedEvent(this);
         Log.d("p_Base",p_id);
         bottomNavigationView = findViewById(R.id.bottomNavi);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -95,5 +96,11 @@ public class p_BaseActivity extends AppCompatActivity {
         ft = fm.beginTransaction();
         fragment.setArguments(bundle);
         ft.replace(R.id.main_frame, fragment).commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        backPressedEvent.onBackPressed();
     }
 }
