@@ -67,19 +67,17 @@ public class ProfessorFragment3 extends Fragment {
         accessDB(p_id);
 
         //새로고침 버튼
-        btn_refresh.setOnClickListener(new View.OnClickListener() {
+        btn_refresh.setOnClickListener(new OnSingleClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onSingleClick(View v) {
                 accessDB(p_id);
-
             }
         });
 
-
         //수정 액태비티 띄우기
-        btn_modify.setOnClickListener(new View.OnClickListener() {
+        btn_modify.setOnClickListener(new OnSingleClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onSingleClick(View v) {
                 Intent intent = new Intent(getActivity(), PEnrollModifyActivity.class);
                 startActivity(intent);
             }
@@ -87,11 +85,9 @@ public class ProfessorFragment3 extends Fragment {
 
 
         //삭제 버튼 띄우기
-        btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btn_delete.setOnClickListener(new OnSingleClickListener() {
+            @Override public void onSingleClick(View v) {
                 deleteUI();
-
             }
         });
         return view;
