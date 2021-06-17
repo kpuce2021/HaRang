@@ -36,8 +36,10 @@
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".activity.LoginActivity"
-            android:windowSoftInputMode="adjustNothing"
-            android:noHistory="true">
+            android:windowSoftInputMode="adjustNothing"/>
+        <activity android:name=".SplashActivity"
+            android:theme="@style/splashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

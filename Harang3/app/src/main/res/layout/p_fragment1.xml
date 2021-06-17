@@ -1,198 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#FFFFCC">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-16dp">
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_width="277dp"
+            android:layout_height="55dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="56dp"
+            android:fontFamily="@font/wemakeprice_bold"
+            android:text="  강의 업로드"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.119"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="510dp"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/uploadThumbnail"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:background="@drawable/border_layout"
-                />
 
-            <Button
-                android:id="@+id/btnselectVideo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="강의 선택" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="30dp"/>
+                android:layout_height="30dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:background="@drawable/border_layout"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:orientation="horizontal">
 
-                    android:orientation="horizontal"
-                    android:background="@drawable/border_layout">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="강의 제목"
-                        android:textSize="18sp"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/wemakeprice_regular"
                         android:gravity="center"
-                        android:layout_weight="2"/>
-                    <EditText
+                        android:text="강의 제목"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
 
-                        android:textSize="18sp"
-                        android:layout_weight="1"
+                    <EditText
                         android:id="@+id/title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
+                        android:layout_weight="1"
+                        android:textSize="18sp" />
                 </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"/>
+                    android:layout_height="30dp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:orientation="horizontal">
 
-                    android:orientation="horizontal"
-                    android:background="@drawable/border_layout">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="강의 설명"
-                        android:textSize="18sp"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/wemakeprice_regular"
                         android:gravity="center"
-                        android:layout_weight="2"/>
+                        android:text="강의 설명"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
                     <EditText
                         android:id="@+id/textfield"
-                        android:textSize="18sp"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
+                        android:layout_weight="1"
+                        android:textSize="18sp" />
                 </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"/>
+                    android:layout_height="30dp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    android:orientation="vertical"
-                    android:background="@drawable/border_layout">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/wemakeprice_regular"
+                        android:gravity="center"
                         android:text="집중 구간 설정1"
-                        android:textSize="18sp"
-                        android:gravity="center" />
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp">
 
                         <EditText
                             android:id="@+id/v_concent1_start"
-                            android:textSize="18sp"
-                            android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            />
+                            android:layout_weight="1"
+                            android:fontFamily="@font/wemakeprice_regular"
+                            android:gravity="center_horizontal"
+                            android:hint="hh:mm:ss"
+                            android:textSize="18sp" />
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:fontFamily="@font/wemakeprice_regular"
+                            android:gravity="center"
                             android:text="~"
-                            android:textSize="20dp"
-                            android:gravity="center" />
+                            android:textColor="@color/black"
+                            android:textSize="20dp" />
 
 
                         <EditText
                             android:id="@+id/v_concent1_stop"
-                            android:textSize="18sp"
-                            android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            />
+                            android:layout_weight="1"
+                            android:fontFamily="@font/wemakeprice_regular"
+                            android:gravity="center_horizontal"
+                            android:hint="hh:mm:ss"
+                            android:textSize="18sp" />
 
 
                     </LinearLayout>
+
                     <TextView
-                        android:layout_width="match_parent" android:layout_height="30dp"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:background="@drawable/border_layout">
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/wemakeprice_regular"
+                            android:gravity="center"
                             android:text="집중 구간 설정2"
-                            android:textSize="18sp"
-                            android:gravity="center" />
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <EditText
                                 android:id="@+id/v_concent2_start"
-                                android:textSize="18sp"
-                                android:layout_weight="1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                />
+                                android:layout_weight="1"
+                                android:fontFamily="@font/wemakeprice_regular"
+                                android:gravity="center_horizontal"
+                                android:hint="hh:mm:ss"
+                                android:textSize="18sp" />
 
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:fontFamily="@font/wemakeprice_regular"
+                                android:gravity="center"
                                 android:text="~"
-                                android:textSize="20dp"
-                                android:gravity="center" />
+                                android:textColor="@color/black"
+                                android:textSize="20dp" />
 
 
                             <EditText
                                 android:id="@+id/v_concent2_stop"
-                                android:textSize="18sp"
-                                android:layout_weight="1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                />
+                                android:layout_weight="1"
+                                android:fontFamily="@font/wemakeprice_regular"
+                                android:gravity="center_horizontal"
+                                android:hint="hh:mm:ss"
+                                android:textSize="18sp" />
 
                         </LinearLayout>
 
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp" />
+                    <LinearLayout
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnselectVideo"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:background="@drawable/rounded_button"
+                            android:fontFamily="@font/wemakeprice_regular"
+                            android:text="강의 선택" />
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_upload"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:background="@drawable/rounded_button"
+                            android:fontFamily="@font/wemakeprice_regular"
+                            android:text="강의 업로드"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_upload"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="강의 업로드" />
         </LinearLayout>
-    </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
