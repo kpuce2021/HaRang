@@ -30,7 +30,7 @@ public class p_BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_p__base);
+        setContentView(R.layout.p_activity_base);
 
         Intent intent = getIntent();
         ProfessorId = intent.getStringExtra("user_id");

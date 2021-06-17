@@ -26,7 +26,7 @@ public class ProfessorFragment4 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_professor4, container, false);
+        return inflater.inflate(R.layout.p_fragment4, container, false);
     }
 
     @Override
