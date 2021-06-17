@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
@@ -235,20 +236,22 @@ public class ProfessorFragment2 extends Fragment {
 
 
             //텍스트 영역
-            LinearLayout inlinearLayout = new LinearLayout(mContext);        //weight 설정 없음
-            inlinearLayout.setBackgroundResource(R.drawable.border_layout);
+            LinearLayout inlinearLayout = new LinearLayout(mContext);//weight 설정 없음
+            //inlinearLayout.setBackgroundResource(R.drawable.border_layout);
+
             inlinearLayout.setGravity(Gravity.CENTER);
             inlinearLayout.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     (float) 2.0
-                    ));
+            ));
             inlinearLayout.setOrientation(LinearLayout.VERTICAL);
 
             //textview
             for(int j=0;j<5;j++){
                 tv[j] = new TextView(mContext);
-                tv[j].setTextSize(18);
+                tv[j].setTextSize(15);
+                tv[j].setTextColor(Color.BLACK);
             }
 
 

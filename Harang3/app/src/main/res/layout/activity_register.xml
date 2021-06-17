@@ -4,21 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.RegisterActivity">
+    tools:context=".activity.RegisterActivity"
+    android:background="#FFFFCC">
 
 
 
 
     <EditText
         android:id="@+id/et_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="200dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="아이디"
+        android:fontFamily="@font/wemakeprice_regular"
         android:inputType="textPersonName"
+        android:background="@drawable/rounded_register"
+        android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,11 +30,14 @@
     <EditText
         android:id="@+id/et_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="이름"
+        android:fontFamily="@font/wemakeprice_regular"
         android:inputType="textPersonName"
+        android:background="@drawable/rounded_register"
+        android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="@+id/et_id"
         app:layout_constraintStart_toStartOf="@+id/et_id"
         app:layout_constraintTop_toBottomOf="@+id/et_id" />
@@ -38,11 +45,14 @@
     <EditText
         android:id="@+id/et_pass"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="비밀번호"
+        android:fontFamily="@font/wemakeprice_regular"
         android:inputType="textPersonName"
+        android:background="@drawable/rounded_register"
+        android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="@+id/et_name"
         app:layout_constraintStart_toStartOf="@+id/et_name"
         app:layout_constraintTop_toBottomOf="@+id/et_name" />
@@ -50,11 +60,14 @@
     <EditText
         android:id="@+id/et_passConfirm"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="비밀번호 재입력"
+        android:fontFamily="@font/wemakeprice_regular"
         android:inputType="textPersonName"
+        android:background="@drawable/rounded_register"
+        android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="@+id/et_pass"
         app:layout_constraintStart_toStartOf="@+id/et_pass"
         app:layout_constraintTop_toBottomOf="@+id/et_pass" />
@@ -62,36 +75,44 @@
     <EditText
         android:id="@+id/et_major"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="과목"
+        android:fontFamily="@font/wemakeprice_regular"
         android:inputType="textPersonName"
+        android:background="@drawable/rounded_register"
+        android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="@+id/et_passConfirm"
         app:layout_constraintStart_toStartOf="@+id/et_passConfirm"
         app:layout_constraintTop_toBottomOf="@+id/et_passConfirm" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="194dp"
-        android:layout_marginEnd="160dp"
+
+        android:layout_marginTop="44dp"
+        android:background="@drawable/rounded_button"
         android:text="회원가입"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_name" />
+        android:fontFamily="@font/wemakeprice_regular"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/et_major"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/et_major"
+        app:layout_constraintTop_toBottomOf="@id/et_major" />
 
     <RadioGroup
         android:id="@+id/rg_register"
-        android:layout_width="170dp"
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginBottom="5dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/et_id"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
             android:id="@+id/rb_professor"
@@ -99,28 +120,40 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
-            android:text="교수" />
-
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="교수"
+            android:fontFamily="@font/wemakeprice_regular"/>
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
         <RadioButton
             android:id="@+id/rb_student"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="학생" />
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="학생"
+            android:fontFamily="@font/wemakeprice_regular"/>
     </RadioGroup>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_validation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="197dp"
-        android:layout_marginEnd="13dp"
         android:layout_marginBottom="486dp"
-        android:text="중복확인"
+        android:background="@drawable/rounded_button"
+        android:text="중복"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/et_id"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
