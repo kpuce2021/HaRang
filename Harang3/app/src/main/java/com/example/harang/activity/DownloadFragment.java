@@ -196,9 +196,10 @@ public class DownloadFragment extends ListFragment {
         setListAdapter(simpleAdapter);
 
         Button buttonOK = (Button) view.findViewById(R.id.buttonOK);
-        buttonOK.setOnClickListener(new View.OnClickListener(){
+
+        buttonOK.setOnClickListener(new OnSingleClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onSingleClick(View v) {
                 Intent intent = new Intent(mContext, VideoActivity.class);
                 intent.putExtra("VideoName", VideoName+".mp4");
                 intent.putExtra("studentId", studentId);
@@ -207,8 +208,6 @@ public class DownloadFragment extends ListFragment {
                 startActivity(intent);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction().remove(DownloadFragment.this).commit();
-
-
             }
         });
     }

@@ -29,13 +29,21 @@ public class ProfessorFragment3 extends Fragment {
         view = inflater.inflate(R.layout.fragment_professor3, container, false);
 
         Button btn_modify = view.findViewById(R.id.btn_modify);
-        btn_modify.setOnClickListener(new View.OnClickListener() {
+        btn_modify.setOnClickListener(new OnSingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                Intent intent = new Intent(getActivity(), ModifyActivity.class);
+                startActivity(intent);
+            }
+        });
+
+/*        btn_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ModifyActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
         return view;
     }
 }

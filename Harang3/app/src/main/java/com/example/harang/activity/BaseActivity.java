@@ -26,6 +26,7 @@ public class BaseActivity extends AppCompatActivity {
     private StudentFragment1 studentFragment1;
     private StudentFragment2 studentFragment2;
     private StudentFragment3 studentFragment3;
+    private BackPressedEvent backPressedEvent;
 
     public static String StudentId;
     public static String s_id;
@@ -41,7 +42,7 @@ public class BaseActivity extends AppCompatActivity {
         s_id = intent.getStringExtra("s_id");
         totalList = new HashMap<>(); ////key : v_id, value : mSecList 내용
 
-
+        backPressedEvent = new BackPressedEvent(this);
         bottomNavigationView = findViewById(R.id.bottomNavi);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -100,4 +101,9 @@ public class BaseActivity extends AppCompatActivity {
         ft.replace(R.id.main_frame, fragment).commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        backPressedEvent.onBackPressed();
+    }
 }

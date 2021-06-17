@@ -36,7 +36,8 @@
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".activity.LoginActivity"
-            android:windowSoftInputMode="adjustNothing">
+            android:windowSoftInputMode="adjustNothing"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

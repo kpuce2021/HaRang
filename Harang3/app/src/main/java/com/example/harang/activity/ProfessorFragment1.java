@@ -87,13 +87,19 @@ public class ProfessorFragment1 extends Fragment {
 
         btnselectVideo.setOnClickListener(view -> startActivity(new Intent(getContext(), UploadActivity.class)));
         //imageView.setImageBitmap(bitmap);
-        btn_upload.setOnClickListener(new View.OnClickListener() {
+        btn_upload.setOnClickListener(new OnSingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                upload_video(p_id);
+            }
+        });
+  /*      btn_upload.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 upload_video(p_id);
             }
-        });
+        });*/
 
     }
 

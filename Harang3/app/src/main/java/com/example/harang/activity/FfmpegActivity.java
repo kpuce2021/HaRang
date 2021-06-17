@@ -49,7 +49,17 @@ public class FfmpegActivity extends AppCompatActivity {
         path = intent.getStringExtra("path");
         playTitle = intent.getStringExtra("playTitle");
 
-        btn_ffmpeg.setOnClickListener(new View.OnClickListener() {
+        btn_ffmpeg.setOnClickListener(new OnSingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                try {
+                    convertAudio(v,path,playTitle);
+                } catch (FFmpegCommandAlreadyRunningException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        /*btn_ffmpeg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -58,7 +68,7 @@ public class FfmpegActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        });
+        });*/
 
     }
 

@@ -36,20 +36,33 @@ public class ProfessorFragment4 extends Fragment {
         final Button btnModify = view.findViewById(R.id.modify_info);
         final Button btnLogout = view.findViewById(R.id.logout);
 
-        btnModify.setOnClickListener(new View.OnClickListener() {
+        btnModify.setOnClickListener(new OnSingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                Intent intent = new Intent(getContext(), MyInfoActivity.class);
+                startActivity(intent);
+            }
+        });
+       /* btnModify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), MyInfoActivity.class);
                 startActivity(intent);
             }
+        });*/
+        btnLogout.setOnClickListener(new OnSingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                //Intent intent = new Intent(getContext(), AccountLoginActivity.class);
+                //startActivity(intent);
+            }
         });
-
-        btnLogout.setOnClickListener(new View.OnClickListener() {
+       /* btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Intent intent = new Intent(getContext(), AccountLoginActivity.class);
                 //startActivity(intent);
             }
-        });
+        });*/
     }
 }

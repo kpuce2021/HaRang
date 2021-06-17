@@ -33,28 +33,47 @@ public class StudentFragment3 extends Fragment {
         final Button btnOpencvTest = view.findViewById(R.id.setBtnEye);
         final Button btnMedia = view.findViewById(R.id.setBtnMedia);
 
-        btnLogintest.setOnClickListener(new View.OnClickListener() {
+        btnLogintest.setOnClickListener(new OnSingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                Intent intent = new Intent(getContext(), ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+       /* btnLogintest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ProfileActivity.class);
                 startActivity(intent);
             }
+        });*/
+        btnOpencvTest.setOnClickListener(new OnSingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                Intent intent = new Intent(getContext(), EyetrackingActivity.class);
+                startActivity(intent);
+            }
         });
-
-        btnOpencvTest.setOnClickListener(new View.OnClickListener() {
+       /* btnOpencvTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), EyetrackingActivity.class);
                 startActivity(intent);
             }
+        });*/
+        btnMedia.setOnClickListener(new OnSingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                Intent intent = new Intent(getContext(), MediaActivity.class);
+                startActivity(intent);
+            }
         });
-
-        btnMedia.setOnClickListener(new View.OnClickListener() {
+        /*btnMedia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), MediaActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 }

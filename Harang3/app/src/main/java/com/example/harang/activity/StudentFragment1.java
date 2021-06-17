@@ -67,7 +67,16 @@ public class StudentFragment1 extends Fragment {
 
         //todo menuItemsInfo에 값이 들어있으면 서버에 접속을 안하는 방식으로 속도 올리기
         Button eyetracking = view.findViewById(R.id.eyetracking);
-        eyetracking.setOnClickListener(new View.OnClickListener() {
+        eyetracking.setOnClickListener(new OnSingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                Intent intent = new Intent(mContext, EyetrackingActivity.class);
+                intent.putExtra("user_id",BaseActivity.StudentId);
+                intent.putExtra("s_id",BaseActivity.s_id);
+                startActivity(intent);
+            }
+        });
+       /* eyetracking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, EyetrackingActivity.class);
@@ -75,7 +84,7 @@ public class StudentFragment1 extends Fragment {
                 intent.putExtra("s_id",BaseActivity.s_id);
                 startActivity(intent);
             }
-        });
+        });*/
 
         return view;
     }

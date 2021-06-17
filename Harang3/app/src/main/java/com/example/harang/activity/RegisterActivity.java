@@ -78,8 +78,19 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         // 중복확인 버튼 클릭 시 수행
+        btn_validation.setOnClickListener(new OnSingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                if (rb_professor.isChecked()) {     // 교수가 아이디 중복확인을 하는 경우
+                    check_professor_duplication();
+                }
 
-        btn_validation.setOnClickListener(new View.OnClickListener(){
+                if (rb_student.isChecked()) {      // 학생이 아이디 중복확인을 하는 경우
+                    check_student_duplication();
+                }
+            }
+        });
+        /*btn_validation.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 if (rb_professor.isChecked()) {     // 교수가 아이디 중복확인을 하는 경우
@@ -90,11 +101,24 @@ public class RegisterActivity extends AppCompatActivity {
                     check_student_duplication();
                 }
             }
-        });
+        });*/
 
         // 회원가입 버튼 클릭 시 수행
+        btn_register.setOnClickListener(new OnSingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                // EditText에 현재 입력되어있는 값을 get(가져온다)해온다.
 
-        btn_register.setOnClickListener(new View.OnClickListener() {
+                if (rb_professor.isChecked()) {     // 교수가 회원가입을 하는 경우
+                    register_professor();
+                }
+
+                if (rb_student.isChecked()) {       // 학생이 회원가입을 하는 경우
+                    register_student();
+                }
+            }
+        });
+      /*  btn_register.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -108,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
                     register_student();
                 }
             }
-        });
+        });*/
 
     }
     @Override

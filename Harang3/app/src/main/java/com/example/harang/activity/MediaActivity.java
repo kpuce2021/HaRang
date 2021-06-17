@@ -51,19 +51,32 @@ public class MediaActivity extends AppCompatActivity {
     protected void getControls() {
         // Get buttons
         Button btnPlay = (Button) findViewById(R.id.btnPlayTV);
-        btnPlay.setOnClickListener(new Button.OnClickListener() {
+        btnPlay.setOnClickListener(new OnSingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                playTextureView();
+            }
+        });
+/*        btnPlay.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 playTextureView();
             }
-        });
+        });*/
+
         Button btnStop = (Button) findViewById(R.id.btnStopTV);
-        btnStop.setOnClickListener(new Button.OnClickListener() {
+        btnStop.setOnClickListener(new OnSingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                stopTextureView();
+            }
+        });
+ /*       btnStop.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 stopTextureView();
             }
-        });
+        });*/
 
         // Get views
         mTextureView = (TextureView) findViewById(R.id.screenTextureView);
