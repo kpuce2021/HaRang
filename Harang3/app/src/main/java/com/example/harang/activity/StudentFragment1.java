@@ -65,7 +65,6 @@ public class StudentFragment1 extends Fragment {
         s_id = BaseActivity.s_id;
         accessDB(StudentId);
 
-        //todo menuItemsInfo에 값이 들어있으면 서버에 접속을 안하는 방식으로 속도 올리기
         Button eyetracking = view.findViewById(R.id.eyetracking);
         eyetracking.setOnClickListener(new OnSingleClickListener() {
             @Override
@@ -76,16 +75,6 @@ public class StudentFragment1 extends Fragment {
                 startActivity(intent);
             }
         });
-       /* eyetracking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, EyetrackingActivity.class);
-                intent.putExtra("user_id",BaseActivity.StudentId);
-                intent.putExtra("s_id",BaseActivity.s_id);
-                startActivity(intent);
-            }
-        });*/
-
         return view;
     }
 
@@ -159,18 +148,24 @@ public class StudentFragment1 extends Fragment {
             if (items == null) {
                 items = new ArrayList<VideoListViewItem>();
             }
+            HashMap<String, String> concentList;
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject output = jsonArray.getJSONObject(i);
                 /*result += output.getString("v_name")+ " / "+ output.getString("v_textfield")+ " / "+ output.getString("v_calendar")+ "\n";*/
                 menuItem = new HashMap<>();
+                menuItem.put("v_id",output.getString("v_id"));
                 menuItem.put("v_name",output.getString("v_name"));
+                menuItem.put("v_time",output.getString("v_time")); //****
                 menuItem.put("v_textfield",output.getString("v_textfield"));
                 menuItem.put("v_calendar",output.getString("v_calendar"));
-                menuItem.put("v_id",output.getString("v_id"));
-                Log.i(TAG,output.getString("v_name") + " "+output.getString("v_textfield") + " "+output.getString("v_calendar") + " "+output.getString("v_id"));
+
+
+                menuItem.put("v_concent1_start",output.getString("v_concent1_start"));//****
+                menuItem.put("v_concent1_stop",output.getString("v_concent1_stop"));//****
+                menuItem.put("v_concent2_start",output.getString("v_concent2_start"));//****
+                menuItem.put("v_concent2_stop",output.getString("v_concent2_stop"));//****
                 menuItemsInfo.add(menuItem);
-                //menuItems[i] = output.getString("v_name");
 
                 item = new VideoListViewItem();
                 item.setVideoThumbnail(ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_account_box_24));
@@ -179,7 +174,33 @@ public class StudentFragment1 extends Fragment {
                 item.setTotalProgress(10);
                 item.setConcentProgress(20);
 
+
+                concentList = new HashMap<>();
+                concentList.put("start1",menuItem.get("v_concent1_start"));
+                concentList.put("stop1",menuItem.get("v_concent1_stop"));
+                concentList.put("start2",menuItem.get("v_concent2_start"));
+                concentList.put("stop2",menuItem.get("v_concent2_stop"));
+                Integer concentCount = 0;
+
+                for(int k=1;k<=2;k++){ //교수자에서 저장할 때 빈칸으로 입력하면 -1이 들어가도록 설정하기
+                    Log.i("db_test","v_concent"+k+"_start : "+menuItem.get("v_concent"+k+"_start"));
+                    if(!menuItem.get("v_concent"+k+"_start").equals("-00:00:01")){
+
+                        concentCount +=1;
+                    }
+                }
+                item.setConcentRange(menuItem.get("v_concent1_start"),menuItem.get("v_concent1_stop"),
+                        menuItem.get("v_concent2_start"),menuItem.get("v_concent2_stop"),String.valueOf(concentCount));
+                concentList.put("clipCount",String.valueOf(concentCount));
+                BaseActivity.totalConcentList.put(menuItem.get("v_id"),concentList);
+
                 items.add(item);
+
+                Log.i("db_test", "v_id : "+menuItem.get("v_id")+", v_name : "+menuItem.get("v_name")+", v_time : "+menuItem.get("v_time"));
+                //Log.i("db_test", "start1 : "+menuItem.get("v_concent1_start")+", stop1 : "+menuItem.get("v_concent1_stop")+", start2 : "+menuItem.get("v_concent2_start")+", stop2 : "+menuItem.get("v_concent2_stop"));
+                Log.i("db_test", "start1 : "+BaseActivity.totalConcentList.get(menuItem.get("v_id")).get("start1")+", stop1 : "+BaseActivity.totalConcentList.get(menuItem.get("v_id")).get("stop1")+
+                        ", start2 : "+BaseActivity.totalConcentList.get(menuItem.get("v_id")).get("start2")+", stop2 : "+BaseActivity.totalConcentList.get(menuItem.get("v_id")).get("stop2")+
+                        ", clipCount : "+BaseActivity.totalConcentList.get(menuItem.get("v_id")).get("clipCount"));
 
             }
 

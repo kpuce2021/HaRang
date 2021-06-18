@@ -48,12 +48,12 @@
         </activity>
 
         <activity android:name=".activity.BaseActivity"></activity>
-        <activity android:name=".activity.ClipVideoActivity"></activity>
+        <activity android:name=".activity.SClipVideoActivity"></activity>
 
         <activity android:name=".activity.MediaActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.VideoActivity"></activity>
+        <activity android:name=".activity.StudentFullVideoActivity"></activity>
         <activity
             android:name=".activity.DownloadActivity"
             android:label="@string/download_activity" />

@@ -10,11 +10,13 @@ import com.github.hiteshsondhi88.libffmpeg.FFmpegLoadBinaryResponseHandler;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import cafe.adriel.androidaudioconverter.callback.IConvertCallback;
 import cafe.adriel.androidaudioconverter.model.AudioFormat;
 
-public class AndroidAudioConverter {
+public class SClipAudioConverter {
 
     private static boolean loaded;
 
@@ -26,7 +28,7 @@ public class AndroidAudioConverter {
     private static String startTime;
     private static String endTime;
 
-    private AndroidAudioConverter(Context context) {
+    private SClipAudioConverter(Context context) {
         this.context = context;
     }
 
@@ -34,7 +36,7 @@ public class AndroidAudioConverter {
         return loaded;
     }
 
-    public static void load(final Context context, final String videoName, final String v_id, final int position) {
+    public static void load(final Context context, final String videoName, final String v_id, final ArrayList<HashMap<String,String>> clipVideoMap, final int position) {
         try {
             FFmpeg.getInstance(context).loadBinary(new FFmpegLoadBinaryResponseHandler() {
                 @Override
@@ -43,7 +45,7 @@ public class AndroidAudioConverter {
                 @Override
                 public void onSuccess() {
                     Log.i(Tag, "Binary load success");
-                    cmdExcute(context, videoName, v_id, position);
+                    cmdExcute(context, videoName, v_id, clipVideoMap, position);
                 }
 
                 @Override
@@ -58,26 +60,26 @@ public class AndroidAudioConverter {
         }
     }
 
-    private static void cmdExcute(Context context,String videoName, String v_id, int position) {
-        String filePath = context.getExternalFilesDir(null).toString()  + "/" + videoName+".mp4";
+    private static void cmdExcute(Context context, String videoName, String v_id, ArrayList<HashMap<String,String>> clipVideoMap, int position) {
+        String fullVideoPath = context.getExternalFilesDir(null).toString()  + "/" + videoName+".mp4";
         String clipPath = context.getExternalFilesDir(null).toString()  + "/" + v_id+"-"+position+".mp4";
-        //videoInFolder(filePath,videoName);
-        startEndTime(v_id, position);
+
         try {
-            Log.i("ffmpeg","filePath : "+filePath);
-            Log.i("ffmpeg","startTime : "+startTime);
-            Log.i("ffmpeg","endTime : "+endTime);
+            Log.i("ffmpeg","filePath : "+fullVideoPath);
+            //Log.i("ffmpeg","startTime : "+startTime);
+            //Log.i("ffmpeg","endTime : "+endTime);
             Log.i("ffmpeg","clipPath : "+clipPath);
-            File files = new File(filePath);
+            File files = new File(fullVideoPath);
             if(files.exists()==true) { //파일이 있을시
                 Runtime.getRuntime().exec("rm " + clipPath);
             }
-            String[] cmd = {"-i", filePath, "-ss", startTime, "-to", endTime, clipPath };
+            startEndTime(clipVideoMap.get(position).get("cv_stime"), clipVideoMap.get(position).get("cv_etime"));
+            String[] cmd = {"-i", fullVideoPath, "-ss", startTime, "-to", endTime, clipPath };
             FFmpeg.getInstance(context).execute(cmd, new FFmpegExecuteResponseHandler() {
                 @Override
                 public void onSuccess(String message) {
                     Log.e("ffmpeg harang", "success");
-                    Intent intent = new Intent(context,ClipVideoActivity.class);
+                    Intent intent = new Intent(context, SClipVideoActivity.class);
                     intent.putExtra("VideoName", videoName);
                     intent.putExtra("studentId", BaseActivity.StudentId);
                     intent.putExtra("s_id", BaseActivity.s_id);
@@ -132,9 +134,9 @@ public class AndroidAudioConverter {
         }
     }
 
-    private static void startEndTime(String v_id, int position){
-        int startTimem = BaseActivity.totalList.get(v_id).get(position).get("start");
-        int length = BaseActivity.totalList.get(v_id).get(position).get("length");
+    private static void startEndTime(String s_time, String e_time){
+        int startTimem = Integer.parseInt(s_time);
+        int endTimem= Integer.parseInt(e_time);
         int[] timeList = new int[3]; //0 : 시, 1 : 분, 2 : 초
         //시작시간
         timeList[2] = startTimem;
@@ -145,7 +147,7 @@ public class AndroidAudioConverter {
         startTime = String.format("%02d",timeList[0]) + ":" + String.format("%02d",timeList[1]) + ":" +String.format("%02d",timeList[2]) ;
 
         //종료시간
-        timeList[2] = startTimem + length -1;
+        timeList[2] = endTimem;
         timeList[1] = timeList[2] / 60;
         timeList[0] = timeList[1] / 60;
         timeList[2] = timeList[2] % 60;
@@ -156,21 +158,21 @@ public class AndroidAudioConverter {
     }
 
 
-    public static AndroidAudioConverter with(Context context) {
-        return new AndroidAudioConverter(context);
+    public static SClipAudioConverter with(Context context) {
+        return new SClipAudioConverter(context);
     }
 
-    public AndroidAudioConverter setFile(File originalFile) {
+    public SClipAudioConverter setFile(File originalFile) {
         this.audioFile = originalFile;
         return this;
     }
 
-    public AndroidAudioConverter setFormat(AudioFormat format) {
+    public SClipAudioConverter setFormat(AudioFormat format) {
         this.format = format;
         return this;
     }
 
-    public AndroidAudioConverter setCallback(IConvertCallback callback) {
+    public SClipAudioConverter setCallback(IConvertCallback callback) {
         this.callback = callback;
         return this;
     }

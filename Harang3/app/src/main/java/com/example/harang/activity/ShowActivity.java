@@ -8,8 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.harang.R;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +58,7 @@ public class ShowActivity extends ListActivity {
         String selection = l.getItemAtPosition(position).toString();
         Toast.makeText(this,selection,Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(this, VideoActivity.class);
+        Intent intent = new Intent(this, StudentFullVideoActivity.class);
         intent.putExtra("title", selection);
         startActivity(intent);
     }

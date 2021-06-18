@@ -64,7 +64,7 @@ public class ProfessorFragment2 extends Fragment {
     private static ArrayList<HashMap<String,String>> videoMap;
     private static HashMap<String,String> videoItems;
     private static List<Integer> sortKeyList;
-    int videoCount;
+    private int videoCount;
 
     private static String[] items = {"최신순", "이름순", "집중도순"};
     private static ListView listview;

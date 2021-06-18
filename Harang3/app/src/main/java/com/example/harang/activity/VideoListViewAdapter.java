@@ -2,7 +2,6 @@ package com.example.harang.activity;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -89,10 +88,16 @@ public class VideoListViewAdapter extends ArrayAdapter{
         bundle.putString("studentId",BaseActivity.StudentId);
         bundle.putString("s_id",BaseActivity.s_id);
         bundle.putString("v_id",listViewItem.getVid());
+        bundle.putString("start1",listViewItem.getStart1());
+        bundle.putString("start2",listViewItem.getStart2());
+        bundle.putString("stop1",listViewItem.getStop1());
+        bundle.putString("stop2",listViewItem.getStop2());
+        bundle.putString("clipCount",listViewItem.getClipCount());
         //버튼 별 클릭 리스너
         allVideo.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View v) {
+
                 ((BaseActivity)getContext()).replaceFragment(DownloadFragment.newInstance(),bundle);
                 Log.i("pageTest",Integer.toString(pos) + "번 전체재생 버튼 선택.");
             }
@@ -106,7 +111,7 @@ public class VideoListViewAdapter extends ArrayAdapter{
         clipVideo.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View v) {
-                ((BaseActivity)getContext()).replaceFragment(CliplistFragment.newInstance(),bundle);
+                ((BaseActivity)getContext()).replaceFragment(SClipListFragment.newInstance(),bundle);
                 Log.i("pageTest",Integer.toString(pos) + "번 클립재생 버튼 선택.");
             }
         });

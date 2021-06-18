@@ -30,7 +30,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public static String StudentId;
     public static String s_id;
-    public static HashMap<String,ArrayList<HashMap<String,Integer>>> totalList;
+    public static HashMap<String,HashMap<String,String>> totalConcentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,8 @@ public class BaseActivity extends AppCompatActivity {
         Intent intent = getIntent();
         StudentId = intent.getStringExtra("user_id");
         s_id = intent.getStringExtra("s_id");
-        totalList = new HashMap<>(); ////key : v_id, value : mSecList 내용
+
+        totalConcentList = new HashMap<>();
 
         backPressedEvent = new BackPressedEvent(this);
         bottomNavigationView = findViewById(R.id.bottomNavi);

@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.harang.R;
 
-public class ClipVideoActivity extends AppCompatActivity {
+public class SClipVideoActivity extends AppCompatActivity {
 
     private static final String TAG = "clipVideo";
 
