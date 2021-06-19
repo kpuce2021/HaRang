@@ -20,8 +20,10 @@ Application - Java, C++, xml, css
 
 Database - SQL, php7
 
-Server - Amazon EC2 : Ubuntu 20.04
+Server 
 
+       - Amazon EC2 : Ubuntu 20.04
+       
        - web server :  Apache2
        
        - DB : Amazon RDS, MySQL
