@@ -17,13 +17,18 @@ Harang3 폴더 내의 android 어플리케이션 실행
 ## Use Language / 사용 언어 및 프로그램
 
 Application - Java, C++, xml, css
+
 Database - SQL, php7
+
 Server - Amazon EC2 : Ubuntu 20.04
        - web server :  Apache2
        - DB : Amazon RDS, MySQL
+       
 Library - NDK, CMake, FFMPEG
 
+
 외부 API - EyeTracking : [SeeSo](https://www.seeso.io/)
+
 
 협업 TOOL - [TRELLO](https://trello.com/b/jbhhNMDq/harang)
 
