@@ -31,8 +31,8 @@ Library - NDK, CMake, FFMPEG
 ## Built With
 
 * [강희정](https://github.com/Heejeong01110) - AWS 서버, API 구현, 백엔드, 집중도 분석 알고리즘 구현
-* [김지은](https://github.com/Heejeong01110) - 어플리케이션 UI 구현, 아이트래킹 구현
-* [김민우](https://github.com/Heejeong01110) - AWS 서버, DB 및 RDS, API 구현, 백엔드
+* [김지은](https://github.com/Jieun0317) - 어플리케이션 UI 구현, 아이트래킹 구현
+* [김민우](https://github.com/alsdn1759) - AWS 서버, DB 및 RDS, API 구현, 백엔드
 
 
 ### Application Image / 어플리케이션 실행 화면
