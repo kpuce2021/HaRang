@@ -259,7 +259,7 @@ public class DownloadFragment extends ListFragment {
                 }
                 else {
                     Statement = "DOWNLOADING";
-                    Intent intent = new Intent(mContext, VideoActivity.class);
+                    Intent intent = new Intent(mContext, StudentFullVideoActivity.class);
                     intent.putExtra("VideoName", VideoName + ".mp4");
                     intent.putExtra("studentId", studentId);
                     intent.putExtra("s_id", s_id);

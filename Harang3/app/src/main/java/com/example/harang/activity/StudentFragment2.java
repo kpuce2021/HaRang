@@ -25,10 +25,10 @@ import org.json.JSONObject;
 
 public class StudentFragment2 extends Fragment {
     private View view;
-
     private TextView tv_total, tv_seperate, tv_total_percent, tv_seperate_percent, tv_name;
     private ProgressBar pb_total, pb_seperate;
     private static String IP = "3.214.234.24"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하
+    private static String s_name = BaseActivity.s_name;
 
     @Nullable
     @Override
@@ -53,7 +53,7 @@ public class StudentFragment2 extends Fragment {
         tv_total_percent = view.findViewById(R.id.tv_total_percent);
         tv_seperate_percent = view.findViewById(R.id.tv_seperate_percent);
         tv_name = view.findViewById(R.id.tv_name);
-        tv_name.setText(BaseActivity.s_name);
+        tv_name.setText(s_name);
 
         String url = "http://" + IP + "/profileTest.php";
         StudentFragment2.selectDatabase selectDatabase = new StudentFragment2.selectDatabase(url, null);

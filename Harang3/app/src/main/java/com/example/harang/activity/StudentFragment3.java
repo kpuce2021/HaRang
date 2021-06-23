@@ -24,6 +24,8 @@ public class StudentFragment3 extends Fragment {
     private View view;
     private TextView tv_name;
     private LinearLayout ll_logout;
+    private static String s_name = BaseActivity.s_name;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class StudentFragment3 extends Fragment {
 
         tv_name = view.findViewById(R.id.tv_name);
         ll_logout = view.findViewById(R.id.ll_logout);
-        tv_name.setText(BaseActivity.s_name);
+        tv_name.setText(s_name);
 
         ll_logout.setOnClickListener(new View.OnClickListener() {
             @Override

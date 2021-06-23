@@ -7,12 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b35503ad-c267-4a5c-b82d-f6164162ff28" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Harang3/gazetracker-release/build/.transforms/91e07790be5f1215e83af12e3b6d9c90/jetified-gazetracker-release/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/gazetracker-release/build/.transforms/91e07790be5f1215e83af12e3b6d9c90/jetified-gazetracker-release/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Harang3/gazetracker-release/build/.transforms/91e07790be5f1215e83af12e3b6d9c90/jetified-gazetracker-release/META-INF/com/android/build/gradle/aar-metadata.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/gazetracker-release/build/.transforms/91e07790be5f1215e83af12e3b6d9c90/jetified-gazetracker-release/META-INF/com/android/build/gradle/aar-metadata.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Harang3/gazetracker-release/build/.transforms/91e07790be5f1215e83af12e3b6d9c90/jetified-gazetracker-release/R.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/gazetracker-release/build/.transforms/91e07790be5f1215e83af12e3b6d9c90/jetified-gazetracker-release/R.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Harang3/libgaze-release/build/.transforms/80e92049c38332409394cb37916b0a73/jetified-libgaze-release/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/libgaze-release/build/.transforms/80e92049c38332409394cb37916b0a73/jetified-libgaze-release/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Harang3/libgaze-release/build/.transforms/80e92049c38332409394cb37916b0a73/jetified-libgaze-release/META-INF/com/android/build/gradle/aar-metadata.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/libgaze-release/build/.transforms/80e92049c38332409394cb37916b0a73/jetified-libgaze-release/META-INF/com/android/build/gradle/aar-metadata.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Harang3/libgaze-release/build/.transforms/80e92049c38332409394cb37916b0a73/jetified-libgaze-release/R.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/libgaze-release/build/.transforms/80e92049c38332409394cb37916b0a73/jetified-libgaze-release/R.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Harang3/FFmpegAndroid64/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/FFmpegAndroid64/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/DownloadFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/DownloadFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/ProfessorFragment4.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/ProfessorFragment4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/StudentFragment2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/StudentFragment2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/StudentFragment3.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/StudentFragment3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Harang3/lib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/lib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +20,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[2753db7115217ece]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
