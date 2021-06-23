@@ -132,7 +132,14 @@ public class VideoActivity extends AppCompatActivity {
         // VideoView 로 재생할 영상
         // 아까 동영상 [상세정보] 에서 확인한 경로
         videoView.requestFocus(); // 포커스 얻어오기
-        videoView.start(); // 동영상 재생
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                videoView.start(); // 동영상 재생
+            }
+        });
+
 
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override

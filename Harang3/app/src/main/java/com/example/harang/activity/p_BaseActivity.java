@@ -27,6 +27,7 @@ public class p_BaseActivity extends AppCompatActivity {
 
     public static String ProfessorId;
     public static String p_id;
+    public static String p_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class p_BaseActivity extends AppCompatActivity {
         Intent intent = getIntent();
         ProfessorId = intent.getStringExtra("user_id");
         p_id = intent.getStringExtra("user_primaryKey");
+        p_name = intent.getStringExtra("p_name");
         //p_id = intent.getStringExtra("p_id");
         backPressedEvent = new BackPressedEvent(this);
         Log.d("p_Base",p_id);
@@ -101,6 +103,6 @@ public class p_BaseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        backPressedEvent.onBackPressed();
+       // backPressedEvent.onBackPressed();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.harang.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.widget.Toast;
 
 public class BackPressedEvent {
@@ -36,6 +37,11 @@ public class BackPressedEvent {
             activity.finish();
             System.exit(0);
             android.os.Process.killProcess(android.os.Process.myPid());
+          /*  Intent intent = new Intent(this.activity,BaseActivity.class);
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("kill", true);
+            activity.startActivity(intent);*/
         }
     }
 

@@ -1,25 +1,34 @@
 package com.example.harang.activity;
 
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.harang.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class StudentFragment2 extends Fragment {
     private View view;
 
-    private Button btnDownload;
-    private Button btnUpload;
-    private Button btnShow;
+    private TextView tv_total, tv_seperate, tv_total_percent, tv_seperate_percent, tv_name;
+    private ProgressBar pb_total, pb_seperate;
+    private static String IP = "3.214.234.24"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하
 
     @Nullable
     @Override
@@ -37,20 +46,74 @@ public class StudentFragment2 extends Fragment {
     }
 
     private void initUI() {
-        btnDownload = view.findViewById(R.id.buttonDownloadMain);
-        btnUpload = view.findViewById(R.id.buttonUploadMain);
-        btnShow = view.findViewById(R.id.buttonShow);
+        tv_total = view.findViewById(R.id.tv_total);
+        tv_seperate = view.findViewById(R.id.tv_seperate);
+        pb_total = view.findViewById(R.id.pb_total);
+        pb_seperate = view.findViewById(R.id.pb_seperate);
+        tv_total_percent = view.findViewById(R.id.tv_total_percent);
+        tv_seperate_percent = view.findViewById(R.id.tv_seperate_percent);
+        tv_name = view.findViewById(R.id.tv_name);
+        tv_name.setText(BaseActivity.s_name);
 
-        btnDownload.setOnClickListener(view -> startActivity(new Intent(getContext(), DownloadActivity.class)));
-        btnUpload.setOnClickListener(view -> startActivity(new Intent(getContext(), UploadActivity.class)));
-        btnShow.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ShowActivity.class);
-                startActivity(intent);
-            }
-        });
-        // btnShow.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ShowActivity.class)));
+        String url = "http://" + IP + "/profileTest.php";
+        StudentFragment2.selectDatabase selectDatabase = new StudentFragment2.selectDatabase(url, null);
+        selectDatabase.execute();
     }
+
+    class selectDatabase extends AsyncTask<Void, Void, String> {
+
+        private String url1;
+        private ContentValues values1;
+        String result1; // 요청 결과를 저장할 변수.
+
+        public selectDatabase(String url, ContentValues contentValues) {
+            this.url1 = url;
+            this.values1 = contentValues;
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
+            result1 = requestHttpURLConnection.request(url1, values1); // 해당 URL로 부터 결과물을 얻어온다.
+            return result1; // 여기서 당장 실행 X, onPostExcute에서 실행
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            doJSONParser(s); // 파서로 전체 출력
+        }
+    }
+
+    // 받아온 json 데이터를 파싱합니다.
+    public void doJSONParser(String string) {
+        try {
+            int total = 0;
+            int seperate = 0;
+            JSONObject jsonObject = new JSONObject(string);
+            JSONArray jsonArray = jsonObject.getJSONArray("data_concentrate");
+
+            for (int i=0; i < jsonArray.length(); i++) {
+                JSONObject output = jsonArray.getJSONObject(i);
+                total += output.getInt("c_total");
+                seperate += output.getInt("c_seperate");
+            }
+            if(jsonArray.length() != 0){
+                total /= jsonArray.length();
+                seperate /= jsonArray.length();
+                pb_total.setProgress(total);
+                pb_seperate.setProgress(seperate);
+                tv_total_percent.setText(Integer.toString(total));
+                tv_seperate_percent.setText(Integer.toString(seperate));
+            } else{
+                pb_total.setProgress(0);
+                pb_seperate.setProgress(0);
+                tv_total_percent.setText("0");
+                tv_seperate_percent.setText("0");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

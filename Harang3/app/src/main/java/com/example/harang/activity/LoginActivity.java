@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_login, btn_register;
     private RadioButton rb_professor_login, rb_student_login;
     private RadioGroup rg_login;
+    private BackPressedEvent backPressedEvent;
 
 
     @Override
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         rb_professor_login = findViewById(R.id.rb_professor_login);
         rb_student_login = findViewById(R.id.rb_student_login);
         rg_login = findViewById(R.id.rg_login);
+        backPressedEvent = new BackPressedEvent(this);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN); // 키보드가 focus된 edittext 밑으로 옴
 
@@ -120,6 +122,8 @@ public class LoginActivity extends AppCompatActivity {
                         String user_id = jsonObject.getString("id");
                         String user_pass = jsonObject.getString("password");
                         String user_primaryKey = jsonObject.getString("p_id");
+                        String user_name = jsonObject.getString("p_name");
+
 
                         Log.d("minu",user_primaryKey);
 
@@ -128,6 +132,8 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("user_id", user_id);
                         intent.putExtra("user_pass", user_pass);
                         intent.putExtra("user_primaryKey", user_primaryKey);
+                        intent.putExtra("p_name", user_name);
+
                         startActivity(intent);
                     } else { // 로그인에 실패한 경우
                         Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
@@ -159,12 +165,14 @@ public class LoginActivity extends AppCompatActivity {
                         String user_id = jsonObject.getString("id");
                         String user_pass = jsonObject.getString("password");
                         String user_primaryKey = jsonObject.getString("s_id");
+                        String user_name = jsonObject.getString("s_name");
 
                         Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
                         intent.putExtra("user_id", user_id);
                         intent.putExtra("user_pass", user_pass);
                         intent.putExtra("s_id", user_primaryKey);
+                        intent.putExtra("s_name", user_name);
 
                         startActivity(intent);
                     } else { // 로그인에 실패한 경우
@@ -179,5 +187,11 @@ public class LoginActivity extends AppCompatActivity {
         StudentLoginRequest studentLoginRequest = new StudentLoginRequest(id, password, responseListener);
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
         queue.add(studentLoginRequest);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        backPressedEvent.onBackPressed();
     }
 }

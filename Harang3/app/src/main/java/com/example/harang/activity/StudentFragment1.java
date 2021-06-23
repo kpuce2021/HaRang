@@ -193,8 +193,4 @@ public class StudentFragment1 extends Fragment {
             e.printStackTrace();
         }
     }
-
-
-
-
 }

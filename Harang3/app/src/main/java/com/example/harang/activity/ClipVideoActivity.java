@@ -66,13 +66,7 @@ public class ClipVideoActivity extends AppCompatActivity {
         videoView.setVideoPath(path+v_id+"-"+position + ".mp4");
         // VideoView 로 재생할 영상
         // 아까 동영상 [상세정보] 에서 확인한 경로
-        
-        
-        
         //영상 잘라서 재생
-        
-        
-        
         videoView.requestFocus(); // 포커스 얻어오기
         videoView.start(); // 동영상 재생
 

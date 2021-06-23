@@ -42,13 +42,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
+import static com.example.harang.activity.DownloadActivity.checkedIndex;
+
 
 public class DownloadFragment extends ListFragment {
     // 각각의 Fragment마다 Instance를 반환해 줄 메소드를 생성합니다.
+    public static String Statement = "DOWNLOADING";
     public static DownloadFragment newInstance() {
         return new DownloadFragment();
     }
-
+    private static final int DOWNLOAD_SELECTION_REQUEST_CODE = 1;
     private static final String TAG = "db_test";
     private static final int INDEX_NOT_CHECKED = -1;
     //check video list
@@ -82,6 +85,31 @@ public class DownloadFragment extends ListFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.stu_fragment_download, container, false);
 
+        /*//get List
+        util = new Util();
+        bucket = new AWSConfiguration(mContext).optJsonObject("S3TransferUtility").optString("Bucket");
+        s3 = util.getS3Client(mContext);
+        transferRecordMaps = new ArrayList<>();
+        bundle = getArguments();  //번들 받기. getArguments() 메소드로 받음.
+        VideoName = bundle.getString("videoName");
+        studentId = bundle.getString("studentId");
+        s_id = bundle.getString("s_id");
+        v_id = bundle.getString("v_id");
+
+
+        //Download
+        downloadMaps = new ArrayList<>();
+        transferUtility = util.getTransferUtility(mContext);
+        initUI();
+*/
+
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         //get List
         util = new Util();
         bucket = new AWSConfiguration(mContext).optJsonObject("S3TransferUtility").optString("Bucket");
@@ -94,14 +122,11 @@ public class DownloadFragment extends ListFragment {
         v_id = bundle.getString("v_id");
 
 
-
         //Download
         downloadMaps = new ArrayList<>();
         transferUtility = util.getTransferUtility(mContext);
         initUI();
 
-
-        return view;
     }
 
     @Override
@@ -198,6 +223,32 @@ public class DownloadFragment extends ListFragment {
         });
         setListAdapter(simpleAdapter);
 
+       /* getListView().setOnItemClickListener((adapterView, view, pos, id) -> {
+            if (checkedIndex != pos) {
+                transferRecordMaps.get(pos).put("checked", true);
+                if (checkedIndex >= 0) {
+                    transferRecordMaps.get(checkedIndex).put("checked", false);
+                }
+                checkedIndex = pos;
+               // updateButtonAvailability();
+                simpleAdapter.notifyDataSetChanged();
+            }
+        });
+
+       Button btnDelete = (Button) view.findViewById(R.id.buttonDelete);
+
+        btnDelete.setOnClickListener(view -> {
+            // Make sure a transfer is selected
+            if (checkedIndex >= 0 && checkedIndex < observers.size()) {
+                // Deletes a record but the file is not deleted.
+                transferUtility.deleteTransferRecord(observers.get(checkedIndex).getId());
+                observers.remove(checkedIndex);
+                transferRecordMaps.remove(checkedIndex);
+                checkedIndex = INDEX_NOT_CHECKED;
+               // updateButtonAvailability();
+                updateList();
+            }
+        });*/
         Button buttonOK = (Button) view.findViewById(R.id.buttonOK);
 
         buttonOK.setOnClickListener(new OnSingleClickListener() {
@@ -206,8 +257,11 @@ public class DownloadFragment extends ListFragment {
                 gazeTrackerManager = GazeTrackerManager.getInstance();
                 if(gazeTrackerManager == null){
                     Toast.makeText(getContext(),"초점 조절 먼저 진행해주세요",Toast.LENGTH_SHORT).show();
+                } else if(Statement.equals("DOWNLOADING")){
+                    Toast.makeText(getContext(),"영상 다운로드가 완료되지 않았습니다.",Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    Statement = "DOWNLOADING";
                     Intent intent = new Intent(mContext, VideoActivity.class);
                     intent.putExtra("VideoName", VideoName + ".mp4");
                     intent.putExtra("studentId", studentId);
@@ -273,8 +327,6 @@ public class DownloadFragment extends ListFragment {
         File file = new File(mContext.getExternalFilesDir(null).toString() + "/" + key);
 
         //TransferObserver observer = transferUtility.download(key, file);
-
-
         Intent intent = new Intent(mContext, MyService.class);
         intent.putExtra(MyService.INTENT_KEY_NAME, key);
         intent.putExtra(MyService.INTENT_TRANSFER_OPERATION, MyService.TRANSFER_OPERATION_DOWNLOAD);
@@ -302,6 +354,10 @@ public class DownloadFragment extends ListFragment {
         @Override
         public void onStateChanged(int id, TransferState state) {
             Log.d(TAG, "onStateChanged: " + id + ", " + state);
+            if(state == TransferState.COMPLETED){
+                Statement = "COMPLETED";
+                Log.d(TAG, "onStateChanged: 는 1입니다");
+            }
             updateList();
         }
     }
@@ -312,6 +368,8 @@ public class DownloadFragment extends ListFragment {
         for (int i = 0; i < observers.size(); i++) {
             observer = observers.get(i);
             observer.setTransferListener(new DownloadListener());
+            map = downloadMaps.get(i);
+            util.fillMap(map, observer, i == checkedIndex);
         }
         simpleAdapter.notifyDataSetChanged();
     }

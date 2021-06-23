@@ -30,6 +30,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public static String StudentId;
     public static String s_id;
+    public static String s_name;
     public static HashMap<String,ArrayList<HashMap<String,Integer>>> totalList;
 
     @Override
@@ -40,6 +41,7 @@ public class BaseActivity extends AppCompatActivity {
         Intent intent = getIntent();
         StudentId = intent.getStringExtra("user_id");
         s_id = intent.getStringExtra("s_id");
+        s_name = intent.getStringExtra("s_name");
         totalList = new HashMap<>(); ////key : v_id, value : mSecList 내용
 
         backPressedEvent = new BackPressedEvent(this);
@@ -101,9 +103,18 @@ public class BaseActivity extends AppCompatActivity {
         ft.replace(R.id.main_frame, fragment).commit();
     }
 
+/*    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        boolean k_f = intent.getBooleanExtra("kill", false);
+        if(k_f == true){
+            finish();
+        }
+    }*/
+
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        backPressedEvent.onBackPressed();
+        //backPressedEvent.onBackPressed();
     }
 }

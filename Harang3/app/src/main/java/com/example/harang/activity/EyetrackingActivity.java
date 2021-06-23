@@ -374,6 +374,8 @@ public class EyetrackingActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     layoutProgress.setVisibility(View.INVISIBLE);
+                    //gazeTrackerManager.startCalibration(calibrationType, criteria);
+                    startCalibration();
                 }
             });
         }
@@ -513,6 +515,7 @@ public class EyetrackingActivity extends AppCompatActivity {
     private void initSuccess(GazeTracker gazeTracker) {
         startTracking();
         hideProgress();
+
     }
 
     private void initFail(InitializationErrorType error) {

@@ -21,6 +21,7 @@
             android:text="확인"
             android:background="@drawable/rounded_button"
             android:fontFamily="@font/wemakeprice_regular"/>
+
     </LinearLayout>
 
     <ListView
