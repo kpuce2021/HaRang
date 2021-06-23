@@ -210,25 +210,17 @@ public class EyetrackingActivity extends AppCompatActivity {
     private View layoutProgress;
     private View viewWarningTracking;
     private PointView viewPoint;
-    private Button btnInitGaze, btnReleaseGaze;
-    private Button btnStartTracking, btnStopTracking;
-    private Button btnStartCalibration, btnStopCalibration, btnSetCalibration;
-    private Button btnGuiDemo;
+    private Button btnStartCalibration;
+    private Button btnComplete;
     private CalibrationViewer viewCalibration;
 
     // gaze coord filter
-    private SwitchCompat swUseGazeFilter;
     private boolean isUseGazeFilter = true;
     // calibration type
-    private RadioGroup rgCalibration;
-    private RadioGroup rgAccuracy;
     private CalibrationModeType calibrationType = CalibrationModeType.DEFAULT;
     private AccuracyCriteria criteria = AccuracyCriteria.DEFAULT;
 
-    private AppCompatTextView txtGazeVersion;
     private void initView() {
-        txtGazeVersion = findViewById(R.id.txt_gaze_version);
-        txtGazeVersion.setText("version: " + GazeTracker.getVersionName());
 
         layoutProgress = findViewById(R.id.layout_progress);
         layoutProgress.setOnClickListener(null);
@@ -238,88 +230,21 @@ public class EyetrackingActivity extends AppCompatActivity {
         preview = findViewById(R.id.preview);
         preview.setSurfaceTextureListener(surfaceTextureListener);
 
-        btnInitGaze = findViewById(R.id.btn_init_gaze);
-        btnReleaseGaze = findViewById(R.id.btn_release_gaze);
-        btnInitGaze.setOnClickListener(onClickListener);
-        btnReleaseGaze.setOnClickListener(onClickListener);
-
-        btnStartTracking = findViewById(R.id.btn_start_tracking);
-        btnStopTracking = findViewById(R.id.btn_stop_tracking);
-        btnStartTracking.setOnClickListener(onClickListener);
-        btnStopTracking.setOnClickListener(onClickListener);
 
         btnStartCalibration = findViewById(R.id.btn_start_calibration);
-        btnStopCalibration = findViewById(R.id.btn_stop_calibration);
         btnStartCalibration.setOnClickListener(onClickListener);
-        btnStopCalibration.setOnClickListener(onClickListener);
-
-        btnSetCalibration = findViewById(R.id.btn_set_calibration);
-        btnSetCalibration.setOnClickListener(onClickListener);
-
-        btnGuiDemo = findViewById(R.id.btn_gui_demo);
-        btnGuiDemo.setOnClickListener(onClickListener);
+        btnComplete = findViewById(R.id.btn_complete);
+        btnComplete.setOnClickListener(onClickListener);
 
         viewPoint = findViewById(R.id.view_point);
         viewCalibration = findViewById(R.id.view_calibration);
 
-        swUseGazeFilter = findViewById(R.id.sw_use_gaze_filter);
-        rgCalibration = findViewById(R.id.rg_calibration);
-        rgAccuracy = findViewById(R.id.rg_accuracy);
-
-        swUseGazeFilter.setChecked(isUseGazeFilter);
-        RadioButton rbCalibrationOne = findViewById(R.id.rb_calibration_one);
-        RadioButton rbCalibrationFive = findViewById(R.id.rb_calibration_five);
-        RadioButton rbCalibrationSix = findViewById(R.id.rb_calibration_six);
-        switch (calibrationType) {
-            case ONE_POINT:
-                rbCalibrationOne.setChecked(true);
-                break;
-            case SIX_POINT:
-                rbCalibrationSix.setChecked(true);
-                break;
-            default:
-                // default = five point
-                rbCalibrationFive.setChecked(true);
-                break;
-        }
-
-        swUseGazeFilter.setOnCheckedChangeListener(onCheckedChangeSwitch);
-        rgCalibration.setOnCheckedChangeListener(onCheckedChangeRadioButton);
-        rgAccuracy.setOnCheckedChangeListener(onCheckedChangeRadioButton);
-
+        calibrationType = CalibrationModeType.SIX_POINT;
+        criteria = AccuracyCriteria.DEFAULT;
+        isUseGazeFilter = true;
         setOffsetOfView();
     }
 
-    private RadioGroup.OnCheckedChangeListener onCheckedChangeRadioButton = new RadioGroup.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-            if (group == rgCalibration) {
-                if (checkedId == R.id.rb_calibration_one) {
-                    calibrationType = CalibrationModeType.ONE_POINT;
-                } else if (checkedId == R.id.rb_calibration_five) {
-                    calibrationType = CalibrationModeType.FIVE_POINT;
-                } else if (checkedId == R.id.rb_calibration_six) {
-                    calibrationType = CalibrationModeType.SIX_POINT;
-                }
-            } else if (group == rgAccuracy) {
-                if (checkedId == R.id.rb_accuracy_default) {
-                    criteria = AccuracyCriteria.DEFAULT;
-                } else if (checkedId == R.id.rb_accuracy_low) {
-                    criteria = AccuracyCriteria.LOW;
-                } else if (checkedId == R.id.rb_accuracy_high) {
-                    criteria = AccuracyCriteria.HIGH;
-                }
-            }
-        }
-    };
-    private SwitchCompat.OnCheckedChangeListener onCheckedChangeSwitch = new CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (buttonView == swUseGazeFilter) {
-                isUseGazeFilter = isChecked;
-            }
-        }
-    };
 
     private TextureView.SurfaceTextureListener surfaceTextureListener = new TextureView.SurfaceTextureListener() {
         @Override
@@ -402,22 +327,10 @@ public class EyetrackingActivity extends AppCompatActivity {
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (v == btnInitGaze) {
-                initGaze();
-            } else if (v == btnReleaseGaze) {
-                releaseGaze();
-            } else if (v == btnStartTracking) {
-                startTracking();
-            } else if (v == btnStopTracking) {
-                stopTracking();
-            } else if (v == btnStartCalibration) {
+            if (v == btnStartCalibration) {
                 startCalibration();
-            } else if (v == btnStopCalibration) {
-                stopCalibration();
-            } else if (v == btnSetCalibration) {
-                setCalibration();
-            } else if (v == btnGuiDemo) {
-                showGuiDemo();
+            }else if(v == btnComplete){
+                onDestroy();
             }
         }
     };
@@ -476,13 +389,8 @@ public class EyetrackingActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                btnInitGaze.setEnabled(!isTrackerValid());
-                btnReleaseGaze.setEnabled(isTrackerValid());
-                btnStartTracking.setEnabled(isTrackerValid() && !isTracking());
-                btnStopTracking.setEnabled(isTracking());
                 btnStartCalibration.setEnabled(isTracking());
-                btnStopCalibration.setEnabled(isTracking());
-                btnSetCalibration.setEnabled(isTrackerValid());
+
                 if (!isTracking()) {
                     hideCalibrationView();
                 }
@@ -527,22 +435,7 @@ public class EyetrackingActivity extends AppCompatActivity {
         @Override
         public void onGaze(GazeInfo gazeInfo) {
             processOnGaze(gazeInfo);
-            Log.i(TAG, gazeInfo.eyeMovementState+" "+gazeInfo.screenState+" "+gazeInfo.timestamp+" "+(Long.valueOf(gazeInfo.timestamp).intValue()/1000)%10000);
-            //timestamp 값이 뒤에서 4번째 숫자가 초에 해당하는 부분임
-            //아이트래킹 로그 출력부분
-
-            //test중
-            //concentrateManager.getEyetrackingData(gazeInfo,(Long.valueOf(gazeInfo.timestamp).intValue()/1000)%10000); //아이트래킹 정보 저장
-            /*
-             * 1초
-             * 1분 = 60초
-             * 1시간 = 60분 = 3600초
-             * 2시간 = 120분 = 7200초
-             *
-             * timestamp = 1616599777831
-             * --> 9777 부분만 필요하므로
-             * (timestamp/1000)%10000 부분이 초에 해당함.
-             * */
+            //Log.i(TAG, gazeInfo.eyeMovementState+" "+gazeInfo.screenState+" "+gazeInfo.timestamp+" "+(Long.valueOf(gazeInfo.timestamp).intValue()/1000)%10000);
 
         }
     };
@@ -591,7 +484,7 @@ public class EyetrackingActivity extends AppCompatActivity {
             // When calibration is finished, calibration data is stored to SharedPreference
 
             hideCalibrationView();
-            showToast("calibrationFinished", true);
+            showToast("초점 조절을 완료했습니다.", true);
         }
     };
 
@@ -645,7 +538,7 @@ public class EyetrackingActivity extends AppCompatActivity {
     private boolean startCalibration() {
         boolean isSuccess = gazeTrackerManager.startCalibration(calibrationType, criteria);
         if (!isSuccess) {
-            showToast("calibration start fail", false);
+            showToast("초점 조절을 실패했습니다.", false);
         }
         setViewAtGazeTrackerState();
         return isSuccess;
@@ -681,10 +574,5 @@ public class EyetrackingActivity extends AppCompatActivity {
                 break;
         }
         setViewAtGazeTrackerState();
-    }
-
-    private void showGuiDemo() {
-        Intent intent = new Intent(getApplicationContext(), DemoActivity.class);
-        startActivity(intent);
     }
 }
