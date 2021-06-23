@@ -1,18 +1,12 @@
 package com.example.harang.activity;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
-import android.view.View;
 import android.widget.MediaController;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.RequiresApi;
@@ -23,21 +17,13 @@ import com.example.harang.R;
 import com.example.harang.view.CalibrationViewer;
 import com.example.harang.view.GazePathView;
 import com.example.harang.view.PointView;
-import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
-import com.github.hiteshsondhi88.libffmpeg.FFmpegExecuteResponseHandler;
-import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegCommandAlreadyRunningException;
 
-import java.io.File;
-
-import cafe.adriel.androidaudioconverter.AndroidAudioConverter;
-import camp.visual.gazetracker.GazeTracker;
 import camp.visual.gazetracker.callback.GazeCallback;
-import camp.visual.gazetracker.filter.OneEuroFilterManager;
 import camp.visual.gazetracker.gaze.GazeInfo;
 import camp.visual.gazetracker.util.ViewLayoutChecker;
 
-public class VideoActivity extends AppCompatActivity {
-    private static final String TAG = "VideoActivity";
+public class StudentFullVideoActivity extends AppCompatActivity {
+    private static final String TAG = "StudentFullVideo";
     private final ViewLayoutChecker viewLayoutChecker = new ViewLayoutChecker();
     private GazePathView gazePathView;
     private GazeTrackerManager gazeTrackerManager;
@@ -60,7 +46,7 @@ public class VideoActivity extends AppCompatActivity {
         gazeTrackerManager = GazeTrackerManager.getInstance();
 
         concentrateManager = ConcentrateManager.makeNewInstance(this);
-        concentrateManager.getContext(VideoActivity.this);
+        concentrateManager.getContext(StudentFullVideoActivity.this);
 
     }
 
@@ -111,7 +97,10 @@ public class VideoActivity extends AppCompatActivity {
         studentId = intent.getStringExtra("studentId");
         s_id = intent.getStringExtra("s_id");
         v_id = intent.getStringExtra("v_id");
-        concentrateManager.getUserInfo(v_id,s_id);
+
+        concentrateManager.getUserInfo(v_id,s_id, intent.getStringExtra("start1"),
+                intent.getStringExtra("start2"), intent.getStringExtra("stop1"),
+                intent.getStringExtra("stop2"), intent.getStringExtra("clipCount"));
 
         // VideoView : 동영상을 재생하는 뷰
         videoView = (VideoView) findViewById(R.id.s3VideoView);

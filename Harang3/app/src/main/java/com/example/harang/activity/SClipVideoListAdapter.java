@@ -13,7 +13,7 @@ import com.example.harang.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ClipvideoListAdapter extends ArrayAdapter {
+public class SClipVideoListAdapter extends ArrayAdapter {
     private static ArrayList<HashMap<String,String>> menuInfolist;
 
     // 버튼 클릭 이벤트를 위한 Listener 인터페이스 정의.
@@ -24,14 +24,14 @@ public class ClipvideoListAdapter extends ArrayAdapter {
     // 생성자로부터 전달된 resource id 값을 저장.
     int resourceId ;
     // 생성자로부터 전달된 ListBtnClickListener  저장.
-    private ClipvideoListAdapter.ListBtnClickListener listBtnClickListener ;
+    private SClipVideoListAdapter.ListBtnClickListener listBtnClickListener ;
 
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
-    private ArrayList<ClipvideoListItem> listViewItemList = new ArrayList<ClipvideoListItem>() ;
+    private ArrayList<SClipVideoListItem> listViewItemList = new ArrayList<SClipVideoListItem>() ;
 
 
     // ListViewAdapter의 생성자
-    public ClipvideoListAdapter(Context context, int resource, ArrayList<ClipvideoListItem> list) {
+    public SClipVideoListAdapter(Context context, int resource, ArrayList<SClipVideoListItem> list) {
         super(context, resource, list);
         // resource id 값 복사. (super로 전달된 resource를 참조할 방법이 없음.)
         this.listViewItemList = list;
@@ -62,7 +62,7 @@ public class ClipvideoListAdapter extends ArrayAdapter {
         TextView endTime = (TextView) convertView.findViewById(R.id.endTime);
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        final ClipvideoListItem listViewItem = (ClipvideoListItem) getItem(position);
+        final SClipVideoListItem listViewItem = (SClipVideoListItem) getItem(position);
 
 
         // 아이템 내 각 위젯에 데이터 반영
@@ -91,16 +91,5 @@ public class ClipvideoListAdapter extends ArrayAdapter {
         return listViewItemList.get(position) ;
     }
 
-    // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
-    public void addItem(String name, int start, int length,int percent) {
-        ClipvideoListItem item = new ClipvideoListItem();
 
-        item.setVideoName(name);
-        item.setStartTime(start);
-        item.setVideoLength(length);
-        item.setEndTime(start+length-1);
-
-
-        listViewItemList.add(item);
-    }
 }

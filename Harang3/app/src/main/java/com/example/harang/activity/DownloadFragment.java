@@ -1,9 +1,7 @@
 package com.example.harang.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.content.Intent;
-import android.webkit.DownloadListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.SimpleAdapter;
@@ -93,6 +89,7 @@ public class DownloadFragment extends ListFragment {
         bundle = getArguments();  //번들 받기. getArguments() 메소드로 받음.
         VideoName = bundle.getString("videoName");
         studentId = bundle.getString("studentId");
+
         s_id = bundle.getString("s_id");
         v_id = bundle.getString("v_id");
 
@@ -267,6 +264,12 @@ public class DownloadFragment extends ListFragment {
                     intent.putExtra("studentId", studentId);
                     intent.putExtra("s_id", s_id);
                     intent.putExtra("v_id", v_id);
+
+                    intent.putExtra("start1",bundle.getString("start1"));
+                    intent.putExtra("start2",bundle.getString("start2"));
+                    intent.putExtra("stop1",bundle.getString("stop1"));
+                    intent.putExtra("stop2",bundle.getString("stop2"));
+                    intent.putExtra("clipCount",bundle.getString("clipCount"));
                     startActivity(intent);
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     fragmentManager.beginTransaction().remove(DownloadFragment.this).commit();

@@ -29,18 +29,6 @@ import camp.visual.gazetracker.GazeTracker;
 import camp.visual.gazetracker.gaze.GazeInfo;
 import camp.visual.gazetracker.state.EyeMovementState;
 import camp.visual.gazetracker.state.ScreenState;
-/*
- * 액티비티에서 아이트래킹 정보 받아오기 0
- * 액티비티에서 영상 정보 받아오기
- * 시선데이터 테이블 값 계산 하기 0
- * 시선데이터 테이블 값 db저장
- * 학생 집중정보 테이블 값 계산하기 0
- * 학생 집중정보 테이블 값 db 저장
- * 클립영상 데이터 테이블 값 계산하기
- * 클립영상 데이터 테이블 값 db저장
- *
- * */
-
 public class ConcentrateManager{
     static private ConcentrateManager mInstance = null; //인스턴스
     private static String TAG = "printTest";
@@ -61,6 +49,12 @@ public class ConcentrateManager{
     static private int mstate = 0; //screenstate(INSIDE, OUTSIDE)
     private static String StudentId;
     private static String v_id;
+
+    private static String start1;
+    private static String start2;
+    private static String stop1;
+    private static String stop2;
+    private static String SclipCount;
 
     private static ArrayList<HashMap<String,Integer>> mSecList; //클립영상 리스트
     private static double c_total;
@@ -145,7 +139,7 @@ public class ConcentrateManager{
                 mstateData.put(countSec,0);
             }
         }
-
+/*
         if(!eyetrackData.containsKey(countSec)){ //값을 처음 넣을 때
             eyetrackData.put(countSec,estate & mstate);
         }else{ //이미 값이 있을 때때
@@ -155,6 +149,8 @@ public class ConcentrateManager{
                 eyetrackData.put(countSec,0);
             }
         }
+        
+ */
     }
 
     //학생 집중정보 테이블 data_concentrate에 들어가는 정보인 전체집중률 c_total, 구간집중률 c_seperate 정보 계산 후 저장
@@ -163,17 +159,24 @@ public class ConcentrateManager{
         c_total = getConcentrateRate(0,eyeSecondCount); //db에 저장하는 작업 필요******
 
         //2. 구간 집중률
-        int clipCount = 2; //클립구간 갯수에 대한 정보 필요********
-        int[] concent_start = new int[clipCount];
-        int[] concent_end = new int[clipCount];
+        int clipCount = Integer.parseInt(SclipCount); //클립구간 갯수에 대한 정보 필요********
+        int[] concent_start = new int[2];
+        int[] concent_end = new int[2];
         c_seperate = 0; //db에 저장하는 작업 필요******
-        concent_start[0] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
-            concent_end[0] = 120;
-        concent_start[1] = 180; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
-            concent_end[1] = 270;
+        if(clipCount == 0){
+            concent_start[0] = 0;
+            concent_end[0] = eyeSecondCount;
+            clipCount=1;
+        }else{
+            concent_start[0] = Integer.parseInt(start1.substring(0,2))*3600 + Integer.parseInt(start1.substring(3,5))*60 + Integer.parseInt(start1.substring(6,8));
+            concent_end[0] = Integer.parseInt(stop1.substring(0,2))*3600 + Integer.parseInt(stop1.substring(3,5))*60 + Integer.parseInt(stop1.substring(6,8));
+            if(clipCount==2){
+                concent_start[1] = Integer.parseInt(start2.substring(0,2))*3600 + Integer.parseInt(start2.substring(3,5))*60 + Integer.parseInt(start1.substring(6,8));
+                concent_end[1] = Integer.parseInt(stop2.substring(0,2))*3600 + Integer.parseInt(stop2.substring(3,5))*60 + Integer.parseInt(stop1.substring(6,8));
+            }
+        }
+
         for(int i=0;i<clipCount;i++){
-//            concent_start[i] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
-//            concent_end[i] = 60; //db에서 받아오는 작업 필요**********
             c_seperate += getConcentrateRate(concent_start[i],concent_end[i]);
         }
         Log.i(TAG,"전체집중률 : "+c_total+", 구간집중률 : "+c_seperate);
@@ -194,7 +197,6 @@ public class ConcentrateManager{
     public void setClipvideoData(){
         //1. k초 설정
         int concentLine = 0; // k가 되는 값. 집중의 기준 시간
-        //eyeSecondCount = eyetrackData.length;
         if(eyeSecondCount<1800){
             concentLine = 5;
         }else{
@@ -203,49 +205,46 @@ public class ConcentrateManager{
 
         //2. 집중시간이 적은 구간을 집중안함으로 변경하기위한 for문
         int maintainSec = 0;
-        for(int i=0;i<eyeSecondCount;i++){ //전체 영상 구간 반복문
-            if(eyetrackData.get(i) == 1){
-                maintainSec+=1;
-            }else{
-                if(maintainSec<=concentLine){
-                    for(int j=i-maintainSec;j<i;j++){
-                        eyetrackData.put(j, 0);
-                    }
-                }
-                maintainSec = 0;
+        int clipCount = 1;
+
+        int[] concent_start = new int[2];
+        int[] concent_end = new int[2];
+
+        String startTimeTrans;
+        String endTimeTrans;
+
+
+        //db에tj 미리 저장해놓은 클립영상 시작, 종료 시간 받아오기
+        Log.i("db_test",start1 +" "+ start2+" "+ stop1+" "+ stop2);
+        Log.i("db_test",start1.substring(0,2) +" "+ start1.substring(3,5) +" "+ start1.substring(6,8));
+        Log.i("db_test",stop1.substring(0,2) +" "+stop1.substring(3,5) +" "+ stop1.substring(6,8));
+        Log.i("db_test",start2.substring(0,2) +" "+ start2.substring(3,5) +" "+ start2.substring(6,8));
+        Log.i("db_test",stop2.substring(0,2) +" "+ stop2.substring(3,5) +" "+ stop2.substring(6,8));
+        if(clipCount == 0){
+            concent_start[0] = 0;
+            concent_end[0] = eyeSecondCount;
+            clipCount=1;
+        }else{
+            concent_start[0] = Integer.parseInt(start1.substring(0,2))*3600 + Integer.parseInt(start1.substring(3,5))*60 + Integer.parseInt(start1.substring(6,8));
+            concent_end[0] = Integer.parseInt(stop1.substring(0,2))*3600 + Integer.parseInt(stop1.substring(3,5))*60 + Integer.parseInt(stop1.substring(6,8));
+            if(clipCount==2){
+                concent_start[1] = Integer.parseInt(start2.substring(0,2))*3600 + Integer.parseInt(start2.substring(3,5))*60 + Integer.parseInt(start1.substring(6,8));
+                concent_end[1] = Integer.parseInt(stop2.substring(0,2))*3600 + Integer.parseInt(stop2.substring(3,5))*60 + Integer.parseInt(stop1.substring(6,8));
             }
         }
 
-        maintainSec = 0;
-        //클립영상 시간설정
-        int clipCount = 2; //클립구간 갯수에 대한 정보 필요********
-        int[] concent_start = new int[clipCount];
-        int[] concent_end = new int[clipCount];
+        Log.i("db_test",clipCount +" "+eyeSecondCount +" "+ concent_start[0] +" "+ concent_end[0] +" "+ concent_start[1] +" "+ concent_end[1]);
 
-        /*
-        //db에 저장되어있는 교수자가 입력한 영상에 대한 기록 받아오기
-        for(int i=0;i<clipCount;i++){ //클립영상 구간 받아오기
-            concent_start[i] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
-            concent_end[i] = 10; //db에서 받아오는 작업 필요**********
-        }
-        */
-        //concent_start[0] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
-        //concent_end[0] = 60; //db에서 받아오는 작업 필요**********
 
-        concent_start[0] = 0; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
-        concent_end[0] = 120;
-        concent_start[1] = 180; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
-        concent_end[1] = 270;
-
-        //concent_start[1] = 13; //db에서 받아오는 작업 필요*********(받아온 후 초단위로 변경)
-        //concent_end[1] = 20; //db에서 받아오는 작업 필요**********
 
         //3. 비집중 부분을 리스트에 넣기 ("start" : 시작 초, "length" : 유지 시간)
         mSecList = new ArrayList<>(); //클립영상 리스트
         HashMap<String,Integer> addArrayList;
         for(int i=0;i<clipCount;i++){
             for(int j=concent_start[i];(j<=concent_end[i] && j<eyeSecondCount);j++){ //집중구간 한정으로 for문 돌기 시작
-                if(eyetrackData.get(j) == 0 && (j== concent_end[i] || j == eyeSecondCount)){ //이번이 마지막 초일때
+                Log.i("db_test","지금 초 : "+j+", eyetrackData : "+eyetrackData.get(j));
+                if(eyetrackData.get(j) == 0 && (j== concent_end[i] || j == eyetrackData.size()-1)){ //이번이 마지막 초일때
+                    Log.i("db_test","판정 : "+"마지막 초 && 0");
                     maintainSec+=1;
                     addArrayList = new HashMap<String,Integer>();
                     addArrayList.put("start",j-maintainSec+1);
@@ -253,8 +252,10 @@ public class ConcentrateManager{
                     mSecList.add(addArrayList);
                     maintainSec = 0;
                 }else if(eyetrackData.get(j) == 0 && (eyetrackData.get(j+1) == 0)){ //다음에도 비집중일때
+                    Log.i("db_test","판정 : "+"다음초 때 비집중");
                     maintainSec+=1;
                 }else if(eyetrackData.get(j) == 0 && eyetrackData.get(j+1) == 1){ //다음 초때 집중
+                    Log.i("db_test","판정 : "+"다음초 때 집중");
                     maintainSec+=1;
                     addArrayList = new HashMap<String,Integer>();
                     addArrayList.put("start",j-maintainSec+1);
@@ -286,10 +287,17 @@ public class ConcentrateManager{
 
     }
 
-    public static void getUserInfo(String tv_id, String ts_id){
+    public static void getUserInfo(String tv_id, String ts_id,String dbstart1,String dbstart2,
+                                String dbstop1, String dbstop2,String dbclipCount){
         //db에 집어넣기
         v_id = tv_id;
         StudentId = ts_id;
+        start1 = dbstart1;
+        start2 = dbstart2;
+        stop1 = dbstop1;
+        stop2 = dbstop2;
+        SclipCount = dbclipCount;
+
     }
 
 
@@ -297,23 +305,111 @@ public class ConcentrateManager{
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void accessDB(){
-        Log.i(TAG,"아이트래킹 수집 데이터 리스트");
-        Log.i(TAG, " 초 | 집중결과 | 고정 | 화면응시");
-        for(int i=0;i<eyeSecondCount;i++){
-            Log.i(TAG, String.format("%03d",i)+" |    "+eyetrackData.get(i)+"    |   "+estateData.get(i)+"  |    "+mstateData.get(i)+"   ");
-        }
-        BaseActivity.totalList.put(v_id,mSecList);
-
+        
+        setEyetrackData();
         setClipvideoData();
         setConcentrate();
 
-        Log.i(TAG,"집중 정보 변경 후");
+        Log.i(TAG,"집중 정보");
         Log.i(TAG, " 초 | 집중결과 | 고정 | 화면응시");
         for(int i=0;i<eyeSecondCount;i++){
             Log.i(TAG, String.format("%03d",i)+" |    "+eyetrackData.get(i)+"    |   "+estateData.get(i)+"  |    "+mstateData.get(i)+"   ");
         }
-        BaseActivity.totalList.put(v_id,mSecList);
         concentDB();
+    }
+
+    private void setEyetrackData() {
+        //1. k초 설정
+        int concentLine = 0; // k가 되는 값. 집중의 기준 시간
+        if(eyeSecondCount<1800){
+            concentLine = 5;
+        }else{
+            concentLine = (eyeSecondCount*10/3600);
+        }
+
+
+        int[] maintainSec = new int[3];
+        for (int i = 0; i < eyeSecondCount; i++) { // 전체 영상 구간 반복문
+            // 2-1. estate : '움직임'시간이 k초 미만인 부분은 ‘고정’으로 변경
+            if ((i == eyeSecondCount - 1) && estateData.get(i) == 0) { //마지막 초때 상태가 '움직임'
+                maintainSec[0] += 1;
+                if (maintainSec[0] < concentLine) {
+                    for (int j = i - maintainSec[0] + 1; j <= i; j++) {
+                        estateData.put(j, 1);
+                    }
+                }
+                maintainSec[0] = 0;
+            }
+            if (estateData.get(i) == 0) { //상태가 '움직임'
+                maintainSec[0] += 1;
+            } else{ //상태가 '고정'
+                if (maintainSec[0] < concentLine) {
+                    for (int j = i - maintainSec[0]; j < i; j++) {
+                        estateData.put(j, 1);
+                    }
+                }
+                maintainSec[0] = 0;
+            }
+
+
+            // 2-2. mstate : '응시 안함'시간이 3초 이하인 부분은 ‘응시’로 변경
+            if ((i == eyeSecondCount - 1) && mstateData.get(i) == 0) {//마지막 초때 상태가 '응시안함'
+                maintainSec[1] += 1;
+                if (maintainSec[1] <= 3) {
+                    for (int j = i - maintainSec[1] + 1; j <= i; j++) {
+                        mstateData.put(j,1);
+                    }
+                }
+                maintainSec[1] = 0;
+            }
+
+            if (mstateData.get(i) == 0) {//상태가 '응시 안함'
+                maintainSec[1] += 1;
+            } else {
+                if (maintainSec[1] <= 3) { //상태가 '응시'
+                    for (int j = i - maintainSec[1]; j < i; j++) {
+                        mstateData.put(j,1);
+                    }
+                }
+                maintainSec[1] = 0;
+            }
+
+
+            //2-3.두 정보의 AND 연산 결과를 eyetrackData에 저장
+            if (!eyetrackData.containsKey(i)) { // 값을 처음 넣을 때
+                eyetrackData.put(i, estateData.get(i) & mstateData.get(i));
+            } else { // 이미 값이 있을 때때
+                if (eyetrackData.get(i) == 1 && (estateData.get(i) & mstateData.get(i)) == 1) {
+                    eyetrackData.put(i, 1);
+                } else {
+                    eyetrackData.put(i, 0);
+                }
+            }
+
+
+            // 2-4. eyetrackData : '집중'시간이 k초 미만인 부분은 ‘집중안함’으로 변경
+            if ((i == eyeSecondCount - 1) && eyetrackData.get(i) == 1) {
+                maintainSec[2] += 1;
+                if (maintainSec[2] < concentLine) {
+                    for (int j = i - maintainSec[2] + 1; j <= i; j++) {
+                        eyetrackData.put(j, 0);
+                    }
+                }
+                maintainSec[2] = 0;
+            }
+            if (eyetrackData.get(i) == 1) {
+                maintainSec[2] += 1;
+            } else {
+                if (maintainSec[2] < concentLine) {
+                    for (int j = i - maintainSec[2]; j < i; j++) {
+                        eyetrackData.put(j, 0);
+                    }
+                }
+                maintainSec[2] = 0;
+            }
+        }
+
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
