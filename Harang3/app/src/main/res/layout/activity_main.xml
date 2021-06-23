@@ -31,8 +31,12 @@
             android:id="@+id/btn_start_calibration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="초점 재조절"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:fontFamily="@font/wemakeprice_regular"
+            android:backgroundTint="#FFD147"
+            android:text="초점 재조절" />
 
 
         <Button
@@ -40,6 +44,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="완료"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:fontFamily="@font/wemakeprice_regular"
+            android:backgroundTint="#FFD147"
             android:layout_weight="1" />
 
     </LinearLayout>

@@ -330,7 +330,7 @@ public class EyetrackingActivity extends AppCompatActivity {
             if (v == btnStartCalibration) {
                 startCalibration();
             }else if(v == btnComplete){
-                onDestroy();
+                finish();
             }
         }
     };

@@ -23,12 +23,8 @@
         <activity android:name=".activity.MyInfoActivity"></activity>
         <activity android:name=".activity.PEnrollModifyActivity" />
         <activity android:name=".activity.p_BaseActivity" />
-        <activity android:name=".activity.FfmpegActivity"></activity>
         <activity
             android:name=".activity.EyetrackingActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".activity.DemoActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".activity.ProfileActivity" />
         <activity
@@ -50,9 +46,6 @@
         <activity android:name=".activity.BaseActivity"></activity>
         <activity android:name=".activity.SClipVideoActivity"></activity>
 
-        <activity android:name=".activity.MediaActivity"
-            android:screenOrientation="portrait">
-        </activity>
         <activity android:name=".activity.StudentFullVideoActivity"></activity>
         <activity
             android:name=".activity.DownloadActivity"
@@ -63,9 +56,6 @@
         <activity
             android:name=".activity.DownloadSelectionActivity"
             android:label="@string/download_selection_activity" />
-        <activity
-            android:name=".activity.ShowActivity"
-            android:label="@string/show_activity" />
 
         <service
             android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
