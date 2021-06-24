@@ -7,11 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b35503ad-c267-4a5c-b82d-f6164162ff28" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Harang3/FFmpegAndroid64/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/FFmpegAndroid64/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/ConcentrateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/ConcentrateManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/DownloadFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/DownloadFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/SClipListFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/SClipListFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Harang3/lib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/lib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/ProfessorFragment1.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/ProfessorFragment1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/ProfessorFragmentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/ProfessorFragmentRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/ProgressDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/app/src/main/java/com/example/harang/activity/ProgressDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Harang3/app/src/main/res/layout/stu_fragment2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Harang3/app/src/main/res/layout/stu_fragment2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
