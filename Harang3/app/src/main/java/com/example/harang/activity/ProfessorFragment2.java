@@ -230,7 +230,8 @@ public class ProfessorFragment2 extends Fragment {
             //썸네일
             ImageView imageview = new ImageView(mContext);
             imageview.setImageResource(R.drawable.img1);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(parentLinear.getWidth()/3, ViewGroup.LayoutParams.MATCH_PARENT,(float)1.0);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(40,30,50,30);
             imageview.setLayoutParams(params);
             outlinearLayout.addView(imageview);
 
@@ -242,9 +243,9 @@ public class ProfessorFragment2 extends Fragment {
             inlinearLayout.setGravity(Gravity.CENTER);
             inlinearLayout.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    (float) 2.0
+                    LinearLayout.LayoutParams.WRAP_CONTENT
             ));
+            inlinearLayout.setPaddingRelative(0,50,0,0);
             inlinearLayout.setOrientation(LinearLayout.VERTICAL);
 
             //textview

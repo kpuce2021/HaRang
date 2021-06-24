@@ -1,167 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.EyetrackingActivity">
+
     <TextureView
         android:id="@+id/preview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
+
     <View
         android:id="@+id/view_warning_tracking"
-        android:visibility="invisible"
-        android:background="@drawable/red_border_line"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@drawable/red_border_line"
+        android:visibility="invisible" />
 
     <LinearLayout
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:visibility="visible"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <Button
-            android:id="@+id/btn_init_gaze"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="init gaze" />
-        <Button
-            android:id="@+id/btn_release_gaze"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="release gaze" />
-
-        <Button
-            android:id="@+id/btn_start_tracking"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="start tracking" />
-        <Button
-            android:id="@+id/btn_stop_tracking"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="stop tracking" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/btn_start_calibration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="start calibration" />
-        <Button
-            android:id="@+id/btn_stop_calibration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="stop calibration" />
-        <Button
-            android:id="@+id/btn_set_calibration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="set calibration" />
-        <Button
-            android:id="@+id/btn_gui_demo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="gaze path demo" />
-    </LinearLayout>
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:fontFamily="@font/wemakeprice_regular"
+            android:backgroundTint="#FFD147"
+            android:text="초점 재조절" />
 
-    <LinearLayout
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:padding="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/sw_use_gaze_filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_blue_bright"
-            android:text="use gaze filter"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_bright"
-                android:text="calibration type"/>
-            <RadioGroup
-                android:id="@+id/rg_calibration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/rb_calibration_one"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_blue_bright"
-                    android:text="1-point"/>
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/rb_calibration_five"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_blue_bright"
-                    android:text="5-point"/>
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/rb_calibration_six"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_blue_bright"
-                    android:text="6-point"/>
-            </RadioGroup>
-            <RadioGroup
-                android:id="@+id/rg_accuracy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/rb_accuracy_default"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_blue_bright"
-                    android:text="default"/>
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/rb_accuracy_low"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_blue_bright"
-                    android:text="low"/>
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/rb_accuracy_high"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_blue_bright"
-                    android:text="high"/>
-            </RadioGroup>
-        </LinearLayout>
-    </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txt_gaze_version"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/holo_blue_bright"
-        android:text="version:"/>
+        <Button
+            android:id="@+id/btn_complete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="완료"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:fontFamily="@font/wemakeprice_regular"
+            android:backgroundTint="#FFD147"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 
     <!-- 시선 좌표 -->
     <com.example.harang.view.PointView
         android:id="@+id/view_point"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
     <!-- 캘리브레이션 뷰 -->
     <com.example.harang.view.CalibrationViewer
         android:id="@+id/view_calibration"
-        android:visibility="invisible"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="invisible" />
 
-    <include layout="@layout/layout_progress"/>
+    <include layout="@layout/layout_progress" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

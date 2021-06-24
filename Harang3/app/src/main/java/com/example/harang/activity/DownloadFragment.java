@@ -112,6 +112,7 @@ public class DownloadFragment extends ListFragment {
         bucket = new AWSConfiguration(mContext).optJsonObject("S3TransferUtility").optString("Bucket");
         s3 = util.getS3Client(mContext);
         transferRecordMaps = new ArrayList<>();
+
         bundle = getArguments();  //번들 받기. getArguments() 메소드로 받음.
         VideoName = bundle.getString("videoName");
         studentId = bundle.getString("studentId");
@@ -310,19 +311,18 @@ public class DownloadFragment extends ListFragment {
         // Uses TransferUtility to get all previous download records.
         observers = transferUtility.getTransfersWithType(TransferType.DOWNLOAD);
         TransferListener listener = new DownloadFragment.DownloadListener();
-        for (TransferObserver observer : observers) {
-            observer.refresh();
-            HashMap<String, Object> map = new HashMap<>();
-            util.fillMap(map, observer, false);
-            downloadMaps.add(map);
+        
+        observers.get(observers.size()-1).refresh();
+        HashMap<String, Object> map = new HashMap<>();
+        util.fillMap(map, observers.get(observers.size()-1), false);
+        downloadMaps.add(map);
 
-            // Sets listeners to in progress transfers
-            if (TransferState.WAITING.equals(observer.getState())
-                    || TransferState.WAITING_FOR_NETWORK.equals(observer.getState())
-                    || TransferState.IN_PROGRESS.equals(observer.getState())) {
-                observer.setTransferListener(listener);
-            }
+        if (TransferState.WAITING.equals(observers.get(observers.size()-1).getState())
+                || TransferState.WAITING_FOR_NETWORK.equals(observers.get(observers.size()-1).getState())
+                    || TransferState.IN_PROGRESS.equals(observers.get(observers.size()-1).getState())) {
+            observers.get(observers.size()-1).setTransferListener(listener);
         }
+
         simpleAdapter.notifyDataSetChanged();
     }
 
@@ -368,12 +368,13 @@ public class DownloadFragment extends ListFragment {
     static void updateList() {
         TransferObserver observer;
         HashMap<String, Object> map;
-        for (int i = 0; i < observers.size(); i++) {
-            observer = observers.get(i);
-            observer.setTransferListener(new DownloadListener());
-            map = downloadMaps.get(i);
-            util.fillMap(map, observer, i == checkedIndex);
-        }
+
+
+        observer = observers.get(observers.size()-1);
+        observer.setTransferListener(new DownloadListener());
+        map = downloadMaps.get(0);
+        util.fillMap(map, observer, 0 == checkedIndex);
+
         simpleAdapter.notifyDataSetChanged();
     }
 }

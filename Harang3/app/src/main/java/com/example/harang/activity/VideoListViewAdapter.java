@@ -97,7 +97,6 @@ public class VideoListViewAdapter extends ArrayAdapter{
         allVideo.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View v) {
-
                 ((BaseActivity)getContext()).replaceFragment(DownloadFragment.newInstance(),bundle);
                 Log.i("pageTest",Integer.toString(pos) + "번 전체재생 버튼 선택.");
             }
