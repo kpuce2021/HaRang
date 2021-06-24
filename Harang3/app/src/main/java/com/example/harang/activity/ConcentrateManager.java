@@ -388,25 +388,25 @@ public class ConcentrateManager{
 
 
             // 2-4. eyetrackData : '집중'시간이 k초 미만인 부분은 ‘집중안함’으로 변경
-            if ((i == eyeSecondCount - 1) && eyetrackData.get(i) == 1) {
-                maintainSec[2] += 1;
-                if (maintainSec[2] < concentLine) {
-                    for (int j = i - maintainSec[2] + 1; j <= i; j++) {
-                        eyetrackData.put(j, 0);
-                    }
-                }
-                maintainSec[2] = 0;
-            }
-            if (eyetrackData.get(i) == 1) {
-                maintainSec[2] += 1;
-            } else {
-                if (maintainSec[2] < concentLine) {
-                    for (int j = i - maintainSec[2]; j < i; j++) {
-                        eyetrackData.put(j, 0);
-                    }
-                }
-                maintainSec[2] = 0;
-            }
+//            if ((i == eyeSecondCount - 1) && eyetrackData.get(i) == 1) {
+//                maintainSec[2] += 1;
+//                if (maintainSec[2] < concentLine) {
+//                    for (int j = i - maintainSec[2] + 1; j <= i; j++) {
+//                        eyetrackData.put(j, 0);
+//                    }
+//                }
+//                maintainSec[2] = 0;
+//            }
+//            if (eyetrackData.get(i) == 1) {
+//                maintainSec[2] += 1;
+//            } else {
+//                if (maintainSec[2] < concentLine) {
+//                    for (int j = i - maintainSec[2]; j < i; j++) {
+//                        eyetrackData.put(j, 0);
+//                    }
+//                }
+//                maintainSec[2] = 0;
+//            }
         }
 
 

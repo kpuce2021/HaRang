@@ -12,7 +12,7 @@
 
     <EditText
         android:id="@+id/et_id"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="200dp"
@@ -50,7 +50,7 @@
         android:ems="10"
         android:hint="비밀번호"
         android:fontFamily="@font/wemakeprice_regular"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:background="@drawable/rounded_register"
         android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="@+id/et_name"
@@ -65,7 +65,7 @@
         android:ems="10"
         android:hint="비밀번호 재입력"
         android:fontFamily="@font/wemakeprice_regular"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:background="@drawable/rounded_register"
         android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="@+id/et_pass"
@@ -142,18 +142,14 @@
         android:id="@+id/btn_validation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="197dp"
-        android:layout_marginBottom="486dp"
         android:background="@drawable/rounded_button"
         android:text="중복"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="10dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/et_id"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintBottom_toBottomOf="@id/et_id"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

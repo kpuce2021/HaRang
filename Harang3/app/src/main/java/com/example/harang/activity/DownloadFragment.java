@@ -311,19 +311,23 @@ public class DownloadFragment extends ListFragment {
         // Uses TransferUtility to get all previous download records.
         observers = transferUtility.getTransfersWithType(TransferType.DOWNLOAD);
         TransferListener listener = new DownloadFragment.DownloadListener();
-        
-        observers.get(observers.size()-1).refresh();
-        HashMap<String, Object> map = new HashMap<>();
-        util.fillMap(map, observers.get(observers.size()-1), false);
-        downloadMaps.add(map);
+        if(observers.size() == 0){
 
-        if (TransferState.WAITING.equals(observers.get(observers.size()-1).getState())
-                || TransferState.WAITING_FOR_NETWORK.equals(observers.get(observers.size()-1).getState())
-                    || TransferState.IN_PROGRESS.equals(observers.get(observers.size()-1).getState())) {
-            observers.get(observers.size()-1).setTransferListener(listener);
+        } else {
+            observers.get(observers.size() - 1).refresh();
+            HashMap<String, Object> map = new HashMap<>();
+            util.fillMap(map, observers.get(observers.size() - 1), false);
+            downloadMaps.add(map);
+
+
+            if (TransferState.WAITING.equals(observers.get(observers.size() - 1).getState())
+                    || TransferState.WAITING_FOR_NETWORK.equals(observers.get(observers.size() - 1).getState())
+                    || TransferState.IN_PROGRESS.equals(observers.get(observers.size() - 1).getState())) {
+                observers.get(observers.size() - 1).setTransferListener(listener);
+            }
+
+            simpleAdapter.notifyDataSetChanged();
         }
-
-        simpleAdapter.notifyDataSetChanged();
     }
 
     public static void beginDownload(String key){
@@ -369,12 +373,15 @@ public class DownloadFragment extends ListFragment {
         TransferObserver observer;
         HashMap<String, Object> map;
 
-
+        if(observers.size() == 0){
+            
+        } else{
         observer = observers.get(observers.size()-1);
         observer.setTransferListener(new DownloadListener());
         map = downloadMaps.get(0);
         util.fillMap(map, observer, 0 == checkedIndex);
 
         simpleAdapter.notifyDataSetChanged();
+        }
     }
 }
