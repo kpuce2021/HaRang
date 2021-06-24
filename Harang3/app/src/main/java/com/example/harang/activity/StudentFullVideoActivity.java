@@ -1,16 +1,20 @@
 package com.example.harang.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.Constraints;
 
 import com.example.harang.GazeTrackerManager;
 import com.example.harang.R;
@@ -22,7 +26,7 @@ import camp.visual.gazetracker.callback.GazeCallback;
 import camp.visual.gazetracker.gaze.GazeInfo;
 import camp.visual.gazetracker.util.ViewLayoutChecker;
 
-public class StudentFullVideoActivity extends AppCompatActivity {
+public class StudentFullVideoActivity extends Activity {
     private static final String TAG = "StudentFullVideo";
     private final ViewLayoutChecker viewLayoutChecker = new ViewLayoutChecker();
     private GazePathView gazePathView;
@@ -37,6 +41,7 @@ public class StudentFullVideoActivity extends AppCompatActivity {
 
     private PointView viewPoint;
     private CalibrationViewer viewCalibration;
+    private MediaPlayer.OnPreparedListener PreParedListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,6 @@ public class StudentFullVideoActivity extends AppCompatActivity {
 
         concentrateManager = ConcentrateManager.makeNewInstance(this);
         concentrateManager.getContext(StudentFullVideoActivity.this);
-
     }
 
     @Override
@@ -122,13 +126,27 @@ public class StudentFullVideoActivity extends AppCompatActivity {
         // 아까 동영상 [상세정보] 에서 확인한 경로
         videoView.requestFocus(); // 포커스 얻어오기
 
+        PreParedListener = new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+                    @Override
+                    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+                        ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.FILL_PARENT, ConstraintLayout.LayoutParams.FILL_PARENT);
+                        videoView.setLayoutParams(lp);
+                    }
+                });
+            }
+        };
+        videoView.setOnPreparedListener(PreParedListener);
+/*
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
             @Override
             public void onPrepared(MediaPlayer mp) {
                 videoView.start(); // 동영상 재생
             }
-        });
-
+        });*/
+        videoView.start(); // 동영상 재생
 
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override

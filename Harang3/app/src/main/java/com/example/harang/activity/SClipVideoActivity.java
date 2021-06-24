@@ -9,6 +9,7 @@ import android.widget.VideoView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.harang.R;
 
@@ -25,6 +26,7 @@ public class SClipVideoActivity extends AppCompatActivity {
 
     private VideoView videoView;
     private MediaController mediaController;
+    private MediaPlayer.OnPreparedListener PreParedListener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,6 +70,20 @@ public class SClipVideoActivity extends AppCompatActivity {
         // 아까 동영상 [상세정보] 에서 확인한 경로
         //영상 잘라서 재생
         videoView.requestFocus(); // 포커스 얻어오기
+        PreParedListener = new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+                    @Override
+                    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+                        ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.FILL_PARENT, ConstraintLayout.LayoutParams.FILL_PARENT);
+                        videoView.setLayoutParams(lp);
+                    }
+                });
+            }
+        };
+        videoView.setOnPreparedListener(PreParedListener);
+
         videoView.start(); // 동영상 재생
 
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
