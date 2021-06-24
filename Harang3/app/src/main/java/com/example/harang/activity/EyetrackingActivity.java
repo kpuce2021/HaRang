@@ -435,8 +435,6 @@ public class EyetrackingActivity extends AppCompatActivity {
         @Override
         public void onGaze(GazeInfo gazeInfo) {
             processOnGaze(gazeInfo);
-            //Log.i(TAG, gazeInfo.eyeMovementState+" "+gazeInfo.screenState+" "+gazeInfo.timestamp+" "+(Long.valueOf(gazeInfo.timestamp).intValue()/1000)%10000);
-
         }
     };
 
