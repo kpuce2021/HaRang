@@ -3,6 +3,7 @@ package com.example.harang.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +40,7 @@ public class SClipListFragment extends Fragment {
     }
     private static Context mContext;
     private static Activity mActivity;
+    private ProgressDialog customProgressDialog;
 
     public static ArrayList<HashMap<String,String>> menuItemsInfo; //영상들의 정보를 담는 리스트
     private static HashMap<String,String> menuItem;
@@ -59,7 +62,6 @@ public class SClipListFragment extends Fragment {
     private static ArrayList<HashMap<String,String>> clipVideoMap;
     private static HashMap<String,String> clipVideoItems;
     private int clipVideoCount;
-
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -227,6 +229,10 @@ public class SClipListFragment extends Fragment {
                 1-2. 없을 경우 다운로드 먼저 진행
                 2. 클립영상 생성
                 */
+                customProgressDialog = new ProgressDialog(getContext());
+                customProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                customProgressDialog.show();
+
 
                 //1. 내장메모리에 전체 영상이 다운되어있는지 확인
                 if(!videoInFolder()){
@@ -236,6 +242,7 @@ public class SClipListFragment extends Fragment {
 
                 //2. 클립 영상 생성
                 try {
+
                     convertAudio(VideoName, v_id, clipVideoMap, position);
 
                 } catch (FFmpegCommandAlreadyRunningException | IOException e) {
@@ -250,5 +257,6 @@ public class SClipListFragment extends Fragment {
         FfmpegUtil.requestPermission(mActivity, Manifest.permission.READ_EXTERNAL_STORAGE);
         FfmpegUtil.requestPermission(mActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         SClipAudioConverter.load(mContext, VideoName ,v_id, clipVideoMap, position);
+
     }
 }
