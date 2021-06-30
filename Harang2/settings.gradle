@@ -1,5 +1,0 @@
-include ':libgaze-release'
-include ':gazetracker-release'
-include ':app'
-rootProject.name = "Harang"
-include ':libgaze-release', ':gazetracker-release'
