@@ -41,7 +41,6 @@ public class ProfessorFragmentRequest extends StringRequest {
         map.put("v_concent1_stop", V_concent1_stop);
         map.put("v_concent2_start", V_concent2_start);
         map.put("v_concent2_stop", V_concent2_stop);
-
         map.put("v_attend", "0");
         map.put("v_concent", "0");
 }

@@ -209,11 +209,11 @@ public class ProfessorFragment1 extends Fragment {
         if(Pattern.matches("^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$",V_concent1_start) && Pattern.matches("^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$",V_concent1_stop)){
             //형식이 00:00:00인지 체크
             //4-1,2. 뒤쪽 숫자가 더 클때 & 집중구간이 30초 미만일 때
-            if(Integer.parseInt(V_concent1_start.substring(0,2))*3600 + Integer.parseInt(V_concent1_start.substring(3,5))*60 + Integer.parseInt(V_concent1_start.substring(6,8)) -
+           /* if(Integer.parseInt(V_concent1_start.substring(0,2))*3600 + Integer.parseInt(V_concent1_start.substring(3,5))*60 + Integer.parseInt(V_concent1_start.substring(6,8)) -
                     Integer.parseInt(V_concent1_stop.substring(0,2))*3600 + Integer.parseInt(V_concent1_stop.substring(3,5))*60 + Integer.parseInt(V_concent1_stop.substring(6,8))<30){
                 Toast.makeText(getContext(),"집중구간을 20초 이상으로 설정해주세요",Toast.LENGTH_SHORT).show();
                 return;
-            }
+            }*/
             //성공
         }else{
             //형식은 틀렸지만 -1인지 체크
