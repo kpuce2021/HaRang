@@ -5,3 +5,7 @@ include ':gazetracker-release'
 include ':app'
 rootProject.name = "Harang"
 include ':libgaze-release', ':gazetracker-release'
+include ':encoder'
+include ':rtmp'
+include ':rtplibrary'
+include ':rtsp'

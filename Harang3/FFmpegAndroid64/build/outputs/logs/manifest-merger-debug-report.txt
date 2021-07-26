@@ -1,39 +1,39 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
-INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
-INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
-INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
-INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
-INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
-INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
+ADDED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
+INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
+INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
+INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
+INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
+INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
+INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
 	package
-		ADDED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:11-56
-		INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
-		INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+		ADDED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:11-56
+		INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+		INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
-		ADDED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
-		INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+		INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+		ADDED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
+		INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
+		ADDED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
 	android:versionCode
-		INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
-		ADDED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
-		INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+		INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+		ADDED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:1:1-5:12
+		INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
 application
-ADDED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:3:5-20
+ADDED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml:3:5-20
 uses-sdk
-INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
-INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
-INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
-INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
-		ADDED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
-		INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+		INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+		ADDED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+		INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
-		ADDED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
-		INJECTED from C:\Github\HaRang\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+		INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+		ADDED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml
+		INJECTED from C:\android\Harang3\FFmpegAndroid64\src\main\AndroidManifest.xml

@@ -12,13 +12,16 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/FFmpegAndroid64" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/encoder" />
             <option value="$PROJECT_DIR$/gazetracker-release" />
             <option value="$PROJECT_DIR$/lib" />
             <option value="$PROJECT_DIR$/libgaze-release" />
+            <option value="$PROJECT_DIR$/rtmp" />
+            <option value="$PROJECT_DIR$/rtplibrary" />
+            <option value="$PROJECT_DIR$/rtsp" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
-        <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
   </component>

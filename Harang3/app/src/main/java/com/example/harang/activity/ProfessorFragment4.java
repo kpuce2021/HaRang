@@ -30,6 +30,9 @@ public class ProfessorFragment4 extends Fragment {
     public ProfessorFragment4(){
 
     }
+    public static ProfessorFragment4 newInstance() {
+        return new ProfessorFragment4();
+    }
 
     @Nullable
     @Override

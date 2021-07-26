@@ -8,6 +8,16 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- end aws -->
+
+    <!-- streaming setting -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+            <!--Optional for play store-->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+    <!-- end streaming setting -->
+
 
     <application
         android:name=".activity.MyApplication"
@@ -45,6 +55,8 @@
 
         <activity android:name=".activity.BaseActivity"></activity>
         <activity android:name=".activity.SClipVideoActivity"></activity>
+        <activity android:name=".activity.RtmpStreamActivity"></activity>
+        <activity android:name=".activity.RtmpFileActivity"></activity>
 
         <activity android:name=".activity.StudentFullVideoActivity"></activity>
         <activity

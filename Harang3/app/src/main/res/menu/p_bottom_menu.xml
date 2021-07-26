@@ -20,4 +20,9 @@
         android:enabled="true"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="내 정보" />
+    <item
+        android:id="@+id/action_streaming"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="스트리밍" />
 </menu>
