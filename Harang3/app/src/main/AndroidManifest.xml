@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.harang">
+    <!-- aws -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- end aws -->
+
+    <!-- streaming setting -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+            <!--Optional for play store-->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+    <!-- end streaming setting -->
+
+
+    <application
+        android:name=".activity.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Harang"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activity.MyInfoActivity"></activity>
+        <activity android:name=".activity.PEnrollModifyActivity" />
+        <activity android:name=".activity.p_BaseActivity" />
+        <activity
+            android:name=".activity.EyetrackingActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.ProfileActivity" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:windowSoftInputMode="adjustNothing"/>
+        <activity android:name=".SplashActivity"
+            android:theme="@style/splashTheme"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.BaseActivity"></activity>
+        <activity android:name=".activity.SClipVideoActivity"></activity>
+        <activity android:name=".activity.RtmpStreamActivity"></activity>
+        <activity android:name=".activity.RtmpFileActivity"></activity>
+
+        <activity android:name=".activity.StudentFullVideoActivity"></activity>
+        <activity
+            android:name=".activity.DownloadActivity"
+            android:label="@string/download_activity" />
+        <activity
+            android:name=".activity.UploadActivity"
+            android:label="@string/upload_activity" />
+        <activity
+            android:name=".activity.DownloadSelectionActivity"
+            android:label="@string/download_selection_activity" />
+
+        <service
+            android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
+            android:enabled="true" />
+        <service
+            android:name=".activity.MyService"
+            android:enabled="true" />
+    </application>
+
+</manifest>
