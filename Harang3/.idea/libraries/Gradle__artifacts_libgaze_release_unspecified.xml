@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: artifacts:libgaze-release:unspecified">
+    <ANNOTATIONS>
+      <root url="jar://$PROJECT_DIR$/libgaze-release/build/.transforms/4cb36f83f565941c97ae202e8ed02f78/jetified-libgaze-release/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libgaze-release/build/.transforms/4cb36f83f565941c97ae202e8ed02f78/jetified-libgaze-release/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/libgaze-release/build/.transforms/4cb36f83f565941c97ae202e8ed02f78/jetified-libgaze-release/res" />
+      <root url="file://$PROJECT_DIR$/libgaze-release/build/.transforms/4cb36f83f565941c97ae202e8ed02f78/jetified-libgaze-release/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
