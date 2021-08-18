@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Harang.iml" filepath="$PROJECT_DIR$/.idea/modules/Harang.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FFmpegAndroid64/Harang.FFmpegAndroid64.iml" filepath="$PROJECT_DIR$/.idea/modules/FFmpegAndroid64/Harang.FFmpegAndroid64.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Harang.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Harang.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/encoder/Harang.encoder.iml" filepath="$PROJECT_DIR$/.idea/modules/encoder/Harang.encoder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gazetracker-release/Harang.gazetracker-release.iml" filepath="$PROJECT_DIR$/.idea/modules/gazetracker-release/Harang.gazetracker-release.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/Harang.lib.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/Harang.lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libgaze-release/Harang.libgaze-release.iml" filepath="$PROJECT_DIR$/.idea/modules/libgaze-release/Harang.libgaze-release.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rtmp/Harang.rtmp.iml" filepath="$PROJECT_DIR$/.idea/modules/rtmp/Harang.rtmp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rtplibrary/Harang.rtplibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/rtplibrary/Harang.rtplibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rtsp/Harang.rtsp.iml" filepath="$PROJECT_DIR$/.idea/modules/rtsp/Harang.rtsp.iml" />
+    </modules>
+  </component>
+</project>

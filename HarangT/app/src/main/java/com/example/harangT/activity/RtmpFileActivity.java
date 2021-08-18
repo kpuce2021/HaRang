@@ -1,11 +1,14 @@
 package com.example.harangT.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
@@ -181,7 +184,7 @@ public class RtmpFileActivity extends AppCompatActivity
                             btnStart.setText(R.string.stop_button);
                             activateVideo(streamId);
                             rtmpFromFile.startStream(staticUrl);
-                            Toast.makeText(this, "시작됨 : "+staticUrl,
+                            Toast.makeText(this, "시작됨 : " + staticUrl,
                                     Toast.LENGTH_SHORT).show();
                         }
 
@@ -222,7 +225,7 @@ public class RtmpFileActivity extends AppCompatActivity
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (rtmpFromFile.isStreaming()  || rtmpFromFile.isRecording()) {
+                while (rtmpFromFile.isStreaming() || rtmpFromFile.isRecording()) {
                     try {
                         Thread.sleep(1000);
                         if (!touching) {
@@ -278,7 +281,7 @@ public class RtmpFileActivity extends AppCompatActivity
         touching = false;
     }
 
-    private void activateVideo(String v_id){
+    private void activateVideo(String v_id) {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -305,8 +308,7 @@ public class RtmpFileActivity extends AppCompatActivity
     }
 
 
-
-    private void deActivateVideo(String v_id){
+    private void deActivateVideo(String v_id) {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -331,4 +333,21 @@ public class RtmpFileActivity extends AppCompatActivity
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(request);
     }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.app_icon)
+                .setTitle("녹화 강의 중계 종료")
+                .setMessage("녹화 강의 중계를 종료하시겠습니까?")
+                .setPositiveButton("종료", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("아니요", null)
+                .show();
+    }
+
 }
