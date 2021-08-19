@@ -15,9 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.harangS.GazeTrackerManager;
 import com.example.harangS.R;
-import com.example.harangS.view.CalibrationViewer;
 import com.example.harangS.view.GazePathView;
-import com.example.harangS.view.PointView;
 
 import camp.visual.gazetracker.callback.GazeCallback;
 import camp.visual.gazetracker.gaze.GazeInfo;
@@ -29,6 +27,7 @@ public class StudentFullVideoActivity extends Activity {
     private GazePathView gazePathView;
     private GazeTrackerManager gazeTrackerManager;
     private ConcentrateManager concentrateManager;
+
     private VideoView videoView;
     private MediaController mediaController;
     private static String playTitle;
@@ -36,8 +35,6 @@ public class StudentFullVideoActivity extends Activity {
     private static String s_id;
     private static String v_id;
 
-    private PointView viewPoint;
-    private CalibrationViewer viewCalibration;
     private MediaPlayer.OnPreparedListener PreParedListener;
 
     @Override
@@ -89,8 +86,6 @@ public class StudentFullVideoActivity extends Activity {
 
     private void initView() {
         gazePathView = findViewById(R.id.s3gazePathView);
-        viewPoint = findViewById(R.id.view_point);
-        viewCalibration = findViewById(R.id.view_calibration);
 
 
         Intent intent = getIntent();
@@ -123,18 +118,12 @@ public class StudentFullVideoActivity extends Activity {
         // 아까 동영상 [상세정보] 에서 확인한 경로
         videoView.requestFocus(); // 포커스 얻어오기
 
-        PreParedListener = new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
-                    @Override
-                    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
-                        ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.FILL_PARENT, ConstraintLayout.LayoutParams.FILL_PARENT);
-                        videoView.setLayoutParams(lp);
-                    }
-                });
-            }
-        };
+        PreParedListener = mp -> mp.setOnVideoSizeChangedListener((mp1, width, height) -> {
+            ConstraintLayout.LayoutParams lp =
+                    new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.FILL_PARENT,
+                            ConstraintLayout.LayoutParams.FILL_PARENT);
+            videoView.setLayoutParams(lp);
+        });
         videoView.setOnPreparedListener(PreParedListener);
 /*
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
@@ -145,20 +134,17 @@ public class StudentFullVideoActivity extends Activity {
         });*/
         videoView.start(); // 동영상 재생
 
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                gazeTrackerManager.stopGazeTracking();
+        videoView.setOnCompletionListener(mp -> {
+            gazeTrackerManager.stopGazeTracking();
 
-                /*Intent intent = new Intent(VideoActivity.this, FfmpegActivity.class);
-                intent.putExtra("path", path);
-                intent.putExtra("playTitle", playTitle);*/
-                Intent intent = new Intent(getApplicationContext(),BaseActivity.class);
-                intent.putExtra("user_id", studentId);
-                intent.putExtra("s_id", s_id);
-                startActivity(intent);
-                finish();
-            }
+            /*Intent intent = new Intent(VideoActivity.this, FfmpegActivity.class);
+            intent.putExtra("path", path);
+            intent.putExtra("playTitle", playTitle);*/
+            Intent intent1 = new Intent(getApplicationContext(),BaseActivity.class);
+            intent1.putExtra("user_id", studentId);
+            intent1.putExtra("s_id", s_id);
+            startActivity(intent1);
+            finish();
         });
 
 
@@ -172,7 +158,6 @@ public class StudentFullVideoActivity extends Activity {
         String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
         long timeInmillisec = Long.parseLong(time);
         duration = timeInmillisec;
-
 
     }
 
