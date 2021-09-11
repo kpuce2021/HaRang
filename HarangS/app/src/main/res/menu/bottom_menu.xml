@@ -20,4 +20,10 @@
         android:enabled="true"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="실시간 강의" />
+
+    <item
+        android:id="@+id/action_concent"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="집중 확인" />
 </menu>

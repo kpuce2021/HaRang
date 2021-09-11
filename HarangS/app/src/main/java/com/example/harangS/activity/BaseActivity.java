@@ -24,6 +24,7 @@ public class BaseActivity extends AppCompatActivity {
     private StudentFragment2 studentFragment2;
     private StudentFragment3 studentFragment3;
     private StudentFragment4 studentFragment4;
+    private StudentFragment5 studentFragment5;
     private BackPressedEvent backPressedEvent;
 
     public static String StudentId;
@@ -60,6 +61,9 @@ public class BaseActivity extends AppCompatActivity {
                     case R.id.action_RTMP:
                         setFragment(3);
                         break;
+                    case R.id.action_concent:
+                        setFragment(4);
+                        break;
                 }
                 return true;
 
@@ -69,6 +73,7 @@ public class BaseActivity extends AppCompatActivity {
         studentFragment2 = new StudentFragment2();
         studentFragment3 = new StudentFragment3();
         studentFragment4 = new StudentFragment4();
+        studentFragment5 = new StudentFragment5();
         setFragment(0);//첫 프래그먼트 화면 지정
 
 
@@ -93,6 +98,10 @@ public class BaseActivity extends AppCompatActivity {
                 break;
             case 3:
                 ft.replace(R.id.main_frame, studentFragment4);
+                ft.commit();
+                break;
+            case 4:
+                ft.replace(R.id.main_frame, studentFragment5);
                 ft.commit();
                 break;
         }
