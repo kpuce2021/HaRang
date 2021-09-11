@@ -190,12 +190,11 @@ public class StudentFragment5  extends Fragment {
             outlinearLayout.addView(inlinearLayout);
             final int index = i;
             outlinearLayout.setOnClickListener(v -> {
-                Intent intent = new Intent(mContext, StudentStreamRTMPActivity.class);
+                Intent intent = new Intent(mContext, StudentConcentRateActivity.class);
                 intent.putExtra("type",menuItemsInfo.get(index).get("type"));
                 intent.putExtra("v_id",menuItemsInfo.get(index).get("v_id"));
                 intent.putExtra("v_name",menuItemsInfo.get(index).get("v_name"));
                 intent.putExtra("p_id",menuItemsInfo.get(index).get("p_id"));
-                intent.putExtra("s_id",s_id);
                 startActivity(intent);
             });
 

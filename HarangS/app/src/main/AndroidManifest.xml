@@ -44,6 +44,7 @@
         </activity>
 
         <activity android:name="com.example.harangS.activity.BaseActivity"></activity>
+        <activity android:name="com.example.harangS.activity.StudentConcentRateActivity"></activity>
         <activity android:name="com.example.harangS.activity.SClipVideoActivity"></activity>
 
         <activity android:name="com.example.harangS.activity.StudentFullVideoActivity"></activity>
