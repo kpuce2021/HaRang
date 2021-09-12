@@ -234,8 +234,8 @@ public class ProfessorFragment2 extends Fragment {
                 tv[j].setTextColor(Color.BLACK);
 
                 tv[j].setTextSize(20);
-                Typeface typeface = getResources().getFont(R.font.font);
-                tv[j].setTypeface(typeface);
+                /*Typeface typeface = getResources().getFont(R.font.font);
+                tv[j].setTypeface(typeface);*/
             }
 
 

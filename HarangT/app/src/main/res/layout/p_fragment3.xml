@@ -20,7 +20,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="56dp"
-            android:text="   등록 학생 관리"
+            android:text="   수강 학생 관리"
             android:textSize="30dp"
             android:textColor="@color/black"
             android:fontFamily ="@font/wemakeprice_bold"

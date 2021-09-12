@@ -55,9 +55,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/wemakeprice_regular"
                 android:gravity="center_horizontal"
                 android:text="수강완료"
+                android:fontFamily="@font/wemakeprice_regular"
                 android:textColor="#000000"
                 android:textSize="20sp" />
             <TextView
@@ -79,7 +79,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/wemakeprice_regular"
                 android:gravity="center_horizontal"
-                android:text="2"
+                android:text="12"
                 android:textColor="#000000"
                 android:textSize="20sp" />
             <TextView
@@ -89,7 +89,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/wemakeprice_regular"
                 android:gravity="center_horizontal"
-                android:text="1"
+                android:text="3"
                 android:textColor="#000000"
                 android:textSize="20sp" />
         </TableRow>
@@ -136,6 +136,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32sp"
         android:text="전체 집중률"
+        android:fontFamily="@font/wemakeprice_regular"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_total_percent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -148,6 +151,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="172sp"
         android:text="구간 집중률"
+        android:fontFamily="@font/wemakeprice_regular"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_seperate_percent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -160,6 +166,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4sp"
         android:text="퍼센트"
+        android:fontFamily="@font/wemakeprice_regular"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_total" />
@@ -171,6 +180,9 @@
         android:layout_marginTop="4sp"
         android:layout_marginBottom="10dp"
         android:text="퍼센트"
+        android:fontFamily="@font/wemakeprice_regular"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/pb_seperate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

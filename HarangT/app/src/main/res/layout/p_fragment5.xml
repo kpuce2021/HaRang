@@ -10,11 +10,11 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
         android:layout_marginTop="172dp"
         android:fontFamily="@font/wemakeprice_bold"
         android:text="실시간 강의명"
         android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/DefaultRTMP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,14 +40,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/wemakeprice_regular"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/FileRTMP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="녹화 강의 중계"
 
         android:background="@drawable/rounded_button"
