@@ -3,6 +3,7 @@ package com.example.harangT.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,12 +56,13 @@ public class ProfessorFragment2 extends Fragment {
 
     private static String ProfessorId;
     private static String p_id;
-    private static ArrayList<HashMap<String,String>> videoMap;
-    private static HashMap<String,String> videoItems;
+    private static ArrayList<HashMap<String,String>> menuItemsInfo;
+    private static HashMap<String,String> menuItem;
     private static List<Integer> sortKeyList;
     private int videoCount;
 
-    private static String[] items = {"최신순", "이름순", "집중도순"};
+    private static int listCount = 0;
+    private static String[] items = {"최신순", "이름순"/*, "집중도순"*/};
     private static ListView listview;
 
     @Nullable
@@ -89,12 +91,12 @@ public class ProfessorFragment2 extends Fragment {
 
                 for(int i=0;i<videoCount;i++){
                     if(position == 0){//최신순
-                        listSet.put(i,videoMap.get(i).get("v_calendar"));
+                        listSet.put(i, menuItemsInfo.get(i).get("startTime"));
                     }else if(position == 1){//이름순
-                        listSet.put(i,videoMap.get(i).get("v_name"));
-                    }else if(position==2){ //집중순
-                        listSet.put(i,videoMap.get(i).get("v_concent"));
-                    }
+                        listSet.put(i, menuItemsInfo.get(i).get("v_name"));
+                    }/*else if(position==2){ //집중순
+                        listSet.put(i, menuItemsInfo.get(i).get("v_concent"));
+                    }*/
                 }
                 sortKeyList = new ArrayList<>(listSet.keySet());
                 Collections.sort(sortKeyList, (o1, o2) -> (listSet.get(o1).compareTo(listSet.get(o2))));
@@ -130,54 +132,33 @@ public class ProfessorFragment2 extends Fragment {
                     boolean success = jsonObject.getBoolean("success");
                     if (success) {
 
-                        videoMap = new ArrayList<HashMap<String, String>>();
+                        menuItemsInfo = new ArrayList<>();
 
-                        videoCount = Integer.parseInt(jsonObject.getString("count"));
-                        Log.i("db_test","videoCount : "+videoCount);
-                        for(int i=0;i<videoCount;i++){
-                            videoItems = new HashMap<>();
+                        listCount = Integer.parseInt(jsonObject.getString("count1"));
+                        listCount += Integer.parseInt(jsonObject.getString("count2"));
+                        Log.i("db_test","listCount : "+listCount+", p_id : "+p_id);
+                        for(int i=0;i<listCount;i++){
+                            menuItem = new HashMap<>();
                             JSONObject output = jsonObject.getJSONObject(String.valueOf(i));
-                            /*
+
+                            Log.i("db_test", " type : " + output.getString("type"));
                             Log.i("db_test", " v_id : " + output.getString("v_id"));
-                            Log.i("db_test", " p_id : " + output.getString("p_id"));
                             Log.i("db_test", " v_name : " + output.getString("v_name"));
-                            Log.i("db_test", " v_time : " + output.getString("v_time"));
-                            Log.i("db_test", " v_textfield : " + output.getString("v_textfield"));
-                            Log.i("db_test", " v_calendar : " + output.getString("v_calendar"));
-                            Log.i("db_test", " c_concent1_start : " + output.getString("c_concent1_start"));
-                            Log.i("db_test", " c_concent1_stop : " + output.getString("c_concent1_stop"));
-                            Log.i("db_test", " c_concent2_start : " + output.getString("c_concent2_start"));
-                            Log.i("db_test", " c_concent2_stop : " + output.getString("c_concent2_stop"));
-                            Log.i("db_test", " v_attend : " + output.getString("v_attend"));
-                            Log.i("db_test", " v_concent : " + output.getString("v_concent"));
+                            Log.i("db_test", " startTime : " + output.getString("startTime"));
                             Log.i("db_test", " ");
-                             */
-
-                            videoItems.put("v_id",output.getString("v_id"));
-                            videoItems.put("p_id",output.getString("p_id"));
-                            videoItems.put("v_name",output.getString("v_name"));
-                            videoItems.put("v_time",output.getString("v_time"));
-                            videoItems.put("v_textfield",output.getString("v_textfield"));
-                            videoItems.put("v_calendar",output.getString("v_calendar"));
-                            videoItems.put("c_concent1_start",output.getString("c_concent1_start"));
-                            videoItems.put("c_concent1_stop",output.getString("c_concent1_stop"));
-                            videoItems.put("c_concent2_start",output.getString("c_concent2_start"));
-                            videoItems.put("c_concent2_stop",output.getString("c_concent2_stop"));
-                            videoItems.put("v_attend",output.getString("v_attend"));
-                            videoItems.put("v_concent",output.getString("v_concent"));
-
-                            videoMap.add(videoItems);
 
 
-                            /*
-                            FragmentTransaction ft = getFragmentManager().beginTransaction();
-                            ft.attach(ProfessorFragment3.this);
-                            ft.commit();*/
+                            menuItem.put("type",output.getString("type"));
+                            menuItem.put("v_id",output.getString("v_id"));
+                            menuItem.put("v_name",output.getString("v_name"));
+                            menuItem.put("startTime",output.getString("startTime"));
+
+                            menuItemsInfo.add(menuItem);
                         }
 
                         HashMap<Integer,String> listSet = new HashMap<>();
                         for(int i=0;i<videoCount;i++){
-                            listSet.put(i,videoMap.get(i).get("v_calendar"));
+                            listSet.put(i, menuItemsInfo.get(i).get("startTime"));
                         }
                         sortKeyList = new ArrayList<>(listSet.keySet());
                         Collections.sort(sortKeyList, (o1, o2) -> (listSet.get(o1).compareTo(listSet.get(o2))));
@@ -195,7 +176,7 @@ public class ProfessorFragment2 extends Fragment {
             }
         };
         // 서버로 Volley를 이용해서 요청을 함.
-        PVideoListReadRequest pVideoListReadRequest = new PVideoListReadRequest(p_id, responseListener);
+        ProfessorAllTypeVideoListRequset pVideoListReadRequest = new ProfessorAllTypeVideoListRequset(p_id, responseListener);
         pVideoListReadRequest.setShouldCache(false);
         RequestQueue queue = Volley.newRequestQueue(mContext);
         queue.add(pVideoListReadRequest);
@@ -210,12 +191,11 @@ public class ProfessorFragment2 extends Fragment {
     @SuppressLint("ResourceAsColor")
     private void initUI(){
 
-        ScrollView parentScrollView = view.findViewById(R.id.tableLayout);
-        LinearLayout parentLinear = view.findViewById(R.id.scrollLinear);
+        LinearLayout parentLinear = view.findViewById(R.id.allTypeVideList);
         parentLinear.removeAllViews();
 
         TextView[] tv = new TextView[5];
-        for(int i=0;i<videoCount;i++) {
+        for(int i=0;i<listCount;i++) {
             //사진,설명 담아놓은 가장 바깥 뷰  //weight 설정 없음
             LinearLayout outlinearLayout = new LinearLayout(mContext);
             outlinearLayout.setBackgroundResource(R.drawable.border_layout);
@@ -250,19 +230,22 @@ public class ProfessorFragment2 extends Fragment {
             }
 
 
-            tv[0].setText("제목 : " + videoMap.get(sortKeyList.get(i)).get("v_name"));
-            inlinearLayout.addView(tv[0]);
-            tv[1].setText("업로드 날짜 : " + videoMap.get(sortKeyList.get(i)).get("v_calendar"));
+            tv[1].setText("강의명 : " + menuItemsInfo.get(i).get("v_name"));
             inlinearLayout.addView(tv[1]);
-            tv[2].setText(videoMap.get(i).get("v_textfield"));
+            tv[2].setText("시작 시간 : "+menuItemsInfo.get(i).get("startTime"));
             inlinearLayout.addView(tv[2]);
-            tv[3].setText("전체 출석률 : " + videoMap.get(sortKeyList.get(i)).get("v_attend") + "%");
+            tv[3].setText("강의 타입 : "+(menuItemsInfo.get(i).get("type").equals("normal")?"동영상 강의":menuItemsInfo.get(i).get("type").equals("stream")?"실시간 강의":"실시간 파일 강의"));
             inlinearLayout.addView(tv[3]);
-            tv[4].setText("전체 학생 집중도 : " + videoMap.get(sortKeyList.get(i)).get("v_concent") + "%");
-            inlinearLayout.addView(tv[4]);
 
             outlinearLayout.addView(inlinearLayout);
-
+            final int index = i;
+            outlinearLayout.setOnClickListener(v -> {
+                Intent intent = new Intent(mContext, PConcentStudentListActivity.class);
+                intent.putExtra("type",menuItemsInfo.get(index).get("type"));
+                intent.putExtra("v_id",menuItemsInfo.get(index).get("v_id"));
+                intent.putExtra("v_name",menuItemsInfo.get(index).get("v_name"));
+                startActivity(intent);
+            });
 
             parentLinear.addView(outlinearLayout);
         }

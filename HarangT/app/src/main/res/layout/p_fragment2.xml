@@ -39,7 +39,7 @@
         android:layout_height="match_parent"
         android:id="@+id/ScrollView">
         <LinearLayout
-            android:id="@+id/scrollLinear"
+            android:id="@+id/allTypeVideList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
