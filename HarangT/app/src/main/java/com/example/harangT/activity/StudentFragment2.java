@@ -24,7 +24,7 @@ public class StudentFragment2 extends Fragment {
     private View view;
     private TextView tv_total, tv_seperate, tv_total_percent, tv_seperate_percent, tv_name;
     private ProgressBar pb_total, pb_seperate;
-    private static String IP = "34.205.89.18"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하
+    private String IP = "100.26.4.92"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하
     private static String s_name = BaseActivity.s_name;
 
     @Nullable

@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class ProfessorFragmentRequest extends StringRequest {
     // 서버 URL 설정 ( PHP 파일 연동 )
-    private static String IP = "34.205.89.18"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
+    private static String IP = "100.26.4.92"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
 
     final static private String URL = "http://" +IP+ "/uploadvideo.php";
     private Map<String, String> map;

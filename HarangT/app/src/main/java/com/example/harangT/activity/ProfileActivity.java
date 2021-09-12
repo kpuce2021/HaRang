@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class ProfileActivity extends AppCompatActivity {
     private TextView tv_total, tv_seperate, tv_total_percent, tv_seperate_percent;
     private ProgressBar pb_total, pb_seperate;
-    private static String IP = "34.205.89.18"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
+    private static String IP = "100.26.4.92"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
