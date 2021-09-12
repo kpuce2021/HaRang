@@ -2,6 +2,8 @@ package com.example.harangT.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -15,6 +17,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.RequestQueue;
@@ -67,6 +70,7 @@ public class PConcentStudentListActivity extends AppCompatActivity {
     private void accessDB(final String p_id){
         //table 값 불러오기
         Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(String response) {
                 try {
@@ -117,6 +121,7 @@ public class PConcentStudentListActivity extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void initUI(){
         //studentItems
         TableLayout tableLayout = findViewById(R.id.stuListtableLayout);
@@ -141,6 +146,9 @@ public class PConcentStudentListActivity extends AppCompatActivity {
                 tv[j].setGravity(Gravity.CENTER);
                 tv[j].setTextSize(20);
                 tv[j].setTextColor(Color.BLACK);
+
+                Typeface typeface = getResources().getFont(R.font.font);
+                tv[j].setTypeface(typeface);
             }
 
             tv[0].setText(studentMap.get(i).get("s_id"));

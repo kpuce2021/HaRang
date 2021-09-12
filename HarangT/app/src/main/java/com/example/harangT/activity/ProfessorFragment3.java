@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.RequestQueue;
@@ -86,6 +89,7 @@ public class ProfessorFragment3 extends Fragment {
 
         //삭제 버튼 띄우기
         btn_delete.setOnClickListener(new OnSingleClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override public void onSingleClick(View v) {
                 deleteUI();
             }
@@ -108,6 +112,7 @@ public class ProfessorFragment3 extends Fragment {
     private void accessDB(final String p_id){
         //table 값 불러오기
         Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(String response) {
                 try {
@@ -161,6 +166,7 @@ public class ProfessorFragment3 extends Fragment {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void initUI(){
         //studentItems
         TableLayout tableLayout = view.findViewById(R.id.tableLayout);
@@ -185,6 +191,9 @@ public class ProfessorFragment3 extends Fragment {
                 tv[j].setGravity(Gravity.CENTER);
                 tv[j].setTextSize(15);
                 tv[j].setTextColor(Color.BLACK);
+
+                Typeface typeface = getResources().getFont(R.font.font);
+                tv[j].setTypeface(typeface);
             }
 
             tv[0].setText(studentMap.get(i).get("s_id"));
@@ -212,6 +221,9 @@ public class ProfessorFragment3 extends Fragment {
             btnchild[i].setTextSize(15);
             btnchild[i].setTextColor(Color.BLACK);
             btnchild[i].setHeight(tv[0].getHeight());
+
+            Typeface typeface = getResources().getFont(R.font.font);
+            btnchild[i].setTypeface(typeface);
             tableRow.addView(btnchild[i]);
 
 
@@ -220,11 +232,15 @@ public class ProfessorFragment3 extends Fragment {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void deleteUI(){
         TableLayout tableLayout = view.findViewById(R.id.tableLayout);
         TableRow titleRow = (TableRow)tableLayout.getChildAt(0);
         TextView titleTextView = (TextView) titleRow.getChildAt(3);
         titleTextView.setVisibility(View.VISIBLE);
+
+        Typeface typeface = getResources().getFont(R.font.font);
+        titleTextView.setTypeface(typeface);
 
         int rowSize = tableLayout.getChildCount();
         Button innerButton;

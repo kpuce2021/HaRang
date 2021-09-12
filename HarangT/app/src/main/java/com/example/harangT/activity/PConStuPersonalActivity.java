@@ -2,6 +2,8 @@ package com.example.harangT.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.RequestQueue;
@@ -49,6 +52,7 @@ public class PConStuPersonalActivity extends AppCompatActivity {
     private LineChart lineChart;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +80,7 @@ public class PConStuPersonalActivity extends AppCompatActivity {
 
 
     //accdssDB
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void accessDB(){
         Response.Listener<String> responseListener = response -> {
             try {
@@ -136,9 +141,12 @@ public class PConStuPersonalActivity extends AppCompatActivity {
                         lineChart.setVisibility(View.GONE);
                         LinearLayout linearLayout = findViewById(R.id.concentRate);
                         TextView tv = new TextView(getApplicationContext());
-                        tv.setText("먼저 강의를 시청해주세요");
-                        tv.setTextSize(70);
+                        tv.setText("아직 강의를 시청하지 않았습니다.");
+                        tv.setTextSize(40);
+                        tv.setGravity(View.TEXT_ALIGNMENT_CENTER);
                         tv.setTextColor(Color.BLACK);
+                        Typeface typeface = getResources().getFont(R.font.font);
+                        tv.setTypeface(typeface);
 
                         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
                         lp.gravity = Gravity.CENTER;
@@ -161,6 +169,8 @@ public class PConStuPersonalActivity extends AppCompatActivity {
                 tv.setText("먼저 강의를 시청해주세요");
                 tv.setTextSize(70);
                 tv.setTextColor(Color.BLACK);
+                Typeface typeface = getResources().getFont(R.font.font);
+                tv.setTypeface(typeface);
 
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
                 lp.gravity = Gravity.CENTER;
