@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.RequestQueue;
@@ -78,6 +81,7 @@ public class StudentFragment5  extends Fragment {
 
 
     //accdssDB
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void accessDB(){
         Response.Listener<String> responseListener = response -> {
             try {
@@ -133,6 +137,7 @@ public class StudentFragment5  extends Fragment {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint({"ResourceAsColor", "SetTextI18n"})
     private void initUI() {
 
@@ -146,16 +151,16 @@ public class StudentFragment5  extends Fragment {
             outlinearLayout.setBackgroundResource(R.drawable.border_layout);
             outlinearLayout.setWeightSum(3);
 
-            ImageView imageview = new ImageView(mContext);
-            imageview.setImageResource(R.drawable.img1);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    200,
-                    300
-            );
-
-            params.setMargins(40,30,50,30);
-            imageview.setLayoutParams(params);
-            outlinearLayout.addView(imageview);
+//            ImageView imageview = new ImageView(mContext);
+//            imageview.setImageResource(R.drawable.img1);
+//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+//                    200,
+//                    300
+//            );
+//
+//            params.setMargins(40,30,50,30);
+//            imageview.setLayoutParams(params);
+//            outlinearLayout.addView(imageview);
 
 
             //텍스트 영역
@@ -175,6 +180,10 @@ public class StudentFragment5  extends Fragment {
                 tv[j] = new TextView(mContext);
                 tv[j].setTextSize(20);
                 tv[j].setTextColor(Color.BLACK);
+
+
+                Typeface typeface = getResources().getFont(R.font.font);
+                tv[j].setTypeface(typeface);
             }
 
 

@@ -1,6 +1,7 @@
 package com.example.harangS.activity;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -33,8 +34,9 @@ public class StudentFragment1 extends Fragment {
         return new StudentFragment1();
     }
     private View view;
-
+    @SuppressLint("StaticFieldLeak")
     private static Context mContext;
+    @SuppressLint("StaticFieldLeak")
     private static Activity mActivity;
 
     //private static String[] menuItems;
@@ -50,6 +52,7 @@ public class StudentFragment1 extends Fragment {
 
 
     private static ArrayList<VideoListViewItem> items;
+    @SuppressLint("StaticFieldLeak")
     private static ListView listview;
     @Nullable
     @Override
@@ -167,7 +170,7 @@ public class StudentFragment1 extends Fragment {
                 menuItemsInfo.add(menuItem);
 
                 item = new VideoListViewItem();
-                item.setVideoThumbnail(ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_account_box_24));
+//                item.setVideoThumbnail(ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_account_box_24));
                 item.setVideoName(output.getString("v_name"));
                 item.setVid(output.getString("v_id"));
                 item.setTotalProgress(10);

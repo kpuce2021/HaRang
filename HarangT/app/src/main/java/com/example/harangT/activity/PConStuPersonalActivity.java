@@ -166,7 +166,7 @@ public class PConStuPersonalActivity extends AppCompatActivity {
                 lineChart.setVisibility(View.GONE);
                 LinearLayout linearLayout = findViewById(R.id.concentRate);
                 TextView tv = new TextView(getApplicationContext());
-                tv.setText("먼저 강의를 시청해주세요");
+                tv.setText("아직 강의를 시청하지 않았습니다.");
                 tv.setTextSize(70);
                 tv.setTextColor(Color.BLACK);
                 Typeface typeface = getResources().getFont(R.font.font);
