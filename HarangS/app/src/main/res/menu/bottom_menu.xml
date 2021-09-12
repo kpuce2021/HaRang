@@ -9,7 +9,7 @@
         android:id="@+id/action_RTMP"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_ondemand_video_24"
-        android:title="실시간 강의 시청" />
+        android:title="실시간 시청" />
 
     <item
         android:id="@+id/action_concent"
