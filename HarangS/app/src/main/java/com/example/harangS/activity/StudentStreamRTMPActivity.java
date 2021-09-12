@@ -131,6 +131,8 @@ public class StudentStreamRTMPActivity extends Activity implements VlcListener, 
                     bStop.setVisibility(View.VISIBLE);
                     bStart.setVisibility(View.GONE);
                     Log.d("dbtest", "시작 : "+staticUrl);
+
+
                     //eyetracking
                     //gazeTrackerManager.startGazeTracking();
                     try {

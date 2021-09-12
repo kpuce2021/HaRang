@@ -20,4 +20,9 @@
         android:enabled="true"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="내 정보" />
+    <item
+        android:id="@+id/action_stu_concent"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="집중 정보" />
 </menu>

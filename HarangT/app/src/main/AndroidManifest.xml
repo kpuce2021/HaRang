@@ -57,6 +57,10 @@
         <activity android:name="com.example.harangT.activity.SClipVideoActivity"></activity>
         <activity android:name="com.example.harangT.activity.RtmpStreamActivity"></activity>
         <activity android:name="com.example.harangT.activity.RtmpFileActivity"></activity>
+        <activity android:name="com.example.harangT.activity.PConStuPersonalActivity"></activity>
+
+        <activity android:name="com.example.harangT.activity.PConcentStudentListActivity"></activity>
+
 
         <activity android:name="com.example.harangT.activity.StudentFullVideoActivity"></activity>
         <activity

@@ -23,6 +23,7 @@ public class p_BaseActivity extends AppCompatActivity {
     private ProfessorFragment2 professorFragment2;
     private ProfessorFragment3 professorFragment3;
     private ProfessorFragment4 professorFragment4;
+    private ProfessorFragment5 professorFragment5;
     private BackPressedEvent backPressedEvent;
 
     public static String ProfessorId;
@@ -58,6 +59,9 @@ public class p_BaseActivity extends AppCompatActivity {
                     case R.id.action_setting:
                         setFragment(3);
                         break;
+                    case R.id.action_stu_concent:
+                        setFragment(4);
+                        break;
                 }
                 return true;
 
@@ -67,6 +71,7 @@ public class p_BaseActivity extends AppCompatActivity {
         professorFragment2 = new ProfessorFragment2();
         professorFragment3 = new ProfessorFragment3();
         professorFragment4 = new ProfessorFragment4();
+        professorFragment5 = new ProfessorFragment5();
         setFragment(0);//첫 프래그먼트 화면 지정
     }
 
@@ -89,6 +94,10 @@ public class p_BaseActivity extends AppCompatActivity {
                 break;
             case 3:
                 ft.replace(R.id.main_frame, professorFragment4);
+                ft.commit();
+                break;
+            case 4:
+                ft.replace(R.id.main_frame, professorFragment5);
                 ft.commit();
                 break;
         }
