@@ -25,6 +25,7 @@ public class BaseActivity extends AppCompatActivity {
     private StudentFragment3 studentFragment3;
     private StudentFragment4 studentFragment4;
     private StudentFragment5 studentFragment5;
+
     private BackPressedEvent backPressedEvent;
 
     public static String StudentId;
