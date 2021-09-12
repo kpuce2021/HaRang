@@ -216,8 +216,8 @@ public class StudentFragment4 extends Fragment {
                 tv[j].setTextColor(Color.BLACK);
 
 
-                Typeface typeface = getResources().getFont(R.font.font);
-                tv[j].setTypeface(typeface);
+//                Typeface typeface = getResources().getFont(R.font.font);
+//                tv[j].setTypeface(typeface);
 
             }
 
@@ -234,7 +234,7 @@ public class StudentFragment4 extends Fragment {
             final int index = i;
             outlinearLayout.setOnClickListener(v -> {
                 Intent intent = new Intent(mContext, StudentStreamRTMPActivity.class);
-                intent.putExtra("url", "rtmp://34.205.89.18/live/"+menuItemsInfo.get(index).get("p_id")+"to"+ menuItemsInfo.get(index).get("streamId"));
+                intent.putExtra("url", "rtmp://100.26.4.92/live/"+menuItemsInfo.get(index).get("p_id")+"to"+ menuItemsInfo.get(index).get("streamId"));
                 startActivity(intent);
             });
 
