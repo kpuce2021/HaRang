@@ -41,7 +41,7 @@
         android:id="@+id/ScrollView">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/border_layout"
             android:gravity="center"
@@ -71,7 +71,7 @@
                         android:text="순서"
                         android:textColor="@color/black"
                         android:fontFamily="@font/wemakeprice_regular"
-                        android:textSize="18sp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                         android:text="아이디"
                         android:textColor="@color/black"
                         android:fontFamily="@font/wemakeprice_regular"
-                        android:textSize="18sp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -91,7 +91,7 @@
                         android:text="이름"
                         android:textColor="@color/black"
                         android:fontFamily="@font/wemakeprice_regular"
-                        android:textSize="18sp" />
+                        android:textSize="20dp" />
                 </TableRow>
 
                 <TableRow

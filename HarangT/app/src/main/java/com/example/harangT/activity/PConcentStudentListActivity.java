@@ -134,12 +134,12 @@ public class PConcentStudentListActivity extends AppCompatActivity {
 
             tableRow.setLayoutParams(new TableRow.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
             for(int j=0;j<3;j++){
                 tv[j] = new TextView(getApplicationContext());
                 //tv[j].setBackgroundResource(R.drawable.table_inside);
                 tv[j].setGravity(Gravity.CENTER);
-                tv[j].setTextSize(15);
+                tv[j].setTextSize(20);
                 tv[j].setTextColor(Color.BLACK);
             }
 
@@ -165,6 +165,8 @@ public class PConcentStudentListActivity extends AppCompatActivity {
 
                 startActivity(intent);
             });
+
+
 
             tableLayout.addView(tableRow);
 
