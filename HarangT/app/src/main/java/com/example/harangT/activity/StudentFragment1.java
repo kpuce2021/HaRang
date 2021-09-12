@@ -5,6 +5,9 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -167,7 +170,12 @@ public class StudentFragment1 extends Fragment {
                 menuItemsInfo.add(menuItem);
 
                 item = new VideoListViewItem();
-                item.setVideoThumbnail(ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_account_box_24));
+//                Drawable videoThumbnail = ContextCompat.getDrawable(mContext, R.drawable.pencil_icon);
+//                Drawable resizeThumbnail = resize(videoThumbnail);
+
+//                item.setVideoThumbnail(resizeThumbnail);
+
+
                 item.setVideoName(output.getString("v_name"));
                 item.setVid(output.getString("v_id"));
                 item.setTotalProgress(10);
@@ -212,5 +220,11 @@ public class StudentFragment1 extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private Drawable resize(Drawable image) {
+        Bitmap b = ((BitmapDrawable)image).getBitmap();
+        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 24, 24, false);
+        return new BitmapDrawable(getResources(), bitmapResized);
     }
 }

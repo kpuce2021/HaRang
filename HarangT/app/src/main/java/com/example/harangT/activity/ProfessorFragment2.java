@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -22,6 +24,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.RequestQueue;
@@ -84,6 +87,7 @@ public class ProfessorFragment2 extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 //기본 : 최신순
@@ -125,6 +129,7 @@ public class ProfessorFragment2 extends Fragment {
     private void accessDB(final String p_id){
         //table 값 불러오기
         Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(String response) {
                 try {
@@ -188,6 +193,7 @@ public class ProfessorFragment2 extends Fragment {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint("ResourceAsColor")
     private void initUI(){
 
@@ -202,12 +208,12 @@ public class ProfessorFragment2 extends Fragment {
             outlinearLayout.setWeightSum(3);
 
             //썸네일
-            ImageView imageview = new ImageView(mContext);
-            imageview.setImageResource(R.drawable.img1);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(40,30,50,30);
-            imageview.setLayoutParams(params);
-            outlinearLayout.addView(imageview);
+//            ImageView imageview = new ImageView(mContext);
+//            imageview.setImageResource(R.drawable.img1);
+//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//            params.setMargins(40,30,50,30);
+//            imageview.setLayoutParams(params);
+//            outlinearLayout.addView(imageview);
 
 
             //텍스트 영역
@@ -225,8 +231,11 @@ public class ProfessorFragment2 extends Fragment {
             //textview
             for(int j=0;j<5;j++){
                 tv[j] = new TextView(mContext);
-                tv[j].setTextSize(15);
                 tv[j].setTextColor(Color.BLACK);
+
+                tv[j].setTextSize(20);
+                Typeface typeface = getResources().getFont(R.font.font);
+                tv[j].setTypeface(typeface);
             }
 
 
@@ -236,6 +245,7 @@ public class ProfessorFragment2 extends Fragment {
             inlinearLayout.addView(tv[2]);
             tv[3].setText("강의 타입 : "+(menuItemsInfo.get(i).get("type").equals("normal")?"동영상 강의":menuItemsInfo.get(i).get("type").equals("stream")?"실시간 강의":"실시간 파일 강의"));
             inlinearLayout.addView(tv[3]);
+
 
             outlinearLayout.addView(inlinearLayout);
             final int index = i;
