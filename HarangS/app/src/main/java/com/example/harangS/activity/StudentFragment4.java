@@ -82,16 +82,6 @@ public class StudentFragment4 extends Fragment {
         });
 
 
-
-        Button startRTMP = view.findViewById(R.id.startRTMP);
-        startRTMP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, StudentStreamRTMPActivity.class);
-                startActivity(intent);
-            }
-        });
-
         return view;
     }
 

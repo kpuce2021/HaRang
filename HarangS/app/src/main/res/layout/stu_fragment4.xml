@@ -20,7 +20,7 @@
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    
+
 
     <!-- 공간 띄우기용 -->
     <TextView

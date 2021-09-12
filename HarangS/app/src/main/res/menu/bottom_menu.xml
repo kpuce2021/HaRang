@@ -3,27 +3,28 @@
     <item
         android:id="@+id/action_home"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="메인" />
-    <item
-        android:id="@+id/action_video"
-        android:enabled="true"
         android:icon="@drawable/ic_baseline_ondemand_video_24"
-        android:title="영상" />
-    <item
-        android:id="@+id/action_setting"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="세팅" />
+        android:title="영상 시청" />
     <item
         android:id="@+id/action_RTMP"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="실시간 강의" />
+        android:icon="@drawable/ic_baseline_ondemand_video_24"
+        android:title="실시간 강의 시청" />
 
     <item
         android:id="@+id/action_concent"
         android:enabled="true"
+        android:icon="@drawable/ic_baseline_list_alt_24"
+        android:title="집중도 확인" />
+
+    <item
+        android:id="@+id/action_video"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_list_alt_24"
+        android:title="수강률" />
+    <item
+        android:id="@+id/action_setting"
+        android:enabled="true"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:title="집중 확인" />
+        android:title="내정보" />
 </menu>

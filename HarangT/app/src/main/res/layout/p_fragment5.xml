@@ -3,15 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFCC">
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="61dp"
-        android:layout_marginTop="191dp"
-        android:text="강의명"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="172dp"
+        android:fontFamily="@font/wemakeprice_bold"
+        android:text="실시간 강의명"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,12 +23,12 @@
         style="@android:style/Widget.AutoCompleteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="174dp"
+        android:layout_marginTop="216dp"
         android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        android:hint="강의명을 입력해주세요"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -36,7 +39,9 @@
         android:text="실시간 강의 시작"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/wemakeprice_regular"/>
 
     <Button
         android:id="@+id/FileRTMP"
@@ -44,6 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="녹화 강의 중계"
+
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/wemakeprice_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
