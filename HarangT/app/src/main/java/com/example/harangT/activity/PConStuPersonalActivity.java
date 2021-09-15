@@ -60,7 +60,7 @@ public class PConStuPersonalActivity extends AppCompatActivity {
 
 
         //id 받아오기
-        p_id = p_BaseActivity.p_id;
+        p_id = PBaseActivity.p_id;
 
         Intent intent = getIntent();
         type = intent.getStringExtra("type");

@@ -19,6 +19,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+import android.webkit.DownloadListener;
 
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
@@ -59,7 +60,7 @@ public class MyService extends Service {
             case TRANSFER_OPERATION_DOWNLOAD:
                 Log.d(TAG, "Downloading " + key);
                 transferObserver = transferUtility.download(key, file);
-                transferObserver.setTransferListener(new DownloadListener());
+//                transferObserver.setTransferListener(new DownloadListener());
                 break;
             case TRANSFER_OPERATION_UPLOAD:
                 Log.d(TAG, "Uploading " + key);
@@ -79,40 +80,6 @@ public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
-    }
-
-    private class DownloadListener implements TransferListener {
-
-        private boolean notifyDownloadActivityNeeded = true;
-
-        // Simply updates the list when notified.
-        @Override
-        public void onError(int id, Exception e) {
-            Log.e(TAG, "onError: " + id, e);
-            if (notifyDownloadActivityNeeded) {
-                DownloadFragment.initData();
-                notifyDownloadActivityNeeded = false;
-            }
-        }
-
-        @Override
-        public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
-            Log.d(TAG, String.format("onProgressChanged: %d, total: %d, current: %d",
-                    id, bytesTotal, bytesCurrent));
-            if (notifyDownloadActivityNeeded) {
-                DownloadFragment.initData();
-                notifyDownloadActivityNeeded = false;
-            }
-        }
-
-        @Override
-        public void onStateChanged(int id, TransferState state) {
-            Log.d(TAG, "onStateChanged: " + id + ", " + state);
-            if (notifyDownloadActivityNeeded) {
-                DownloadFragment.initData();
-                notifyDownloadActivityNeeded = false;
-            }
-        }
     }
 
     private class UploadListener implements TransferListener {

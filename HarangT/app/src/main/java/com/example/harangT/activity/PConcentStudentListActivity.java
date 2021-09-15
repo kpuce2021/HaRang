@@ -7,12 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -50,8 +46,8 @@ public class PConcentStudentListActivity extends AppCompatActivity {
         setContentView(R.layout.p_activity_concentstudent);
 
         //id 받아오기
-        ProfessorId = p_BaseActivity.ProfessorId;
-        p_id = p_BaseActivity.p_id;
+        ProfessorId = PBaseActivity.ProfessorId;
+        p_id = PBaseActivity.p_id;
 
 
         Intent intent = getIntent();

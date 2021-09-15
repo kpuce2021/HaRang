@@ -46,13 +46,6 @@ public class UploadActivity extends ListActivity {
 
     // Button for upload operations
     private Button btnUploadFile;
-    private Button btnUploadFileInBackground;
-    private Button btnUploadImage;
-    private Button btnPause;
-    private Button btnResume;
-    private Button btnCancel;
-    private Button btnDelete;
-    private Button btnPauseAll;
     private Button btnCancelAll;
 
     // The TransferUtility is the primary class for managing transfer to S3
@@ -187,14 +180,7 @@ public class UploadActivity extends ListActivity {
         });
 
         btnUploadFile = findViewById(R.id.buttonUploadFile);
-        btnUploadFileInBackground = findViewById(R.id.buttonUploadFileInBackground);
-        btnUploadImage = findViewById(R.id.buttonUploadImage);
-        btnPause = findViewById(R.id.buttonPause);
-        btnResume = findViewById(R.id.buttonResume);
-        btnCancel = findViewById(R.id.buttonCancel);
-        btnDelete = findViewById(R.id.buttonDelete);
-        btnPauseAll = findViewById(R.id.buttonPauseAll);
-        btnCancelAll = findViewById(R.id.buttonCancelAll);
+        btnCancelAll = findViewById(R.id.buttonOK);
 
         btnUploadFile.setOnClickListener(view -> {
             Intent intent = new Intent();
@@ -214,114 +200,7 @@ public class UploadActivity extends ListActivity {
             startActivityForResult(intent, UPLOAD_REQUEST_CODE);
         });
 
-        btnUploadFileInBackground.setOnClickListener(view -> {
-            Intent intent = new Intent();
-            if (Build.VERSION.SDK_INT >= 19) {
-                // For Android KitKat, we use a different intent to ensure
-                // we can
-                // get the file path from the returned intent URI
-                intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-                intent.setType("*/*");
-            } else {
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.setType("file/*");
-            }
-
-            startActivityForResult(intent, UPLOAD_IN_BACKGROUND_REQUEST_CODE);
-        });
-
-        btnUploadImage.setOnClickListener(view -> {
-            Intent intent = new Intent();
-            if (Build.VERSION.SDK_INT >= 19) {
-                // For Android versions of KitKat or later, we use a
-                // different intent to ensure
-                // we can get the file path from the returned intent URI
-                intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-            } else {
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-            }
-
-            intent.setType("image/*");
-            startActivityForResult(intent, UPLOAD_REQUEST_CODE);
-        });
-
-        btnPause.setOnClickListener(view -> {
-            // Make sure the user has selected a transfer
-            if (checkedIndex >= 0 && checkedIndex < observers.size()) {
-                Boolean paused = transferUtility.pause(observers.get(checkedIndex).getId());
-                /**
-                 * If paused does not return true, it is likely because the
-                 * user is trying to pause an upload that is not in a
-                 * pausable state (For instance it is already paused, or
-                 * canceled).
-                 */
-                if (!paused) {
-                    Toast.makeText(
-                            UploadActivity.this,
-                            "Cannot pause transfer.  You can only pause transfers in a IN_PROGRESS or WAITING state.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        btnResume.setOnClickListener(view -> {
-            // Make sure the user has selected a transfer
-            if (checkedIndex >= 0 && checkedIndex < observers.size()) {
-                TransferObserver resumed = transferUtility.resume(observers.get(checkedIndex)
-                        .getId());
-                // Sets a new transfer listener to the original observer.
-                // This will overwrite existing listener.
-                observers.get(checkedIndex).setTransferListener(new UploadListener());
-                /**
-                 * If resume returns null, it is likely because the transfer
-                 * is not in a resumable state (For instance it is already
-                 * running).
-                 */
-                if (resumed == null) {
-                    Toast.makeText(
-                            UploadActivity.this,
-                            "Cannot resume transfer.  You can only resume transfers in a PAUSED state.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        btnCancel.setOnClickListener(view -> {
-            // Make sure a transfer is selected
-            if (checkedIndex >= 0 && checkedIndex < observers.size()) {
-                Boolean canceled = transferUtility.cancel(observers.get(checkedIndex).getId());
-                /*
-                 * If cancel returns false, it is likely because the
-                 * transfer is already canceled
-                 */
-                if (!canceled) {
-                    Toast.makeText(
-                            UploadActivity.this,
-                            "Cannot cancel transfer.  You can only resume transfers in a PAUSED, WAITING, or IN_PROGRESS state.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        btnDelete.setOnClickListener(view -> {
-            // Make sure a transfer is selected
-            if (checkedIndex >= 0 && checkedIndex < observers.size()) {
-                transferUtility.deleteTransferRecord(observers.get(checkedIndex).getId());
-                observers.remove(checkedIndex);
-                transferRecordMaps.remove(checkedIndex);
-                checkedIndex = INDEX_NOT_CHECKED;
-                updateButtonAvailability();
-                updateList();
-            }
-        });
-
-        btnPauseAll.setOnClickListener(view -> transferUtility.pauseAllWithType(TransferType.UPLOAD));
-
-        btnCancelAll.setOnClickListener(view -> transferUtility.cancelAllWithType(TransferType.UPLOAD));
+        btnCancelAll.setOnClickListener(view -> finish());
 
         updateButtonAvailability();
     }
@@ -346,10 +225,6 @@ public class UploadActivity extends ListActivity {
      */
     private void updateButtonAvailability() {
         boolean availability = checkedIndex >= 0;
-        btnPause.setEnabled(availability);
-        btnResume.setEnabled(availability);
-        btnCancel.setEnabled(availability);
-        btnDelete.setEnabled(availability);
     }
 
     @Override

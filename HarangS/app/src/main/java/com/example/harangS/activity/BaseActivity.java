@@ -53,16 +53,16 @@ public class BaseActivity extends AppCompatActivity {
                     case R.id.action_home:
                         setFragment(0);
                         break;
-                    case R.id.action_video:
+                    case R.id.action_RTMP:
                         setFragment(1);
                         break;
-                    case R.id.action_setting:
+                    case R.id.action_concent:
                         setFragment(2);
                         break;
-                    case R.id.action_RTMP:
+                    case R.id.action_video:
                         setFragment(3);
                         break;
-                    case R.id.action_concent:
+                    case R.id.action_setting:
                         setFragment(4);
                         break;
                 }

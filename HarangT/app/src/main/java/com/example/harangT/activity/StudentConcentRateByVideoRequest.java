@@ -29,4 +29,3 @@ public class StudentConcentRateByVideoRequest extends StringRequest {
         return map;
     }
 }
-

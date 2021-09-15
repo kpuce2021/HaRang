@@ -30,13 +30,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Harang"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.example.harangT.activity.MyInfoActivity"></activity>
         <activity android:name="com.example.harangT.activity.PEnrollModifyActivity" />
-        <activity android:name="com.example.harangT.activity.p_BaseActivity" />
-        <activity
-            android:name="com.example.harangT.activity.EyetrackingActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name="com.example.harangT.activity.ProfileActivity" />
+        <activity android:name="com.example.harangT.activity.PBaseActivity" />
         <activity
             android:name="com.example.harangT.activity.RegisterActivity"
             android:windowSoftInputMode="adjustNothing" />
@@ -54,25 +49,15 @@
         </activity>
 
         <activity android:name="com.example.harangT.activity.BaseActivity"></activity>
-        <activity android:name="com.example.harangT.activity.SClipVideoActivity"></activity>
         <activity android:name="com.example.harangT.activity.RtmpStreamActivity"></activity>
         <activity android:name="com.example.harangT.activity.RtmpFileActivity"></activity>
         <activity android:name="com.example.harangT.activity.PConStuPersonalActivity"></activity>
 
         <activity android:name="com.example.harangT.activity.PConcentStudentListActivity"></activity>
 
-
-        <activity android:name="com.example.harangT.activity.StudentFullVideoActivity"></activity>
-        <activity
-            android:name="com.example.harangT.activity.DownloadActivity"
-            android:label="@string/download_activity" />
         <activity
             android:name="com.example.harangT.activity.UploadActivity"
             android:label="@string/upload_activity" />
-        <activity
-            android:name="com.example.harangT.activity.DownloadSelectionActivity"
-            android:label="@string/download_selection_activity" />
-
         <service
             android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
             android:enabled="true" />

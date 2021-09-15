@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.harangT.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class p_BaseActivity extends AppCompatActivity {
+public class PBaseActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
@@ -46,16 +46,16 @@ public class p_BaseActivity extends AppCompatActivity {
                 case R.id.action_upload:
                     setFragment(0);
                     break;
-                case R.id.action_list:
+                case R.id.action_streaming:
                     setFragment(1);
                     break;
-                case R.id.action_stu_set:
+                case R.id.action_list:
                     setFragment(2);
                     break;
-                case R.id.action_setting:
+                case R.id.action_stu_set:
                     setFragment(3);
                     break;
-                case R.id.action_streaming:
+                case R.id.action_setting:
                     setFragment(4);
                     break;
             }
