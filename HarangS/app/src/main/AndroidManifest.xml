@@ -21,8 +21,6 @@
         android:theme="@style/Theme.Harang"
         android:usesCleartextTraffic="true">
         <activity android:name="com.example.harangS.activity.MyInfoActivity"></activity>
-        <activity android:name="com.example.harangS.activity.PEnrollModifyActivity" />
-        <activity android:name="com.example.harangS.activity.p_BaseActivity" />
         <activity
             android:name="com.example.harangS.activity.EyetrackingActivity"
             android:screenOrientation="portrait"></activity>
@@ -53,10 +51,6 @@
         <activity
             android:name="com.example.harangS.activity.DownloadActivity"
             android:label="@string/download_activity" />
-        <activity
-            android:name="com.example.harangS.activity.UploadActivity"
-            android:label="@string/upload_activity" />
-        <activity
             android:name="com.example.harangS.activity.DownloadSelectionActivity"
             android:label="@string/download_selection_activity" />
 

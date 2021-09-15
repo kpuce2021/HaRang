@@ -35,6 +35,14 @@ public class LoginActivity extends AppCompatActivity {
     private BackPressedEvent backPressedEvent;
 
 
+    private static String user_id;
+    private static String user_pass;
+    private static String user_primaryKey;
+    private static String user_name;
+    private static boolean success;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,16 +87,19 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View view) {
-                if (rb_professor_login.isChecked()) {     // 교수가 회원가입을 하는 경우
-                    login_professor();
-                }
+                login_student();
 
-                if (rb_student_login.isChecked()) {       // 학생이 회원가입을 하는 경우
-                    login_student();
-                }
+//                if(success){
+//                    Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
+//                    intent.putExtra("user_id", user_id);
+//                    intent.putExtra("user_pass", user_pass);
+//                    intent.putExtra("s_id", user_primaryKey);
+//                    intent.putExtra("s_name", user_name);
+//
+//                    startActivity(intent);
+//                }
             }
         });
-
 
     }
 
@@ -109,93 +120,46 @@ public class LoginActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
     }
 
-    public void login_professor(){
-        String id = et_id.getText().toString();
-        String password = et_pass.getText().toString();
-
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    // TODO : 인코딩 문제때문에 한글 DB인 경우 로그인 불가
-                    System.out.println("harang" + response);
-                    JSONObject jsonObject = new JSONObject(response);
-                    boolean success = jsonObject.getBoolean("success");
-
-                    if (success) { // 로그인에 성공한 경우
-                        String user_id = jsonObject.getString("id");
-                        String user_pass = jsonObject.getString("password");
-                        String user_primaryKey = jsonObject.getString("p_id");
-                        String user_name = jsonObject.getString("p_name");
-
-
-                        Log.d("minu",user_primaryKey);
-
-                        Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, p_BaseActivity.class);
-                        intent.putExtra("user_id", user_id);
-                        intent.putExtra("user_pass", user_pass);
-                        intent.putExtra("user_primaryKey", user_primaryKey);
-                        intent.putExtra("p_name", user_name);
-
-                        startActivity(intent);
-                    } else { // 로그인에 실패한 경우
-                        Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        ProfessorLoginRequest professorLoginRequest = new ProfessorLoginRequest(id, password, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-        queue.add(professorLoginRequest);
-    }
-
     public void login_student(){
         String id = et_id.getText().toString();
         String password = et_pass.getText().toString();
 
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    // TODO : 인코딩 문제때문에 한글 DB인 경우 로그인 불가
-                    System.out.println("harang" + response);
-                    JSONObject jsonObject = new JSONObject(response);
-                    boolean success = jsonObject.getBoolean("success");
-                    if (success) { // 로그인에 성공한 경우
-                        String user_id = jsonObject.getString("id");
-                        String user_pass = jsonObject.getString("password");
-                        String user_primaryKey = jsonObject.getString("s_id");
-                        String user_name = jsonObject.getString("s_name");
+        Response.Listener<String> responseListener = response -> {
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                success = jsonObject.getBoolean("success");
+                if (success) { // 로그인에 성공한 경우
+                    user_id = jsonObject.getString("id");
+                    user_pass = jsonObject.getString("password");
+                    user_primaryKey = jsonObject.getString("s_id");
+                    user_name = jsonObject.getString("s_name");
+                    Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
+                    Log.i("db_test","login success");
 
-                        Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
-                        intent.putExtra("user_id", user_id);
-                        intent.putExtra("user_pass", user_pass);
-                        intent.putExtra("s_id", user_primaryKey);
-                        intent.putExtra("s_name", user_name);
+                    Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
+                    intent.putExtra("user_id", user_id);
+                    intent.putExtra("user_pass", user_pass);
+                    intent.putExtra("s_id", user_primaryKey);
+                    intent.putExtra("s_name", user_name);
 
-                        startActivity(intent);
-                    } else { // 로그인에 실패한 경우
-                        Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    startActivity(intent);
+                } else { // 로그인에 실패한 경우
+                    Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
+                    Log.i("db_test","login false");
+                    return;
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.i("db_test","login error : "+e);
             }
         };
         StudentLoginRequest studentLoginRequest = new StudentLoginRequest(id, password, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(studentLoginRequest);
     }
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
         backPressedEvent.onBackPressed();
     }
 }

@@ -30,7 +30,7 @@ public class StudentFragment2 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.stu_fragment2, container, false);
+        view = inflater.inflate(R.layout.stu_fragment4, container, false);
         return view;
     }
 
