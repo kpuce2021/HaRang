@@ -65,6 +65,7 @@ public class ProfessorFragment3 extends Fragment {
     private static String[] items = {"최신순", "이름순"/*, "집중도순"*/};
     private static ListView listview;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -123,59 +124,56 @@ public class ProfessorFragment3 extends Fragment {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void accessDB(final String p_id){
         //table 값 불러오기
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    boolean success = jsonObject.getBoolean("success");
-                    if (success) {
+        Response.Listener<String> responseListener = response -> {
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                boolean success = jsonObject.getBoolean("success");
+                if (success) {
 
-                        menuItemsInfo = new ArrayList<>();
+                    menuItemsInfo = new ArrayList<>();
 
-                        listCount = Integer.parseInt(jsonObject.getString("count1"));
-                        listCount += Integer.parseInt(jsonObject.getString("count2"));
-                        Log.i("db_test","listCount : "+listCount+", p_id : "+p_id);
-                        for(int i=0;i<listCount;i++){
-                            menuItem = new HashMap<>();
-                            JSONObject output = jsonObject.getJSONObject(String.valueOf(i));
+                    listCount = Integer.parseInt(jsonObject.getString("count1"));
+                    listCount += Integer.parseInt(jsonObject.getString("count2"));
+                    Log.i("db_test","listCount : "+listCount+", p_id : "+p_id);
+                    for(int i=0;i<listCount;i++){
+                        menuItem = new HashMap<>();
+                        JSONObject output = jsonObject.getJSONObject(String.valueOf(i));
 
-                            Log.i("db_test", " type : " + output.getString("type"));
-                            Log.i("db_test", " v_id : " + output.getString("v_id"));
-                            Log.i("db_test", " v_name : " + output.getString("v_name"));
-                            Log.i("db_test", " startTime : " + output.getString("startTime"));
-                            Log.i("db_test", " ");
+                        Log.i("db_test", " type : " + output.getString("type"));
+                        Log.i("db_test", " v_id : " + output.getString("v_id"));
+                        Log.i("db_test", " v_name : " + output.getString("v_name"));
+                        Log.i("db_test", " startTime : " + output.getString("startTime"));
+                        Log.i("db_test", " ");
 
 
-                            menuItem.put("type",output.getString("type"));
-                            menuItem.put("v_id",output.getString("v_id"));
-                            menuItem.put("v_name",output.getString("v_name"));
-                            menuItem.put("startTime",output.getString("startTime"));
+                        menuItem.put("type",output.getString("type"));
+                        menuItem.put("v_id",output.getString("v_id"));
+                        menuItem.put("v_name",output.getString("v_name"));
+                        menuItem.put("startTime",output.getString("startTime"));
 
-                            menuItemsInfo.add(menuItem);
-                        }
-
-                        HashMap<Integer,String> listSet = new HashMap<>();
-                        for(int i=0;i<videoCount;i++){
-                            listSet.put(i, menuItemsInfo.get(i).get("startTime"));
-                        }
-                        sortKeyList = new ArrayList<>(listSet.keySet());
-                        Collections.sort(sortKeyList, (o1, o2) -> (listSet.get(o1).compareTo(listSet.get(o2))));
-
-                        initUI();
-                    } else {
-                        Log.i("db_test", "server connect fail");
-                        return;
+                        menuItemsInfo.add(menuItem);
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Log.i("db_test", "catch : " + e.getMessage());
-                }
 
+                    HashMap<Integer,String> listSet = new HashMap<>();
+                    for(int i=0;i<videoCount;i++){
+                        listSet.put(i, menuItemsInfo.get(i).get("startTime"));
+                    }
+                    sortKeyList = new ArrayList<>(listSet.keySet());
+                    Collections.sort(sortKeyList, (o1, o2) -> (listSet.get(o1).compareTo(listSet.get(o2))));
+
+                    initUI();
+                } else {
+                    Log.i("db_test", "server connect fail");
+                    return;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.i("db_test", "catch : " + e.getMessage());
             }
+
         };
         // 서버로 Volley를 이용해서 요청을 함.
         ProfessorAllTypeVideoListRequset pVideoListReadRequest = new ProfessorAllTypeVideoListRequset(p_id, responseListener);
@@ -236,12 +234,14 @@ public class ProfessorFragment3 extends Fragment {
             }
 
 
-            tv[1].setText("강의명 : " + menuItemsInfo.get(i).get("v_name"));
+            tv[1].setText("     강의명 : " + menuItemsInfo.get(i).get("v_name"));
             inlinearLayout.addView(tv[1]);
-            tv[2].setText("시작 시간 : "+menuItemsInfo.get(i).get("startTime"));
+            tv[2].setText("     시작 시간 : "+menuItemsInfo.get(i).get("startTime"));
             inlinearLayout.addView(tv[2]);
-            tv[3].setText("강의 타입 : "+(menuItemsInfo.get(i).get("type").equals("normal")?"동영상 강의":menuItemsInfo.get(i).get("type").equals("stream")?"실시간 강의":"실시간 파일 강의"));
+            tv[3].setText("     강의 타입 : "+(menuItemsInfo.get(i).get("type").equals("normal")?"동영상 강의":menuItemsInfo.get(i).get("type").equals("stream")?"실시간 강의":"실시간 파일 강의"));
             inlinearLayout.addView(tv[3]);
+            tv[4].setText("");
+            inlinearLayout.addView(tv[4]);
 
 
             outlinearLayout.addView(inlinearLayout);
