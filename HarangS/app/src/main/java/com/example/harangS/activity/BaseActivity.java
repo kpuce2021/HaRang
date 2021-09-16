@@ -84,26 +84,27 @@ public class BaseActivity extends AppCompatActivity {
     private void setFragment(int n){
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
+
         switch(n){
             case 0:
                 ft.replace(R.id.main_frame, studentFragment1);
-                ft.commit();
+                ft.commitAllowingStateLoss();
                 break;
             case 1:
                 ft.replace(R.id.main_frame, studentFragment2);
-                ft.commit();
+                ft.commitAllowingStateLoss();
                 break;
             case 2:
                 ft.replace(R.id.main_frame, studentFragment3);
-                ft.commit();
+                ft.commitAllowingStateLoss();
                 break;
             case 3:
                 ft.replace(R.id.main_frame, studentFragment4);
-                ft.commit();
+                ft.commitAllowingStateLoss();
                 break;
             case 4:
                 ft.replace(R.id.main_frame, studentFragment5);
-                ft.commit();
+                ft.commitAllowingStateLoss();
                 break;
         }
     }
@@ -116,7 +117,7 @@ public class BaseActivity extends AppCompatActivity {
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         fragment.setArguments(bundle);
-        ft.replace(R.id.main_frame, fragment).commit();
+        ft.replace(R.id.main_frame, fragment).commitAllowingStateLoss();
     }
 
 /*    @Override
