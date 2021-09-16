@@ -21,23 +21,35 @@
         >
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:text="강의 시작"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
+            android:fontFamily="@font/wemakeprice_regular"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:id="@+id/btnStart"
             />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:text="카메라 방향 전환"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
+            android:fontFamily="@font/wemakeprice_regular"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:id="@+id/switch_camera"
             />
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/b_stop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
+            android:fontFamily="@font/wemakeprice_regular"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:visibility="invisible"
             android:text="강의 종료" />
     </LinearLayout>

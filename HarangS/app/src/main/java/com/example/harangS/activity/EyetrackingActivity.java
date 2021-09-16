@@ -60,7 +60,7 @@ public class EyetrackingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_eyetracking_setting);
 
         Intent intent = getIntent();
         studentId = intent.getStringExtra("studentId");

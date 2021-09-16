@@ -118,20 +118,19 @@ public class StudentFullVideoActivity extends Activity {
         // 아까 동영상 [상세정보] 에서 확인한 경로
         videoView.requestFocus(); // 포커스 얻어오기
 
-        PreParedListener = mp -> mp.setOnVideoSizeChangedListener((mp1, width, height) -> {
-            ConstraintLayout.LayoutParams lp =
-                    new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.FILL_PARENT,
-                            ConstraintLayout.LayoutParams.FILL_PARENT);
-            videoView.setLayoutParams(lp);
-        });
-        videoView.setOnPreparedListener(PreParedListener);
-/*
+//        PreParedListener = mp -> mp.setOnVideoSizeChangedListener((mp1, width, height) -> {
+//            ConstraintLayout.LayoutParams lp =
+//                    new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.FILL_PARENT,
+//                            ConstraintLayout.LayoutParams.FILL_PARENT);
+//            videoView.setLayoutParams(lp);
+//        });
+//        videoView.setOnPreparedListener(PreParedListener);
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
             @Override
             public void onPrepared(MediaPlayer mp) {
                 videoView.start(); // 동영상 재생
             }
-        });*/
+        });
         videoView.start(); // 동영상 재생
 
         videoView.setOnCompletionListener(mp -> {

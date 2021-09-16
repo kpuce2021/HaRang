@@ -42,8 +42,8 @@ public class PEnrollModifyActivity extends AppCompatActivity {
         setContentView(R.layout.p_activity_enrollmodify);
 
         //id 받아오기
-        ProfessorId = p_BaseActivity.ProfessorId;
-        p_id = p_BaseActivity.p_id;
+        ProfessorId = PBaseActivity.ProfessorId;
+        p_id = PBaseActivity.p_id;
 
         Button btn_search = findViewById(R.id.btn_search);
         Button btn_refresh = findViewById(R.id.btn_refresh);

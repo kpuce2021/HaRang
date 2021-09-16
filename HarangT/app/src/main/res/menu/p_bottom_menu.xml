@@ -6,6 +6,11 @@
         android:icon="@drawable/ic_baseline_cloud_upload_24"
         android:title="강의 업로드" />
     <item
+        android:id="@+id/action_streaming"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_cloud_upload_24"
+        android:title="스트리밍" />
+    <item
         android:id="@+id/action_list"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_list_alt_24"
@@ -20,14 +25,5 @@
         android:enabled="true"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="내 정보" />
-    <item
-        android:id="@+id/action_streaming"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="스트리밍" /><!--
-    <item
-        android:id="@+id/action_stu_concent"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="집중 정보" />-->
+
 </menu>

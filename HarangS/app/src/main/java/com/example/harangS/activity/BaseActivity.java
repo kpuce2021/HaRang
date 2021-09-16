@@ -25,6 +25,7 @@ public class BaseActivity extends AppCompatActivity {
     private StudentFragment3 studentFragment3;
     private StudentFragment4 studentFragment4;
     private StudentFragment5 studentFragment5;
+
     private BackPressedEvent backPressedEvent;
 
     public static String StudentId;
@@ -52,16 +53,16 @@ public class BaseActivity extends AppCompatActivity {
                     case R.id.action_home:
                         setFragment(0);
                         break;
-                    case R.id.action_video:
+                    case R.id.action_RTMP:
                         setFragment(1);
                         break;
-                    case R.id.action_setting:
+                    case R.id.action_concent:
                         setFragment(2);
                         break;
-                    case R.id.action_RTMP:
+                    case R.id.action_video:
                         setFragment(3);
                         break;
-                    case R.id.action_concent:
+                    case R.id.action_setting:
                         setFragment(4);
                         break;
                 }

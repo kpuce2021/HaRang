@@ -61,11 +61,6 @@ public class MyService extends Service {
                 transferObserver = transferUtility.download(key, file);
                 transferObserver.setTransferListener(new DownloadListener());
                 break;
-            case TRANSFER_OPERATION_UPLOAD:
-                Log.d(TAG, "Uploading " + key);
-                transferObserver = transferUtility.upload(key, file);
-                transferObserver.setTransferListener(new UploadListener());
-                break;
         }
 
         return START_STICKY;
@@ -115,37 +110,4 @@ public class MyService extends Service {
         }
     }
 
-    private class UploadListener implements TransferListener {
-
-        private boolean notifyUploadActivityNeeded = true;
-
-        // Simply updates the list when notified.
-        @Override
-        public void onError(int id, Exception e) {
-            Log.e(TAG, "onError: " + id, e);
-            if (notifyUploadActivityNeeded) {
-                UploadActivity.initData();
-                notifyUploadActivityNeeded = false;
-            }
-        }
-
-        @Override
-        public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
-            Log.d(TAG, String.format("onProgressChanged: %d, total: %d, current: %d",
-                    id, bytesTotal, bytesCurrent));
-            if (notifyUploadActivityNeeded) {
-                UploadActivity.initData();
-                notifyUploadActivityNeeded = false;
-            }
-        }
-
-        @Override
-        public void onStateChanged(int id, TransferState state) {
-            Log.d(TAG, "onStateChanged: " + id + ", " + state);
-            if (notifyUploadActivityNeeded) {
-                UploadActivity.initData();
-                notifyUploadActivityNeeded = false;
-            }
-        }
-    }
 }

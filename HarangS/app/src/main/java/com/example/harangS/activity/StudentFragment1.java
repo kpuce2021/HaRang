@@ -1,6 +1,7 @@
 package com.example.harangS.activity;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -33,8 +34,9 @@ public class StudentFragment1 extends Fragment {
         return new StudentFragment1();
     }
     private View view;
-
+    @SuppressLint("StaticFieldLeak")
     private static Context mContext;
+    @SuppressLint("StaticFieldLeak")
     private static Activity mActivity;
 
     //private static String[] menuItems;
@@ -42,7 +44,7 @@ public class StudentFragment1 extends Fragment {
     private static HashMap<String,String> menuItem;
 
     private static String TAG = "db_test";
-    private static String IP = "34.205.89.18"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
+    private static String IP = "100.26.4.92"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
     private static int listCount = 0;
     private static VideoListViewAdapter adapter; //리스트 어답터
     private static String StudentId;
@@ -50,6 +52,7 @@ public class StudentFragment1 extends Fragment {
 
 
     private static ArrayList<VideoListViewItem> items;
+    @SuppressLint("StaticFieldLeak")
     private static ListView listview;
     @Nullable
     @Override
@@ -167,7 +170,7 @@ public class StudentFragment1 extends Fragment {
                 menuItemsInfo.add(menuItem);
 
                 item = new VideoListViewItem();
-                item.setVideoThumbnail(ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_account_box_24));
+//                item.setVideoThumbnail(ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_account_box_24));
                 item.setVideoName(output.getString("v_name"));
                 item.setVid(output.getString("v_id"));
                 item.setTotalProgress(10);

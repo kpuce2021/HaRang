@@ -70,20 +70,25 @@ public class SClipVideoActivity extends AppCompatActivity {
         // 아까 동영상 [상세정보] 에서 확인한 경로
         //영상 잘라서 재생
         videoView.requestFocus(); // 포커스 얻어오기
-        PreParedListener = new MediaPlayer.OnPreparedListener() {
+//        PreParedListener = new MediaPlayer.OnPreparedListener() {
+//            @Override
+//            public void onPrepared(MediaPlayer mp) {
+//                mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+//                    @Override
+//                    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+//                        ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.FILL_PARENT, ConstraintLayout.LayoutParams.FILL_PARENT);
+//                        videoView.setLayoutParams(lp);
+//                    }
+//                });
+//            }
+//        };
+//        videoView.setOnPreparedListener(PreParedListener);
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
             @Override
             public void onPrepared(MediaPlayer mp) {
-                mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
-                    @Override
-                    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
-                        ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.FILL_PARENT, ConstraintLayout.LayoutParams.FILL_PARENT);
-                        videoView.setLayoutParams(lp);
-                    }
-                });
+                videoView.start(); // 동영상 재생
             }
-        };
-        videoView.setOnPreparedListener(PreParedListener);
-
+        });
         videoView.start(); // 동영상 재생
 
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {

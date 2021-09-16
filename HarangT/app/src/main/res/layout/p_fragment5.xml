@@ -3,49 +3,123 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFCC">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="61dp"
-        android:layout_marginTop="191dp"
-        android:text="강의명"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/edtVideoNameF"
-        style="@android:style/Widget.AutoCompleteTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="174dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/DefaultRTMP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="448dp"
-        android:text="실시간 강의 시작"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/eyepick"
+        app:layout_constraintBottom_toTopOf="@id/ll_logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/FileRTMP"
+    <TextView
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="녹화 강의 중계"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="80dp"
+        android:fontFamily="@font/wemakeprice_regular"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:text="이름"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_profile" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:background="@drawable/rounded_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/incomplete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/wemakeprice_regular"
+            android:gravity="center_horizontal"
+            android:text="로그아웃"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+   <!-- <Button
+        android:id="@+id/modify_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:fontFamily="@font/wemakeprice_regular"
+        android:text="정보수정"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:background="@drawable/rounded_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_logout" />-->
+
+    <TextView
+        android:id="@+id/tv_student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="harang@kpu.ac.kr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DefaultRTMP" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_logout" />
+
+    <TextView
+        android:id="@+id/tv_professor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Harang@kpu.ac.kr"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_student" />
+
+    <ImageView
+        android:id="@+id/iv_student"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:paddingRight="20dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/tv_student"
+        app:layout_constraintRight_toLeftOf="@id/tv_student"
+        app:layout_constraintTop_toTopOf="@+id/tv_student"
+        app:srcCompat="@drawable/pencil_icon" />
+
+    <ImageView
+        android:id="@+id/iv_professor"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:paddingRight="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_professor"
+        app:layout_constraintRight_toLeftOf="@id/tv_professor"
+        app:layout_constraintTop_toTopOf="@id/tv_professor"
+        app:srcCompat="@drawable/pencil_icon" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

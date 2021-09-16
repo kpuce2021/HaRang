@@ -1,20 +1,18 @@
-package com.example.harangS.activity;
+package com.example.harangT.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.harangS.R;
+import com.example.harangT.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class p_BaseActivity extends AppCompatActivity {
+public class PBaseActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
@@ -39,33 +37,30 @@ public class p_BaseActivity extends AppCompatActivity {
         ProfessorId = intent.getStringExtra("user_id");
         p_id = intent.getStringExtra("user_primaryKey");
         p_name = intent.getStringExtra("p_name");
-        //p_id = intent.getStringExtra("p_id");
+
         backPressedEvent = new BackPressedEvent(this);
         Log.d("p_Base",p_id);
         bottomNavigationView = findViewById(R.id.bottomNavi);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.getItemId()){
-                    case R.id.action_upload:
-                        setFragment(0);
-                        break;
-                    case R.id.action_list:
-                        setFragment(1);
-                        break;
-                    case R.id.action_stu_set:
-                        setFragment(2);
-                        break;
-                    case R.id.action_setting:
-                        setFragment(3);
-                        break;
-                    case R.id.action_stu_concent:
-                        setFragment(4);
-                        break;
-                }
-                return true;
-
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch(item.getItemId()){
+                case R.id.action_upload:
+                    setFragment(0);
+                    break;
+                case R.id.action_streaming:
+                    setFragment(1);
+                    break;
+                case R.id.action_list:
+                    setFragment(2);
+                    break;
+                case R.id.action_stu_set:
+                    setFragment(3);
+                    break;
+                case R.id.action_setting:
+                    setFragment(4);
+                    break;
             }
+            return true;
+
         });
         professorFragment1 = new ProfessorFragment1();
         professorFragment2 = new ProfessorFragment2();

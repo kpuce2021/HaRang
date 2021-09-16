@@ -16,33 +16,45 @@
         >
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:text="강의 시작"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:id="@+id/btnStart"
+            android:background="@drawable/rounded_button"
+            android:fontFamily="@font/wemakeprice_regular"
             />
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:text="강의 종료"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:visibility="invisible"
             android:id="@+id/fileBtnStop"
+            android:background="@drawable/rounded_button"
+            android:fontFamily="@font/wemakeprice_regular"
             />
 
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:text="강의 동영상 선택"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/b_select_file"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:layout_above="@+id/seek_bar"
         android:layout_alignParentRight="true"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/wemakeprice_regular"
         />
 
     <SeekBar

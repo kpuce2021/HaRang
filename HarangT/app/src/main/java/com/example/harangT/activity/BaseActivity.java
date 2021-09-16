@@ -20,9 +20,6 @@ public class BaseActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private StudentFragment1 studentFragment1;
-    private StudentFragment2 studentFragment2;
-    private StudentFragment3 studentFragment3;
     private BackPressedEvent backPressedEvent;
 
     public static String StudentId;
@@ -33,7 +30,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
+        setContentView(R.layout.p_activity_base);
 
         Intent intent = getIntent();
         StudentId = intent.getStringExtra("user_id");
@@ -61,9 +58,6 @@ public class BaseActivity extends AppCompatActivity {
 
             }
         });
-        studentFragment1 = new StudentFragment1();
-        studentFragment2 = new StudentFragment2();
-        studentFragment3 = new StudentFragment3();
         setFragment(0);//첫 프래그먼트 화면 지정
 
 
@@ -71,22 +65,6 @@ public class BaseActivity extends AppCompatActivity {
 
     //프래그먼트 교체 실행
     private void setFragment(int n){
-        fm = getSupportFragmentManager();
-        ft = fm.beginTransaction();
-        switch(n){
-            case 0:
-                ft.replace(R.id.main_frame, studentFragment1);
-                ft.commit();
-                break;
-            case 1:
-                ft.replace(R.id.main_frame, studentFragment2);
-                ft.commit();
-                break;
-            case 2:
-                ft.replace(R.id.main_frame, studentFragment3);
-                ft.commit();
-                break;
-        }
     }
     
     //탭 이외에 내부에서 내부 프래그먼트로 전환 시 사용
