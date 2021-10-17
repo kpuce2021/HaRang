@@ -21,6 +21,8 @@ import camp.visual.gazetracker.callback.GazeCallback;
 import camp.visual.gazetracker.gaze.GazeInfo;
 import camp.visual.gazetracker.util.ViewLayoutChecker;
 
+import static camp.visual.gazetracker.state.ScreenState.OUTSIDE_OF_SCREEN;
+
 public class StudentFullVideoActivity extends Activity {
     private static final String TAG = "StudentFullVideo";
     private final ViewLayoutChecker viewLayoutChecker = new ViewLayoutChecker();
@@ -43,7 +45,6 @@ public class StudentFullVideoActivity extends Activity {
         setContentView(R.layout.activity_video);
 
         gazeTrackerManager = GazeTrackerManager.getInstance();
-
         concentrateManager = ConcentrateManager.makeNewInstance(this);
         concentrateManager.getContext(StudentFullVideoActivity.this);
     }
@@ -86,7 +87,6 @@ public class StudentFullVideoActivity extends Activity {
 
     private void initView() {
         gazePathView = findViewById(R.id.s3gazePathView);
-
 
         Intent intent = getIntent();
         playTitle = intent.getStringExtra("VideoName");

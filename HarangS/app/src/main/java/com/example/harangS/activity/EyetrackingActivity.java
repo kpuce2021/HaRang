@@ -40,6 +40,8 @@ import com.example.harangS.R;
 import com.example.harangS.view.CalibrationViewer;
 import com.example.harangS.view.PointView;
 
+import static camp.visual.gazetracker.state.ScreenState.OUTSIDE_OF_SCREEN;
+
 public class EyetrackingActivity extends AppCompatActivity {
     private static final String TAG = EyetrackingActivity.class.getSimpleName();
     private static final String[] PERMISSIONS = new String[]{

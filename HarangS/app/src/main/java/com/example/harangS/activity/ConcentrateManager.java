@@ -1,10 +1,19 @@
 package com.example.harangS.activity;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+
+import com.example.harangS.R;
 
 import java.util.*;
 import java.util.Collections;
@@ -14,10 +23,17 @@ import java.util.HashMap;
 import camp.visual.gazetracker.gaze.GazeInfo;
 import camp.visual.gazetracker.state.EyeMovementState;
 import camp.visual.gazetracker.state.ScreenState;
+
+import static camp.visual.gazetracker.state.ScreenState.OUTSIDE_OF_SCREEN;
+import static com.example.harangS.activity.BaseActivity.s_name;
+
 public class ConcentrateManager{
     static private ConcentrateManager mInstance = null; //인스턴스
     private static String TAG = "printTest";
     private static Context mContext;
+    Dialog dialog;
+    Button btn_popup;
+    TextView textView;
     //객체를 다른 액티비티에서 이어서 쓸 수 있지만 생성자로 모두 초기화해서 몇초 동안의 값이 저장되었는지에 대한 정보가 필요함
     /*
     estateData : 초 단위로 overwrite되어 저장되는 eyeMovementState (fixation - 1, saccade - 0) 정보
@@ -30,6 +46,7 @@ public class ConcentrateManager{
     static private HashMap<Integer,Integer> mstateData = new HashMap<>();
     static int eyeSecondCount = 0; //저장된 시간이 몇초인지 카운트 하기위한 변수
     static int initTimestamp = -1; //초반 타임스탬프 값이 랜덤하게 들어오기 때문에 기준값을 저장하기 위한 변수
+    static int popupCount = 0; //화면 외부를 볼경우 카운트 증가
     static private int estate= 0; //eyemovement(FIXATION, SACCADE)
     static private int mstate = 0; //screenstate(INSIDE, OUTSIDE)
     private static String StudentId;
@@ -103,6 +120,15 @@ public class ConcentrateManager{
             mstate = 0;
         }
 
+        if(gazeInfo.screenState == OUTSIDE_OF_SCREEN){
+            popupCount++;
+        }
+
+        if(popupCount == 150){
+            Log.d("outside","밖에보고있네요");
+            show();
+            popupCount = 0;
+        }
 
         int countSec = timestamp - initTimestamp;
         if(!estateData.containsKey(countSec)){ //값을 처음 넣을 때
@@ -396,6 +422,32 @@ public class ConcentrateManager{
 
 
     }
+
+    public void show(){
+        if(dialog != null){
+            dialog.dismiss();
+        }
+            dialog = new Dialog(ConcentrateManager.mContext);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.dialog);
+
+
+            dialog.show();
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            textView = dialog.findViewById(R.id.tv_dialog);
+            btn_popup = dialog.findViewById(R.id.btn_popup);
+            textView.setText(s_name+" 학생 수업에 집중해주세요");
+            btn_popup.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    popupCount = 0;
+                    dialog.dismiss();
+                }
+            });
+        }
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void concentDB(){
