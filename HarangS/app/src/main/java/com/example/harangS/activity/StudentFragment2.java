@@ -225,7 +225,7 @@ public class StudentFragment2 extends Fragment {
             final int index = i;
             outlinearLayout.setOnClickListener(v -> {
                 Intent intent = new Intent(mContext, StudentStreamRTMPActivity.class);
-                intent.putExtra("url", "rtmp://174.129.139.48/live/"+menuItemsInfo.get(index).get("p_id")+"to"+ menuItemsInfo.get(index).get("streamId"));
+                intent.putExtra("url", "rtmp://44.196.58.43/live/"+menuItemsInfo.get(index).get("p_id")+"to"+ menuItemsInfo.get(index).get("streamId"));
                 startActivity(intent);
             });
 

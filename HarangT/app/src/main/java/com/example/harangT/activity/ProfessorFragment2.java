@@ -80,7 +80,7 @@ public class ProfessorFragment2 extends Fragment {
                     if (success) {
                         streamId = jsonObject.getString("streamId");
                         Intent intent = new Intent(mContext, RtmpStreamActivity.class);
-                        intent.putExtra("url", "rtmp://100.26.4.92/live/"+p_id+"to"+ streamId);
+                        intent.putExtra("url", "rtmp://44.196.58.43/live/"+p_id+"to"+ streamId);
                         intent.putExtra("p_id", p_id);
                         intent.putExtra("streamId", streamId);
                         startActivity(intent);
@@ -112,7 +112,7 @@ public class ProfessorFragment2 extends Fragment {
                     if (success) {
                         streamId = jsonObject.getString("streamId");
                         Intent intent = new Intent(mContext, RtmpFileActivity.class);
-                        intent.putExtra("url", "rtmp://100.26.4.92/live/"+p_id+"to"+ streamId);
+                        intent.putExtra("url", "rtmp://44.196.58.43/live/"+p_id+"to"+ streamId);
                         intent.putExtra("p_id", p_id);
                         intent.putExtra("streamId", streamId);
                         startActivity(intent);

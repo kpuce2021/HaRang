@@ -273,7 +273,7 @@ public class ProfessorFragment1 extends Fragment {
                     JSONObject jsonObject = new JSONObject(response);
                     boolean success = jsonObject.getBoolean("success");
                     if (success) {
-                        Toast.makeText(getActivity(), "영상 등록 성공", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "영상 등록이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getActivity(), "영상 등록에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                         return;

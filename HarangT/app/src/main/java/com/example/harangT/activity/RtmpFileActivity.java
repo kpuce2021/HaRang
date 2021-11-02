@@ -184,8 +184,8 @@ public class RtmpFileActivity extends AppCompatActivity
                             btnStart.setText(R.string.stop_button);
                             activateVideo(streamId);
                             rtmpFromFile.startStream(staticUrl);
-                            Toast.makeText(this, "시작됨 : " + staticUrl,
-                                    Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(this, "시작됨 : " + staticUrl,
+//                                    Toast.LENGTH_SHORT).show();
                         }
 
 

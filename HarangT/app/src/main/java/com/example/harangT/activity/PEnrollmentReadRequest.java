@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PEnrollmentReadRequest extends StringRequest {
-    private static String IP = "100.26.4.92"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
+    private static String IP = "44.196.58.43"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
     // 서버 URL 설정 ( PHP 파일 연동 )
     final static private String URL = "http://" +IP+ "/enrollmentRead.php";
     private static HashMap<String, String> map;

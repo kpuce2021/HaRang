@@ -148,8 +148,8 @@ public class RtmpStreamActivity extends AppCompatActivity
                 btnStart.setText(R.string.stop_button);
                 //db에서 activate 수정
                 rtmpCamera1.startStream(staticUrl);
-                Toast.makeText(this, "시작 : "+staticUrl,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "시작 : "+staticUrl,
+//                        Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Error preparing stream, This device cant do it",
                         Toast.LENGTH_SHORT).show();
@@ -241,8 +241,8 @@ public class RtmpStreamActivity extends AppCompatActivity
                         btnStop.setVisibility(View.VISIBLE);
                         activateVideo(streamId);
                         rtmpCamera1.startStream(staticUrl);
-                        Toast.makeText(this, "시작 : "+staticUrl,
-                                Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(this, "시작 : "+staticUrl,
+//                                Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(this, "Error preparing stream, This device cant do it",
                                 Toast.LENGTH_SHORT).show();

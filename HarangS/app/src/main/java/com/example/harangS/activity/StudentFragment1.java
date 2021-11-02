@@ -44,7 +44,7 @@ public class StudentFragment1 extends Fragment {
     private static HashMap<String,String> menuItem;
 
     private static String TAG = "db_test";
-    private static String IP = "174.129.139.48"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
+    private static String IP = "44.196.58.43"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
     private static int listCount = 0;
     private static VideoListViewAdapter adapter; //리스트 어답터
     private static String StudentId;

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ConcentDataStorage {
-    private static String IP = "174.129.139.48"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
+    private static String IP = "44.196.58.43"; //서버 없이 사용하는 IP가 있다면 저장해서 사용하면 된다.
     // 서버 URL 설정 ( PHP 파일 연동 )
     final static private String URL = "http://" +IP+ "/videoConcentrate.php";
     private static HashMap<String, String> map;

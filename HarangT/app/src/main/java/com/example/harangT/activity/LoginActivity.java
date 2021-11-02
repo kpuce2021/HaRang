@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         Log.d("minu",user_primaryKey);
 
-                        Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, PBaseActivity.class);
                         intent.putExtra("user_id", user_id);
                         intent.putExtra("user_pass", user_pass);
@@ -132,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         startActivity(intent);
                     } else { // 로그인에 실패한 경우
-                        Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
                         return;
                     }
                 } catch (JSONException e) {
