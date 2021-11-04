@@ -32,8 +32,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText et_id, et_name, et_pass, et_passConfirm, et_major;
     private Button btn_register, btn_validation;
-    private RadioButton rb_professor, rb_student;
-    private RadioGroup rg_register;
     private int val_flag = 0;
     private int pass_flag = 0;
     private AlertDialog dialog;
@@ -49,9 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
         et_pass = findViewById(R.id.et_pass);
         et_passConfirm = findViewById(R.id.et_passConfirm);
         et_major = findViewById(R.id.et_major);
-        rb_professor = findViewById(R.id.rb_professor);
-        rb_student = findViewById(R.id.rb_student);
-        rg_register = findViewById(R.id.rg_register);
 
         btn_register = findViewById(R.id.btn_register);
         btn_validation = findViewById(R.id.btn_validation);
@@ -60,30 +55,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN); // 키보드가 focus된 edittext 밑으로 옴
 
-        rg_register.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.rb_student){
-                    et_major.setVisibility(View.INVISIBLE);
-                    rb_student.setChecked(true);
-                }else{
-                    et_major.setVisibility(View.VISIBLE);
-                    rb_professor.setChecked(true);
-                }
-            }
-        });
-
-
 
         // 중복확인 버튼 클릭 시 수행
         btn_validation.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View v) {
-                if (rb_professor.isChecked()) {     // 교수가 아이디 중복확인을 하는 경우
-                    check_professor_duplication();
-                }
+                check_professor_duplication();
 
             }
         });
@@ -92,12 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         btn_register.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View v) {
-                // EditText에 현재 입력되어있는 값을 get(가져온다)해온다.
-
-                if (rb_professor.isChecked()) {     // 교수가 회원가입을 하는 경우
-                    register_professor();
-                }
-
+                register_professor();
             }
         });
     }
@@ -138,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
             return 0;
 
         }else {
-            Toast.makeText(this, "비밀번호는 영문, 숫자, 특수문자가 포함되어야 합니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "비밀번호는 대소문자 영문, 숫자, 특수문자( !,@,#,^,&,*,(,) )가 포함되어야 합니다.", Toast.LENGTH_SHORT).show();
             return 0;
         }
 
