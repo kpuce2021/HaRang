@@ -166,14 +166,16 @@ public class Fragment1 extends Fragment {
                 menuItem.put("v_concent1_stop",output.getString("v_concent1_stop"));//****
                 menuItem.put("v_concent2_start",output.getString("v_concent2_start"));//****
                 menuItem.put("v_concent2_stop",output.getString("v_concent2_stop"));//****
+
+                menuItem.put("c_total",output.getString("c_total").equals("null")?"0":output.getString("c_total"));
+                menuItem.put("c_separate",output.getString("c_separate").equals("null")?"0":output.getString("c_separate"));
                 menuItemsInfo.add(menuItem);
 
                 item = new VideoListViewItem();
-//                item.setVideoThumbnail(ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_account_box_24));
                 item.setVideoName(output.getString("v_name"));
                 item.setVid(output.getString("v_id"));
-                item.setTotalProgress(10);
-                item.setConcentProgress(20);
+                item.setTotalProgress(Integer.parseInt(menuItem.get("c_total"))); //전체 집중도
+                item.setConcentProgress(Integer.parseInt(menuItem.get("c_separate"))); //구간 집중도
 
 
                 concentList = new HashMap<>();
@@ -183,7 +185,7 @@ public class Fragment1 extends Fragment {
                 concentList.put("stop2",menuItem.get("v_concent2_stop"));
                 Integer concentCount = 0;
 
-                for(int k=1;k<=2;k++){ //교수자에서 저장할 때 빈칸으로 입력하면 -1이 들어가도록 설정하기
+                for(int k=1;k<=2;k++){
                     Log.i("db_test","v_concent"+k+"_start : "+menuItem.get("v_concent"+k+"_start"));
                     if(!menuItem.get("v_concent"+k+"_start").equals("-00:00:01")){
 

@@ -49,7 +49,6 @@ public class StreamRTMPActivity extends Activity implements VlcListener, View.On
 
 
         gazeTrackerManager = GazeTrackerManager.getInstance();
-        //concentrateManager 비슷한거 필요함
 
 
         Intent intent = getIntent();
@@ -93,7 +92,6 @@ public class StreamRTMPActivity extends Activity implements VlcListener, View.On
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //concentrateManager.accessDB();
     }
 
 
@@ -130,8 +128,6 @@ public class StreamRTMPActivity extends Activity implements VlcListener, View.On
                     Log.d("dbtest", "시작 : "+staticUrl);
 
 
-                    //eyetracking
-                    //gazeTrackerManager.startGazeTracking();
                     try {
                         Class.forName("dalvik.system.CloseGuard")
                                 .getMethod("setEnabled", boolean.class)

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ import androidx.fragment.app.Fragment;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.harangS.GazeTrackerManager;
 import com.example.harangS.R;
 
 import org.json.JSONException;
@@ -51,6 +53,10 @@ public class Fragment2 extends Fragment {
     private static String StudentId;
     private static String s_id;
 
+    private GazeTrackerManager gazeTrackerManager;
+
+
+
 
 
 
@@ -76,6 +82,7 @@ public class Fragment2 extends Fragment {
                 intent.putExtra("user_id",BaseActivity.StudentId);
                 intent.putExtra("s_id",BaseActivity.s_id);
                 startActivity(intent);
+
             }
         });
 
@@ -204,13 +211,9 @@ public class Fragment2 extends Fragment {
                 tv[j].setTextSize(20);
                 tv[j].setTextColor(Color.BLACK);
 
-
-//                Typeface typeface = getResources().getFont(R.font.font);
-//                tv[j].setTypeface(typeface);
-
             }
 
-            tv[0].setText(menuItemsInfo.get(i).get("p_name"));
+            tv[0].setText("     " +menuItemsInfo.get(i).get("p_name"));
             inlinearLayout.addView(tv[0]);
             tv[1].setText("     강의명 : " + menuItemsInfo.get(i).get("videoName"));
             inlinearLayout.addView(tv[1]);
@@ -224,9 +227,16 @@ public class Fragment2 extends Fragment {
             outlinearLayout.addView(inlinearLayout);
             final int index = i;
             outlinearLayout.setOnClickListener(v -> {
-                Intent intent = new Intent(mContext, StreamRTMPActivity.class);
-                intent.putExtra("url", "rtmp://44.196.58.43/live/"+menuItemsInfo.get(index).get("p_id")+"to"+ menuItemsInfo.get(index).get("streamId"));
-                startActivity(intent);
+
+                gazeTrackerManager = GazeTrackerManager.getInstance();
+                if(gazeTrackerManager == null){
+                    Toast.makeText(getContext(),"초점 조절 먼저 진행해주세요",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(mContext, StreamRTMPActivity.class);
+                    intent.putExtra("url", "rtmp://44.196.58.43/live/"+menuItemsInfo.get(index).get("p_id")+"to"+ menuItemsInfo.get(index).get("streamId"));
+                    startActivity(intent);
+
+                }
             });
 
             parentLinear.addView(outlinearLayout);

@@ -75,7 +75,7 @@ public class FullVideoActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy");
-
+        concentrateManager.dialog.dismiss();
         concentrateManager.accessDB();
     }
 
@@ -160,6 +160,5 @@ public class FullVideoActivity extends Activity {
             String path = getExternalFilesDir(null).toString()  + "/"; // 기본적인 절대경로 얻어오기
             getPlayTime(path+playTitle);
         }
-
     };
 }
