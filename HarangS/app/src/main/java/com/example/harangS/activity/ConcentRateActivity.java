@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class StudentConcentRateActivity extends AppCompatActivity {
+public class ConcentRateActivity extends AppCompatActivity {
     private static String StudentId;
     private static String s_id;
     private static String type;
@@ -51,7 +51,7 @@ public class StudentConcentRateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.stu_activity_concent_rate);
+        setContentView(R.layout.activity_concent_rate);
 
 
         //items 로드
@@ -156,7 +156,7 @@ public class StudentConcentRateActivity extends AppCompatActivity {
 
         };
 
-        StudentConcentRateByVideoRequest request = new StudentConcentRateByVideoRequest(type, s_id, v_id, p_id, responseListener);
+        ConcentRateByVideoRequest request = new ConcentRateByVideoRequest(type, s_id, v_id, p_id, responseListener);
         request.setShouldCache(false);
         RequestQueue queue = Volley.newRequestQueue(this.getApplicationContext());
         queue.add(request);

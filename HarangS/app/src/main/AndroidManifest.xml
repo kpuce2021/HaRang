@@ -42,12 +42,12 @@
         </activity>
 
         <activity android:name="com.example.harangS.activity.BaseActivity"></activity>
-        <activity android:name="com.example.harangS.activity.StudentConcentRateActivity"></activity>
-        <activity android:name="com.example.harangS.activity.SClipVideoActivity"></activity>
+        <activity android:name="com.example.harangS.activity.ConcentRateActivity"></activity>
+        <activity android:name="com.example.harangS.activity.ClipVideoActivity"></activity>
 
-        <activity android:name="com.example.harangS.activity.StudentFullVideoActivity"></activity>
+        <activity android:name="com.example.harangS.activity.FullVideoActivity"></activity>
 
-        <activity android:name="com.example.harangS.activity.StudentStreamRTMPActivity" />
+        <activity android:name="com.example.harangS.activity.StreamRTMPActivity" />
         <activity
             android:name="com.example.harangS.activity.DownloadActivity"
             android:label="@string/download_activity" />

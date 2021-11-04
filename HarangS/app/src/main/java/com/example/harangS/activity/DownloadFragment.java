@@ -79,7 +79,7 @@ public class DownloadFragment extends ListFragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.stu_fragment_download, container, false);
+        view = inflater.inflate(R.layout.fragment_download, container, false);
         return view;
     }
 
@@ -146,7 +146,7 @@ public class DownloadFragment extends ListFragment {
                 Log.i(TAG,VideoName+".mp4 XXXXX");
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.main_frame, StudentFragment1.newInstance())
+                        .replace(R.id.main_frame, Fragment1.newInstance())
                         .addToBackStack(null)
                         .commit();
                 onDestroy();
@@ -157,7 +157,7 @@ public class DownloadFragment extends ListFragment {
 
     private void initUI(){
         simpleAdapter = new SimpleAdapter(mContext, downloadMaps,
-                R.layout.record_item, new String[] {
+                R.layout.item_record, new String[] {
                 "checked", "fileName", "progress", "bytes", "state", "percentage"
         },
                 new int[] {
@@ -229,7 +229,7 @@ public class DownloadFragment extends ListFragment {
                 }
                 else {
                     Statement = "DOWNLOADING";
-                    Intent intent = new Intent(mContext, StudentFullVideoActivity.class);
+                    Intent intent = new Intent(mContext, FullVideoActivity.class);
                     intent.putExtra("VideoName", VideoName + ".mp4");
                     intent.putExtra("studentId", studentId);
                     intent.putExtra("s_id", s_id);

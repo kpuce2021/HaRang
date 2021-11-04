@@ -17,7 +17,6 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.harangS.R;
@@ -29,9 +28,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class StudentFragment1 extends Fragment {
-    public static StudentFragment1 newInstance() {
-        return new StudentFragment1();
+public class Fragment1 extends Fragment {
+    public static Fragment1 newInstance() {
+        return new Fragment1();
     }
     private View view;
     @SuppressLint("StaticFieldLeak")
@@ -57,7 +56,7 @@ public class StudentFragment1 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.stu_fragment1, container, false);
+        view = inflater.inflate(R.layout.fragment1, container, false);
 
         // Adapter 생성
         items = new ArrayList<VideoListViewItem>() ;
@@ -208,7 +207,7 @@ public class StudentFragment1 extends Fragment {
 
 
             //adapter 생성
-            adapter = new VideoListViewAdapter(mActivity, R.layout.video_listview_item, items);
+            adapter = new VideoListViewAdapter(mActivity, R.layout.item_video_listview, items);
             // 리스트뷰 참조 및 Adapter달기
             listview = (ListView) view.findViewById(R.id.video_list);
             listview.setAdapter(adapter);

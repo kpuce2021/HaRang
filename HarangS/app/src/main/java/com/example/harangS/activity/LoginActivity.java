@@ -11,16 +11,12 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.example.harangS.R;
 
@@ -126,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i("db_test","login error : "+e);
             }
         };
-        StudentLoginRequest studentLoginRequest = new StudentLoginRequest(id, password, responseListener);
+        LoginRequest studentLoginRequest = new LoginRequest(id, password, responseListener);
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(studentLoginRequest);
     }

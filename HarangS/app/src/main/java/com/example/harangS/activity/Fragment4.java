@@ -20,7 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class StudentFragment4 extends Fragment {
+public class Fragment4 extends Fragment {
     private View view;
     private TextView tv_total, tv_seperate, tv_total_percent, tv_seperate_percent, tv_name;
     private ProgressBar pb_total, pb_seperate;
@@ -30,7 +30,7 @@ public class StudentFragment4 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.stu_fragment4, container, false);
+        view = inflater.inflate(R.layout.fragment4, container, false);
         return view;
     }
 
@@ -53,7 +53,7 @@ public class StudentFragment4 extends Fragment {
         tv_name.setText(s_name);
 
         String url = "http://" + IP + "/profileTest.php";
-        StudentFragment4.selectDatabase selectDatabase = new StudentFragment4.selectDatabase(url, null);
+        Fragment4.selectDatabase selectDatabase = new Fragment4.selectDatabase(url, null);
         selectDatabase.execute();
     }
 

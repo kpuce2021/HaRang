@@ -16,7 +16,7 @@ import java.util.HashMap;
 import cafe.adriel.androidaudioconverter.callback.IConvertCallback;
 import cafe.adriel.androidaudioconverter.model.AudioFormat;
 
-public class SClipAudioConverter {
+public class ClipAudioConverter {
 
     private static boolean loaded;
 
@@ -28,7 +28,7 @@ public class SClipAudioConverter {
     private static String startTime;
     private static String endTime;
 
-    private SClipAudioConverter(Context context) {
+    private ClipAudioConverter(Context context) {
         this.context = context;
     }
 
@@ -79,7 +79,7 @@ public class SClipAudioConverter {
                 @Override
                 public void onSuccess(String message) {
                     Log.e("ffmpeg harang", "success");
-                    Intent intent = new Intent(context, SClipVideoActivity.class);
+                    Intent intent = new Intent(context, ClipVideoActivity.class);
                     intent.putExtra("VideoName", videoName);
                     intent.putExtra("studentId", BaseActivity.StudentId);
                     intent.putExtra("s_id", BaseActivity.s_id);
@@ -158,21 +158,21 @@ public class SClipAudioConverter {
     }
 
 
-    public static SClipAudioConverter with(Context context) {
-        return new SClipAudioConverter(context);
+    public static ClipAudioConverter with(Context context) {
+        return new ClipAudioConverter(context);
     }
 
-    public SClipAudioConverter setFile(File originalFile) {
+    public ClipAudioConverter setFile(File originalFile) {
         this.audioFile = originalFile;
         return this;
     }
 
-    public SClipAudioConverter setFormat(AudioFormat format) {
+    public ClipAudioConverter setFormat(AudioFormat format) {
         this.format = format;
         return this;
     }
 
-    public SClipAudioConverter setCallback(IConvertCallback callback) {
+    public ClipAudioConverter setCallback(IConvertCallback callback) {
         this.callback = callback;
         return this;
     }

@@ -10,8 +10,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -234,7 +232,7 @@ public class RegisterActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         };
-        StudentValidationRequest studentValidateRequest=new StudentValidationRequest(id,responseListener);
+        ValidationRequest studentValidateRequest=new ValidationRequest(id,responseListener);
         RequestQueue queue= Volley.newRequestQueue(RegisterActivity.this);
         queue.add(studentValidateRequest);
 
@@ -272,7 +270,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             };
             // 서버로 Volley를 이용해서 요청을 함.
-            StudentRegisterRequest studentRegisterRequest = new StudentRegisterRequest(id, password, s_name, responseListener);
+            RegisterRequest studentRegisterRequest = new RegisterRequest(id, password, s_name, responseListener);
             RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
             queue.add(studentRegisterRequest);
         }

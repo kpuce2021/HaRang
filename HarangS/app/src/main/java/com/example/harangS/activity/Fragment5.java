@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.harangS.R;
 
-public class StudentFragment5 extends Fragment {
+public class Fragment5 extends Fragment {
     private View view;
     private TextView tv_name;
     private LinearLayout ll_logout;
@@ -26,7 +26,7 @@ public class StudentFragment5 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.stu_fragment5, container, false);
+        view = inflater.inflate(R.layout.fragment5, container, false);
 
         return view;
     }

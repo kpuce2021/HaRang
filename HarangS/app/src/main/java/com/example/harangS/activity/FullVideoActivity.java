@@ -3,7 +3,6 @@ package com.example.harangS.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaMetadataRetriever;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +10,6 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import androidx.annotation.RequiresApi;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.harangS.GazeTrackerManager;
 import com.example.harangS.R;
@@ -21,9 +19,7 @@ import camp.visual.gazetracker.callback.GazeCallback;
 import camp.visual.gazetracker.gaze.GazeInfo;
 import camp.visual.gazetracker.util.ViewLayoutChecker;
 
-import static camp.visual.gazetracker.state.ScreenState.OUTSIDE_OF_SCREEN;
-
-public class StudentFullVideoActivity extends Activity {
+public class FullVideoActivity extends Activity {
     private static final String TAG = "StudentFullVideo";
     private final ViewLayoutChecker viewLayoutChecker = new ViewLayoutChecker();
     private GazePathView gazePathView;
@@ -37,8 +33,6 @@ public class StudentFullVideoActivity extends Activity {
     private static String s_id;
     private static String v_id;
 
-    private MediaPlayer.OnPreparedListener PreParedListener;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +40,7 @@ public class StudentFullVideoActivity extends Activity {
 
         gazeTrackerManager = GazeTrackerManager.getInstance();
         concentrateManager = ConcentrateManager.makeNewInstance(this);
-        concentrateManager.getContext(StudentFullVideoActivity.this);
+        concentrateManager.getContext(FullVideoActivity.this);
     }
 
     @Override
@@ -94,51 +88,24 @@ public class StudentFullVideoActivity extends Activity {
         s_id = intent.getStringExtra("s_id");
         v_id = intent.getStringExtra("v_id");
 
-        concentrateManager.getUserInfo(v_id,s_id, intent.getStringExtra("start1"),
+        ConcentrateManager.getUserInfo(v_id,s_id, intent.getStringExtra("start1"),
                 intent.getStringExtra("start2"), intent.getStringExtra("stop1"),
                 intent.getStringExtra("stop2"), intent.getStringExtra("clipCount"));
 
-        // VideoView : 동영상을 재생하는 뷰
-        videoView = (VideoView) findViewById(R.id.s3VideoView);
-
-        // MediaController : 특정 View 위에서 작동하는 미디어 컨트롤러 객체
+        videoView = findViewById(R.id.s3VideoView);
         mediaController = new MediaController(this);
-        videoView.setMediaController(mediaController); // Video View 에 사용할 컨트롤러 지정
-
-        String path = getExternalFilesDir(null).toString()  + "/"; // 기본적인 절대경로 얻어오기
-
-
-        // 절대 경로 = SDCard 폴더 = "stroage/emulated/0"
-        //          ** 이 경로는 폰마다 다를수 있습니다.**
-        // 외부메모리의 파일에 접근하기 위한 권한이 필요 AndroidManifest.xml에 등록
-        Log.d(TAG, "절대 경로 : " + path);
-
+        videoView.setMediaController(mediaController);
+        String path = getExternalFilesDir(null).toString()  + "/";
         videoView.setVideoPath(path+playTitle);
-        // VideoView 로 재생할 영상
-        // 아까 동영상 [상세정보] 에서 확인한 경로
-        videoView.requestFocus(); // 포커스 얻어오기
-
-//        PreParedListener = mp -> mp.setOnVideoSizeChangedListener((mp1, width, height) -> {
-//            ConstraintLayout.LayoutParams lp =
-//                    new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.FILL_PARENT,
-//                            ConstraintLayout.LayoutParams.FILL_PARENT);
-//            videoView.setLayoutParams(lp);
-//        });
-//        videoView.setOnPreparedListener(PreParedListener);
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                videoView.start(); // 동영상 재생
-            }
+        videoView.requestFocus();
+        videoView.setOnPreparedListener(mp -> {
+            videoView.start();
         });
-        videoView.start(); // 동영상 재생
+        videoView.start();
 
         videoView.setOnCompletionListener(mp -> {
             gazeTrackerManager.stopGazeTracking();
 
-            /*Intent intent = new Intent(VideoActivity.this, FfmpegActivity.class);
-            intent.putExtra("path", path);
-            intent.putExtra("playTitle", playTitle);*/
             Intent intent1 = new Intent(getApplicationContext(),BaseActivity.class);
             intent1.putExtra("user_id", studentId);
             intent1.putExtra("s_id", s_id);
@@ -161,7 +128,6 @@ public class StudentFullVideoActivity extends Activity {
     }
 
     private static long duration;
-    //현재시간 로그찍기 위함임, 삭제해도 무관
     private void current(){
         Log.i("printTest", "현재 시간"+videoView.getCurrentPosition()+"전체시간 : "+duration);
 
@@ -170,12 +136,7 @@ public class StudentFullVideoActivity extends Activity {
 
     //원래 데모 버전
     private void setOffsetOfView() {
-        viewLayoutChecker.setOverlayView(gazePathView, new ViewLayoutChecker.ViewLayoutListener() {
-            @Override
-            public void getOffset(int x, int y) {
-                gazePathView.setOffset(x, y);
-            }
-        });
+        viewLayoutChecker.setOverlayView(gazePathView, (x, y) -> gazePathView.setOffset(x, y));
     }
 
 

@@ -13,7 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.harangS.R;
 
-public class SClipVideoActivity extends AppCompatActivity {
+public class ClipVideoActivity extends AppCompatActivity {
 
     private static final String TAG = "clipVideo";
 

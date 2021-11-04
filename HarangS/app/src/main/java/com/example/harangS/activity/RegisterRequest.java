@@ -7,13 +7,13 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StudentRegisterRequest extends StringRequest {
+public class RegisterRequest extends StringRequest {
     private static String IP = "44.196.58.43";
     final static private String URL = "http://" +IP+ "/s_register.php";
     private Map<String, String> map;
 
 
-    public StudentRegisterRequest(String id, String password, String s_name, Response.Listener<String> listener) {
+    public RegisterRequest(String id, String password, String s_name, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();

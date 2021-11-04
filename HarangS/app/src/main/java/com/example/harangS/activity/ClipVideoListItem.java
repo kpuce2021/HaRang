@@ -1,6 +1,6 @@
 package com.example.harangS.activity;
 
-public class SClipVideoListItem {
+public class ClipVideoListItem {
     private String videoName; //강의명
     private String startTime; //클립 시작 시간
     private int videoLength;//클립 영상 시간

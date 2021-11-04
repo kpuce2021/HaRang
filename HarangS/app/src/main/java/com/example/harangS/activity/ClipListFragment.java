@@ -32,9 +32,9 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class SClipListFragment extends Fragment {
-    public static SClipListFragment newInstance() {
-        return new SClipListFragment();
+public class ClipListFragment extends Fragment {
+    public static ClipListFragment newInstance() {
+        return new ClipListFragment();
     }
     private static Context mContext;
     private static Activity mActivity;
@@ -51,8 +51,8 @@ public class SClipListFragment extends Fragment {
     private static String v_id;
 
     private static View view;
-    private static SClipVideoListAdapter adapter; //리스트 어답터
-    private static ArrayList<SClipVideoListItem> items;
+    private static ClipVideoListAdapter adapter; //리스트 어답터
+    private static ArrayList<ClipVideoListItem> items;
     private static ListView listview;
     private static List<Integer> sortKeyList;
 
@@ -71,7 +71,7 @@ public class SClipListFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.stu_fragment_cliplist, container, false);
+        view = inflater.inflate(R.layout.fragment_cliplist, container, false);
         
         Log.i("cliptest","clipfragment 진입");
 
@@ -145,7 +145,7 @@ public class SClipListFragment extends Fragment {
                             initUI();
                         }else{//해당 비디오의 클립영상 목록이 없을때
                             Log.i("cliptest","1 되돌아가기");
-                            ((BaseActivity)getContext()).replaceFragment(StudentFragment1.newInstance(),bundle);
+                            ((BaseActivity)getContext()).replaceFragment(Fragment1.newInstance(),bundle);
                         }
 
 
@@ -161,7 +161,7 @@ public class SClipListFragment extends Fragment {
             }
         };
         // 서버로 Volley를 이용해서 요청을 함.
-        SClipListReadRequest sClipListReadRequest = new SClipListReadRequest(s_id, v_id, responseListener);
+        ClipListReadRequest sClipListReadRequest = new ClipListReadRequest(s_id, v_id, responseListener);
         sClipListReadRequest.setShouldCache(false);
         RequestQueue queue = Volley.newRequestQueue(mContext);
         queue.add(sClipListReadRequest);
@@ -200,12 +200,12 @@ public class SClipListFragment extends Fragment {
 
     private void initUI(){
         // Adapter 생성
-        items = new ArrayList<SClipVideoListItem>() ;
-        SClipVideoListItem item;
+        items = new ArrayList<ClipVideoListItem>() ;
+        ClipVideoListItem item;
 
 
         for(int i=0;i<clipVideoCount;i++){
-            item = new SClipVideoListItem();
+            item = new ClipVideoListItem();
             item.setVideoName(VideoName+" - "+(i+1));
             //db에서 받아온 정보 출력
             item.setStartTime(clipVideoMap.get(i).get("cv_stime"));
@@ -214,7 +214,7 @@ public class SClipListFragment extends Fragment {
             Log.i("cliptest","이름 : "+VideoName+" - "+i + ", 시작 : "+clipVideoMap.get(i).get("cv_stime") + ", 종료 : "+clipVideoMap.get(i).get("cv_etime"));
         }
 
-        adapter = new SClipVideoListAdapter(mActivity,R.layout.clipvideo_listview_item,items);
+        adapter = new ClipVideoListAdapter(mActivity,R.layout.item_clipvideo_listview,items);
         listview = (ListView) view.findViewById(R.id.clip_video_list);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -254,7 +254,7 @@ public class SClipListFragment extends Fragment {
     private void convertAudio(String VideoName, String v_id, ArrayList<HashMap<String,String>> clipVideoMap, int position) throws FFmpegCommandAlreadyRunningException, IOException {
         FfmpegUtil.requestPermission(mActivity, Manifest.permission.READ_EXTERNAL_STORAGE);
         FfmpegUtil.requestPermission(mActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        SClipAudioConverter.load(mContext, VideoName ,v_id, clipVideoMap, position);
+        ClipAudioConverter.load(mContext, VideoName ,v_id, clipVideoMap, position);
 
     }
 }

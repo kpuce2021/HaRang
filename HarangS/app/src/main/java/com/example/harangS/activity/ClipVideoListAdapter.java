@@ -13,7 +13,7 @@ import com.example.harangS.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SClipVideoListAdapter extends ArrayAdapter {
+public class ClipVideoListAdapter extends ArrayAdapter {
     private static ArrayList<HashMap<String,String>> menuInfolist;
 
     // 버튼 클릭 이벤트를 위한 Listener 인터페이스 정의.
@@ -24,14 +24,14 @@ public class SClipVideoListAdapter extends ArrayAdapter {
     // 생성자로부터 전달된 resource id 값을 저장.
     int resourceId ;
     // 생성자로부터 전달된 ListBtnClickListener  저장.
-    private SClipVideoListAdapter.ListBtnClickListener listBtnClickListener ;
+    private ClipVideoListAdapter.ListBtnClickListener listBtnClickListener ;
 
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
-    private ArrayList<SClipVideoListItem> listViewItemList = new ArrayList<SClipVideoListItem>() ;
+    private ArrayList<ClipVideoListItem> listViewItemList = new ArrayList<ClipVideoListItem>() ;
 
 
     // ListViewAdapter의 생성자
-    public SClipVideoListAdapter(Context context, int resource, ArrayList<SClipVideoListItem> list) {
+    public ClipVideoListAdapter(Context context, int resource, ArrayList<ClipVideoListItem> list) {
         super(context, resource, list);
         // resource id 값 복사. (super로 전달된 resource를 참조할 방법이 없음.)
         this.listViewItemList = list;
@@ -53,7 +53,7 @@ public class SClipVideoListAdapter extends ArrayAdapter {
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.clipvideo_listview_item, parent, false);
+            convertView = inflater.inflate(R.layout.item_clipvideo_listview, parent, false);
         }
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
@@ -62,7 +62,7 @@ public class SClipVideoListAdapter extends ArrayAdapter {
         TextView endTime = (TextView) convertView.findViewById(R.id.endTime);
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        final SClipVideoListItem listViewItem = (SClipVideoListItem) getItem(position);
+        final ClipVideoListItem listViewItem = (ClipVideoListItem) getItem(position);
 
 
         // 아이템 내 각 위젯에 데이터 반영

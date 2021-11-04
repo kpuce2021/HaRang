@@ -6,9 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
@@ -16,7 +14,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.harangS.BuildConfig;
 import com.example.harangS.GazeTrackerManager;
 import com.example.harangS.R;
 import com.example.harangS.view.GazePathView;
@@ -28,7 +25,7 @@ import org.videolan.libvlc.MediaPlayer;
 import camp.visual.gazetracker.callback.GazeCallback;
 import camp.visual.gazetracker.util.ViewLayoutChecker;
 
-public class StudentStreamRTMPActivity extends Activity implements VlcListener, View.OnClickListener {
+public class StreamRTMPActivity extends Activity implements VlcListener, View.OnClickListener {
 
     private final ViewLayoutChecker viewLayoutChecker = new ViewLayoutChecker();
     private GazePathView gazePathView;
@@ -48,7 +45,7 @@ public class StudentStreamRTMPActivity extends Activity implements VlcListener, 
         super.onCreate(savedInstanceState);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        setContentView(R.layout.stu_activity_rtmp);
+        setContentView(R.layout.activity_rtmp);
 
 
         gazeTrackerManager = GazeTrackerManager.getInstance();

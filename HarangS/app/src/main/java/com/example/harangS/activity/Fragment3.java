@@ -1,11 +1,11 @@
 package com.example.harangS.activity;
 
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +13,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,15 +32,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class StudentFragment2 extends Fragment {
-    public static StudentFragment2 newInstance() {
-        return new StudentFragment2();
+public class Fragment3 extends Fragment {
+    public static Fragment2 newInstance() {
+        return new Fragment2();
     }
     private View view;
 
-    @SuppressLint("StaticFieldLeak")
     private static Context mContext;
-    @SuppressLint("StaticFieldLeak")
     private static Activity mActivity;
     public static ArrayList<HashMap<String,String>> menuItemsInfo; //영상들의 정보를 담는 리스트
     private static HashMap<String,String> menuItem;
@@ -51,33 +48,17 @@ public class StudentFragment2 extends Fragment {
     private static String StudentId;
     private static String s_id;
 
-
-
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.stu_fragment2, container, false);
+        view = inflater.inflate(R.layout.fragment3, container, false);
 
         //items 로드
         StudentId = BaseActivity.StudentId;
         s_id = BaseActivity.s_id;
 
-
-
-        accessDB(StudentId);
-
-        Button eyetracking = view.findViewById(R.id.eyetrackingS);
-        eyetracking.setOnClickListener(new OnSingleClickListener() {
-            @Override
-            public void onSingleClick(View v) {
-                Intent intent = new Intent(mContext, EyetrackingActivity.class);
-                intent.putExtra("user_id",BaseActivity.StudentId);
-                intent.putExtra("s_id",BaseActivity.s_id);
-                startActivity(intent);
-            }
-        });
+        accessDB();
 
 
         return view;
@@ -101,7 +82,7 @@ public class StudentFragment2 extends Fragment {
 
     //accdssDB
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void accessDB(final String studentId){
+    private void accessDB(){
         Response.Listener<String> responseListener = response -> {
             try {
                 JSONObject jsonObject = new JSONObject(response);
@@ -110,32 +91,30 @@ public class StudentFragment2 extends Fragment {
 
                     menuItemsInfo = new ArrayList<>();
 
-                    listCount = Integer.parseInt(jsonObject.getString("count"));
+                    listCount = Integer.parseInt(jsonObject.getString("count1"));
+                    listCount += Integer.parseInt(jsonObject.getString("count2"));
                     Log.i("db_test","listCount : "+listCount);
                     for(int i=0;i<listCount;i++){
                         menuItem = new HashMap<>();
                         JSONObject output = jsonObject.getJSONObject(String.valueOf(i));
 
-                        Log.i("db_test", " streamId : " + output.getString("streamId"));
-                        Log.i("db_test", " p_id : " + output.getString("p_id"));
-                        Log.i("db_test", " p_name : " + output.getString("p_name"));
-                        Log.i("db_test", " videoName : " + output.getString("videoName"));
-                        Log.i("db_test", " startTime : " + output.getString("startTime"));
                         Log.i("db_test", " type : " + output.getString("type"));
+                        Log.i("db_test", " v_id : " + output.getString("v_id"));
+                        Log.i("db_test", " v_name : " + output.getString("v_name"));
+                        Log.i("db_test", " p_name : " + output.getString("p_name"));
+                        Log.i("db_test", " startTime : " + output.getString("startTime"));
+                        Log.i("db_test", " p_id : " + output.getString("p_id"));
                         Log.i("db_test", " ");
 
 
-                        menuItem.put("streamId",output.getString("streamId"));
-                        menuItem.put("p_id",output.getString("p_id"));
-                        menuItem.put("p_name",output.getString("p_name"));
-                        menuItem.put("videoName",output.getString("videoName"));
-                        menuItem.put("startTime",output.getString("startTime"));
                         menuItem.put("type",output.getString("type"));
+                        menuItem.put("v_id",output.getString("v_id"));
+                        menuItem.put("v_name",output.getString("v_name"));
+                        menuItem.put("p_name",output.getString("p_name"));
+                        menuItem.put("startTime",output.getString("startTime"));
+                        menuItem.put("p_id",output.getString("p_id"));
 
                         menuItemsInfo.add(menuItem);
-
-                        //List에 넣고 화면에 띄우기
-
                     }
 
                     initUI();
@@ -149,14 +128,12 @@ public class StudentFragment2 extends Fragment {
             }
 
         };
-        // 서버로 Volley를 이용해서 요청을 함.
-        StudentStreamListRequset request = new StudentStreamListRequset(s_id, responseListener);
+
+        AllTypeVideoListRequset request = new AllTypeVideoListRequset(s_id, responseListener);
         request.setShouldCache(false);
         RequestQueue queue = Volley.newRequestQueue(mContext);
         queue.add(request);
 
-
-        //로딩용 딜레이 필요함
 
     }
 
@@ -164,7 +141,7 @@ public class StudentFragment2 extends Fragment {
     @SuppressLint({"ResourceAsColor", "SetTextI18n"})
     private void initUI() {
 
-        LinearLayout parentLinear = view.findViewById(R.id.streamVideoList);
+        LinearLayout parentLinear = view.findViewById(R.id.allTypeVideList);
         parentLinear.removeAllViews();
 
         TextView[] tv = new TextView[5];
@@ -174,20 +151,20 @@ public class StudentFragment2 extends Fragment {
             outlinearLayout.setBackgroundResource(R.drawable.border_layout);
             outlinearLayout.setWeightSum(3);
 
-//            //썸네일
 //            ImageView imageview = new ImageView(mContext);
 //            imageview.setImageResource(R.drawable.img1);
 //            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
 //                    200,
 //                    300
 //            );
+//
 //            params.setMargins(40,30,50,30);
 //            imageview.setLayoutParams(params);
 //            outlinearLayout.addView(imageview);
 
+
             //텍스트 영역
             LinearLayout inlinearLayout = new LinearLayout(mContext);//weight 설정 없음
-            //inlinearLayout.setBackgroundResource(R.drawable.border_layout);
 
             inlinearLayout.setGravity(Gravity.CENTER);
             inlinearLayout.setLayoutParams(new LinearLayout.LayoutParams(
@@ -205,18 +182,18 @@ public class StudentFragment2 extends Fragment {
                 tv[j].setTextColor(Color.BLACK);
 
 
-//                Typeface typeface = getResources().getFont(R.font.font);
-//                tv[j].setTypeface(typeface);
-
+                Typeface typeface = getResources().getFont(R.font.font);
+                tv[j].setTypeface(typeface);
             }
 
-            tv[0].setText(menuItemsInfo.get(i).get("p_name"));
+
+            tv[0].setText("     "+menuItemsInfo.get(i).get("p_name")+ " 선생님");
             inlinearLayout.addView(tv[0]);
-            tv[1].setText("     강의명 : " + menuItemsInfo.get(i).get("videoName"));
+            tv[1].setText("     강의명 : " + menuItemsInfo.get(i).get("v_name"));
             inlinearLayout.addView(tv[1]);
             tv[2].setText("     시작 시간 : "+menuItemsInfo.get(i).get("startTime"));
             inlinearLayout.addView(tv[2]);
-            tv[3].setText("     강의 타입 : "+(menuItemsInfo.get(i).get("type").equals("stream")?"실시간 강의":"녹화강의"));
+            tv[3].setText("     강의 타입 : "+(menuItemsInfo.get(i).get("type").equals("normal")?"동영상 강의":menuItemsInfo.get(i).get("type").equals("stream")?"실시간 강의":"실시간 파일 강의"));
             inlinearLayout.addView(tv[3]);
             tv[4].setText("");
             inlinearLayout.addView(tv[4]);
@@ -224,8 +201,11 @@ public class StudentFragment2 extends Fragment {
             outlinearLayout.addView(inlinearLayout);
             final int index = i;
             outlinearLayout.setOnClickListener(v -> {
-                Intent intent = new Intent(mContext, StudentStreamRTMPActivity.class);
-                intent.putExtra("url", "rtmp://44.196.58.43/live/"+menuItemsInfo.get(index).get("p_id")+"to"+ menuItemsInfo.get(index).get("streamId"));
+                Intent intent = new Intent(mContext, ConcentRateActivity.class);
+                intent.putExtra("type",menuItemsInfo.get(index).get("type"));
+                intent.putExtra("v_id",menuItemsInfo.get(index).get("v_id"));
+                intent.putExtra("v_name",menuItemsInfo.get(index).get("v_name"));
+                intent.putExtra("p_id",menuItemsInfo.get(index).get("p_id"));
                 startActivity(intent);
             });
 
@@ -235,6 +215,4 @@ public class StudentFragment2 extends Fragment {
 
 
     }
-
-
 }
