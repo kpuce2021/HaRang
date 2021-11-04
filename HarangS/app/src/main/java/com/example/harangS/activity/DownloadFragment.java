@@ -80,27 +80,6 @@ public class DownloadFragment extends ListFragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.stu_fragment_download, container, false);
-
-        /*//get List
-        util = new Util();
-        bucket = new AWSConfiguration(mContext).optJsonObject("S3TransferUtility").optString("Bucket");
-        s3 = util.getS3Client(mContext);
-        transferRecordMaps = new ArrayList<>();
-        bundle = getArguments();  //번들 받기. getArguments() 메소드로 받음.
-        VideoName = bundle.getString("videoName");
-        studentId = bundle.getString("studentId");
-
-        s_id = bundle.getString("s_id");
-        v_id = bundle.getString("v_id");
-
-
-        //Download
-        downloadMaps = new ArrayList<>();
-        transferUtility = util.getTransferUtility(mContext);
-        initUI();
-*/
-
-
         return view;
     }
 
@@ -137,24 +116,14 @@ public class DownloadFragment extends ListFragment {
     @Override
     public void onResume() {
         super.onResume();
-        //getList & check Bundle
         new GetFileListTask().execute();
-
         initData();
-        //beginDownload(VideoName+".mp4");
     }
 
 
     @Override
     public void onPause() {
         super.onPause();
-        /*
-        if (observers != null && !observers.isEmpty()) {
-            for (TransferObserver observer : observers) {
-                observer.cleanTransferListener();
-            }
-        }
-        */
     }
 
 
