@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class PConStuPersonalActivity extends AppCompatActivity {
+public class ConStuPersonalActivity extends AppCompatActivity {
     private static String StudentId;
     private static String s_id;
     private static String type;

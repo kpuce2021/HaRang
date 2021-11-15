@@ -176,7 +176,7 @@ public class ProfessorFragment3 extends Fragment {
 
         };
         // 서버로 Volley를 이용해서 요청을 함.
-        ProfessorAllTypeVideoListRequset pVideoListReadRequest = new ProfessorAllTypeVideoListRequset(p_id, responseListener);
+        AllTypeVideoListRequset pVideoListReadRequest = new AllTypeVideoListRequset(p_id, responseListener);
         pVideoListReadRequest.setShouldCache(false);
         RequestQueue queue = Volley.newRequestQueue(mContext);
         queue.add(pVideoListReadRequest);
@@ -247,7 +247,7 @@ public class ProfessorFragment3 extends Fragment {
             outlinearLayout.addView(inlinearLayout);
             final int index = i;
             outlinearLayout.setOnClickListener(v -> {
-                Intent intent = new Intent(mContext, PConcentStudentListActivity.class);
+                Intent intent = new Intent(mContext, ConcentStudentListActivity.class);
                 intent.putExtra("type",menuItemsInfo.get(index).get("type"));
                 intent.putExtra("v_id",menuItemsInfo.get(index).get("v_id"));
                 intent.putExtra("v_name",menuItemsInfo.get(index).get("v_name"));

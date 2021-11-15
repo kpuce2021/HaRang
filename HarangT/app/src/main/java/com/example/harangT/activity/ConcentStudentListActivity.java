@@ -27,7 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PConcentStudentListActivity extends AppCompatActivity {
+public class ConcentStudentListActivity extends AppCompatActivity {
     private static String ProfessorId;
     private static String p_id;
 
@@ -105,7 +105,7 @@ public class PConcentStudentListActivity extends AppCompatActivity {
             }
         };
         // 서버로 Volley를 이용해서 요청을 함.
-        PEnrollmentReadRequest pEnrollmentReadRequest = new PEnrollmentReadRequest(p_id, responseListener);
+        EnrollmentReadRequest pEnrollmentReadRequest = new EnrollmentReadRequest(p_id, responseListener);
         pEnrollmentReadRequest.setShouldCache(false);
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(pEnrollmentReadRequest);
@@ -158,7 +158,7 @@ public class PConcentStudentListActivity extends AppCompatActivity {
 
             final int index = i;
             tableRow.setOnClickListener(v -> {
-                Intent intent = new Intent(getApplicationContext(), PConStuPersonalActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ConStuPersonalActivity.class);
                 intent.putExtra("s_id",studentMap.get(index).get("s_id"));
                 intent.putExtra("StudentId",studentMap.get(index).get("id"));
                 intent.putExtra("s_name",studentMap.get(index).get("s_name"));

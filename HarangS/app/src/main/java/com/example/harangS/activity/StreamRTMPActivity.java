@@ -139,7 +139,6 @@ public class StreamRTMPActivity extends Activity implements VlcListener, View.On
                     new Thread(() -> gazeTrackerManager.startGazeTracking()).start();
 
 
-                    //db연결
 
                 } else {
                     vlcVideoLibrary.stop();

@@ -95,7 +95,7 @@ public class ProfessorFragment2 extends Fragment {
 
             };
 
-            ProfessorCreateStreamRequest request = new ProfessorCreateStreamRequest(p_id, videoName.getText().toString(), responseListener);
+            CreateStreamRequest request = new CreateStreamRequest(p_id, videoName.getText().toString(), responseListener);
             request.setShouldCache(false);
             RequestQueue queue = Volley.newRequestQueue(mContext);
             queue.add(request);
@@ -126,7 +126,7 @@ public class ProfessorFragment2 extends Fragment {
                 }
 
             };
-            ProfessorCreateFileRequest request = new ProfessorCreateFileRequest(p_id, videoName.getText().toString(), responseListener);
+            CreateFileRequest request = new CreateFileRequest(p_id, videoName.getText().toString(), responseListener);
             request.setShouldCache(false);
             RequestQueue queue = Volley.newRequestQueue(mContext);
             queue.add(request);

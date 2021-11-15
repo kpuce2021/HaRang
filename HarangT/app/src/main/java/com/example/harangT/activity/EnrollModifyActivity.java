@@ -27,7 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PEnrollModifyActivity extends AppCompatActivity {
+public class EnrollModifyActivity extends AppCompatActivity {
     private static String ProfessorId;
     private static String p_id;
 
@@ -186,10 +186,10 @@ public class PEnrollModifyActivity extends AppCompatActivity {
             }
         };
         // 서버로 Volley를 이용해서 요청을 함.
-        PEnrollmentUpdateRequest pEnrollmentUpdateRequest = new PEnrollmentUpdateRequest(p_id, checkList, responseListener);
-        pEnrollmentUpdateRequest.setShouldCache(false);
+        EnrollmentUpdateRequest enrollmentUpdateRequest = new EnrollmentUpdateRequest(p_id, checkList, responseListener);
+        enrollmentUpdateRequest.setShouldCache(false);
         RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(pEnrollmentUpdateRequest);
+        queue.add(enrollmentUpdateRequest);
 
 
         //로딩용 딜레이 필요함
@@ -237,7 +237,7 @@ public class PEnrollModifyActivity extends AppCompatActivity {
             }
         };
         // 서버로 Volley를 이용해서 요청을 함.
-        PEnrollmentNReadRequest pEnrollmentNReadRequest = new PEnrollmentNReadRequest(p_id, responseListener);
+        EnrollmentNReadRequest pEnrollmentNReadRequest = new EnrollmentNReadRequest(p_id, responseListener);
         pEnrollmentNReadRequest.setShouldCache(false);
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(pEnrollmentNReadRequest);
@@ -288,7 +288,7 @@ public class PEnrollModifyActivity extends AppCompatActivity {
             }
         };
         // 서버로 Volley를 이용해서 요청을 함.
-        PEnrollmentSearchRequest pEnrollmentSearchRequest = new PEnrollmentSearchRequest(p_id,flag, searchString, responseListener);
+        EnrollmentSearchRequest pEnrollmentSearchRequest = new EnrollmentSearchRequest(p_id,flag, searchString, responseListener);
         pEnrollmentSearchRequest.setShouldCache(false);
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(pEnrollmentSearchRequest);

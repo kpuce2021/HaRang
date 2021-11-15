@@ -209,7 +209,7 @@ public class ConcentrateManager{
             concent_end[0] = eyeSecondCount;
             clipCount=1;
         }else{
-            concent_start[0] = Integer.parseInt(start1.substring(0,2))*3600 + Integer.parseInt(start1.substring(3,5))*60 + Integer.parseInt(start1.substring(6,8));
+            concent_start[0] = Integer.parseInt(clipCount  start1.substring(0,2))*3600 + Integer.parseInt(start1.substring(3,5))*60 + Integer.parseInt(start1.substring(6,8));
             concent_end[0] = Integer.parseInt(stop1.substring(0,2))*3600 + Integer.parseInt(stop1.substring(3,5))*60 + Integer.parseInt(stop1.substring(6,8));
             if(clipCount==2){
                 concent_start[1] = Integer.parseInt(start2.substring(0,2))*3600 + Integer.parseInt(start2.substring(3,5))*60 + Integer.parseInt(start1.substring(6,8));
