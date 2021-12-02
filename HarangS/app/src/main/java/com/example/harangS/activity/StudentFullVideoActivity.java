@@ -81,7 +81,7 @@ public class StudentFullVideoActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy");
-
+        concentrateManager.dialog.dismiss();
         concentrateManager.accessDB();
     }
 

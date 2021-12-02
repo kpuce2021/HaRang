@@ -24,9 +24,10 @@ import camp.visual.gazetracker.gaze.GazeInfo;
 import camp.visual.gazetracker.state.EyeMovementState;
 import camp.visual.gazetracker.state.ScreenState;
 
+import static camp.visual.gazetracker.state.ScreenState.INSIDE_OF_SCREEN;
 import static camp.visual.gazetracker.state.ScreenState.OUTSIDE_OF_SCREEN;
+import static camp.visual.gazetracker.state.ScreenState.UNKNOWN;
 import static com.example.harangS.activity.BaseActivity.s_name;
-
 public class ConcentrateManager{
     static private ConcentrateManager mInstance = null; //인스턴스
     private static String TAG = "printTest";
@@ -120,11 +121,11 @@ public class ConcentrateManager{
             mstate = 0;
         }
 
-        if(gazeInfo.screenState == OUTSIDE_OF_SCREEN){
+        if(gazeInfo.screenState == OUTSIDE_OF_SCREEN || gazeInfo.screenState == UNKNOWN){
             popupCount++;
         }
 
-        if(popupCount == 150){
+        if(popupCount == 120){
             Log.d("outside","밖에보고있네요");
             show();
             popupCount = 0;
