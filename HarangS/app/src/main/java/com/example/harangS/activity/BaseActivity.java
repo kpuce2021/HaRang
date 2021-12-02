@@ -20,11 +20,11 @@ public class BaseActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private StudentFragment1 studentFragment1;
-    private StudentFragment2 studentFragment2;
-    private StudentFragment3 studentFragment3;
-    private StudentFragment4 studentFragment4;
-    private StudentFragment5 studentFragment5;
+    private Fragment1 studentFragment1;
+    private Fragment2 studentFragment2;
+    private Fragment3 studentFragment3;
+    private Fragment4 studentFragment4;
+    private Fragment5 studentFragment5;
 
     private BackPressedEvent backPressedEvent;
 
@@ -70,11 +70,11 @@ public class BaseActivity extends AppCompatActivity {
 
             }
         });
-        studentFragment1 = new StudentFragment1();
-        studentFragment2 = new StudentFragment2();
-        studentFragment3 = new StudentFragment3();
-        studentFragment4 = new StudentFragment4();
-        studentFragment5 = new StudentFragment5();
+        studentFragment1 = new Fragment1();
+        studentFragment2 = new Fragment2();
+        studentFragment3 = new Fragment3();
+        studentFragment4 = new Fragment4();
+        studentFragment5 = new Fragment5();
         setFragment(0);//첫 프래그먼트 화면 지정
 
 

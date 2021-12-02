@@ -81,7 +81,7 @@ public class ProfessorFragment4 extends Fragment {
         btn_modify.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View v) {
-                Intent intent = new Intent(getActivity(), PEnrollModifyActivity.class);
+                Intent intent = new Intent(getActivity(), EnrollModifyActivity.class);
                 startActivity(intent);
             }
         });
@@ -151,7 +151,7 @@ public class ProfessorFragment4 extends Fragment {
             }
         };
         // 서버로 Volley를 이용해서 요청을 함.
-        PEnrollmentReadRequest pEnrollmentReadRequest = new PEnrollmentReadRequest(p_id, responseListener);
+        EnrollmentReadRequest pEnrollmentReadRequest = new EnrollmentReadRequest(p_id, responseListener);
         pEnrollmentReadRequest.setShouldCache(false);
         RequestQueue queue = Volley.newRequestQueue(mContext);
         queue.add(pEnrollmentReadRequest);
@@ -272,7 +272,7 @@ public class ProfessorFragment4 extends Fragment {
             }
         };
         // 서버로 Volley를 이용해서 요청을 함.
-        PEnrollmentDelRequest pEnrollmentDelRequest = new PEnrollmentDelRequest(p_id, s_id, responseListener);
+        EnrollmentDelRequest pEnrollmentDelRequest = new EnrollmentDelRequest(p_id, s_id, responseListener);
         pEnrollmentDelRequest.setShouldCache(false);
         RequestQueue queue = Volley.newRequestQueue(mContext);
         queue.add(pEnrollmentDelRequest);

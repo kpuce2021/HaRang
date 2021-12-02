@@ -58,7 +58,7 @@ public class VideoListViewAdapter extends ArrayAdapter{
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.video_listview_item, parent, false);
+            convertView = inflater.inflate(R.layout.item_video_listview, parent, false);
         }
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
@@ -110,7 +110,7 @@ public class VideoListViewAdapter extends ArrayAdapter{
         clipVideo.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View v) {
-                ((BaseActivity)getContext()).replaceFragment(SClipListFragment.newInstance(),bundle);
+                ((BaseActivity)getContext()).replaceFragment(ClipListFragment.newInstance(),bundle);
                 Log.i("pageTest",Integer.toString(pos) + "번 클립재생 버튼 선택.");
             }
         });

@@ -119,7 +119,7 @@ public class DownloadActivity extends ListActivity {
 
     private void initUI() {
         simpleAdapter = new SimpleAdapter(this, transferRecordMaps,
-                R.layout.record_item, new String[] {
+                R.layout.item_record, new String[] {
                 "checked", "fileName", "progress", "bytes", "state", "percentage"
         },
                 new int[] {

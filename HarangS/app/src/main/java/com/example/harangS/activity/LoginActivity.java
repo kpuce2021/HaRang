@@ -11,16 +11,12 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.example.harangS.R;
 
@@ -30,8 +26,6 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
     private EditText et_id, et_pass;
     private Button btn_login, btn_register;
-    private RadioButton rb_professor_login, rb_student_login;
-    private RadioGroup rg_login;
     private BackPressedEvent backPressedEvent;
 
 
@@ -53,24 +47,9 @@ public class LoginActivity extends AppCompatActivity {
         et_pass = findViewById(R.id.et_pass);
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
-        rb_professor_login = findViewById(R.id.rb_professor_login);
-        rb_student_login = findViewById(R.id.rb_student_login);
-        rg_login = findViewById(R.id.rg_login);
         backPressedEvent = new BackPressedEvent(this);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN); // 키보드가 focus된 edittext 밑으로 옴
-
-        rg_login.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.rb_student_login){
-                    rb_student_login.setChecked(true);
-                }else{
-                    rb_professor_login.setChecked(true);
-                }
-            }
-        });
 
         // 회원가입 버튼을 클릭 시 수행
 
@@ -88,16 +67,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSingleClick(View view) {
                 login_student();
-
-//                if(success){
-//                    Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
-//                    intent.putExtra("user_id", user_id);
-//                    intent.putExtra("user_pass", user_pass);
-//                    intent.putExtra("s_id", user_primaryKey);
-//                    intent.putExtra("s_name", user_name);
-//
-//                    startActivity(intent);
-//                }
             }
         });
 
@@ -153,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i("db_test","login error : "+e);
             }
         };
-        StudentLoginRequest studentLoginRequest = new StudentLoginRequest(id, password, responseListener);
+        LoginRequest studentLoginRequest = new LoginRequest(id, password, responseListener);
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(studentLoginRequest);
     }

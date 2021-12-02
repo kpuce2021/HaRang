@@ -146,10 +146,7 @@ public class RtmpStreamActivity extends AppCompatActivity
             if (rtmpCamera1.isRecording()
                     || rtmpCamera1.prepareAudio() && rtmpCamera1.prepareVideo()) {
                 btnStart.setText(R.string.stop_button);
-                //db에서 activate 수정
                 rtmpCamera1.startStream(staticUrl);
-//                Toast.makeText(this, "시작 : "+staticUrl,
-//                        Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Error preparing stream, This device cant do it",
                         Toast.LENGTH_SHORT).show();
@@ -159,6 +156,7 @@ public class RtmpStreamActivity extends AppCompatActivity
             rtmpCamera1.stopStream();
         }
     }
+
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
 

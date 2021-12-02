@@ -30,7 +30,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Harang"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.example.harangT.activity.PEnrollModifyActivity" />
+        <activity android:name="com.example.harangT.activity.EnrollModifyActivity" />
         <activity android:name="com.example.harangT.activity.PBaseActivity" />
         <activity
             android:name="com.example.harangT.activity.RegisterActivity"
@@ -51,9 +51,9 @@
         <activity android:name="com.example.harangT.activity.BaseActivity"></activity>
         <activity android:name="com.example.harangT.activity.RtmpStreamActivity"></activity>
         <activity android:name="com.example.harangT.activity.RtmpFileActivity"></activity>
-        <activity android:name="com.example.harangT.activity.PConStuPersonalActivity"></activity>
+        <activity android:name="com.example.harangT.activity.ConStuPersonalActivity"></activity>
 
-        <activity android:name="com.example.harangT.activity.PConcentStudentListActivity"></activity>
+        <activity android:name="com.example.harangT.activity.ConcentStudentListActivity"></activity>
 
         <activity
             android:name="com.example.harangT.activity.UploadActivity"

@@ -79,28 +79,7 @@ public class DownloadFragment extends ListFragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.stu_fragment_download, container, false);
-
-        /*//get List
-        util = new Util();
-        bucket = new AWSConfiguration(mContext).optJsonObject("S3TransferUtility").optString("Bucket");
-        s3 = util.getS3Client(mContext);
-        transferRecordMaps = new ArrayList<>();
-        bundle = getArguments();  //번들 받기. getArguments() 메소드로 받음.
-        VideoName = bundle.getString("videoName");
-        studentId = bundle.getString("studentId");
-
-        s_id = bundle.getString("s_id");
-        v_id = bundle.getString("v_id");
-
-
-        //Download
-        downloadMaps = new ArrayList<>();
-        transferUtility = util.getTransferUtility(mContext);
-        initUI();
-*/
-
-
+        view = inflater.inflate(R.layout.fragment_download, container, false);
         return view;
     }
 
@@ -137,24 +116,14 @@ public class DownloadFragment extends ListFragment {
     @Override
     public void onResume() {
         super.onResume();
-        //getList & check Bundle
         new GetFileListTask().execute();
-
         initData();
-        //beginDownload(VideoName+".mp4");
     }
 
 
     @Override
     public void onPause() {
         super.onPause();
-        /*
-        if (observers != null && !observers.isEmpty()) {
-            for (TransferObserver observer : observers) {
-                observer.cleanTransferListener();
-            }
-        }
-        */
     }
 
 
@@ -177,7 +146,7 @@ public class DownloadFragment extends ListFragment {
                 Log.i(TAG,VideoName+".mp4 XXXXX");
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.main_frame, StudentFragment1.newInstance())
+                        .replace(R.id.main_frame, Fragment1.newInstance())
                         .addToBackStack(null)
                         .commit();
                 onDestroy();
@@ -188,7 +157,7 @@ public class DownloadFragment extends ListFragment {
 
     private void initUI(){
         simpleAdapter = new SimpleAdapter(mContext, downloadMaps,
-                R.layout.record_item, new String[] {
+                R.layout.item_record, new String[] {
                 "checked", "fileName", "progress", "bytes", "state", "percentage"
         },
                 new int[] {
@@ -260,7 +229,7 @@ public class DownloadFragment extends ListFragment {
                 }
                 else {
                     Statement = "DOWNLOADING";
-                    Intent intent = new Intent(mContext, StudentFullVideoActivity.class);
+                    Intent intent = new Intent(mContext, FullVideoActivity.class);
                     intent.putExtra("VideoName", VideoName + ".mp4");
                     intent.putExtra("studentId", studentId);
                     intent.putExtra("s_id", s_id);

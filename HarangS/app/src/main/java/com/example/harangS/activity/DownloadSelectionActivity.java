@@ -50,7 +50,7 @@ public class DownloadSelectionActivity extends ListActivity {
 
     private void initUI() {
         simpleAdapter = new SimpleAdapter(this, transferRecordMaps,
-                R.layout.bucket_item, new String[] {
+                R.layout.item_bucket, new String[] {
                 "key"
         },
                 new int[] {

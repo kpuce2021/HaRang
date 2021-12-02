@@ -28,8 +28,6 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
     private EditText et_id, et_pass;
     private Button btn_login, btn_register;
-    private RadioButton rb_professor_login, rb_student_login;
-    private RadioGroup rg_login;
     private BackPressedEvent backPressedEvent;
 
 
@@ -43,24 +41,9 @@ public class LoginActivity extends AppCompatActivity {
         et_pass = findViewById(R.id.et_pass);
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
-        rb_professor_login = findViewById(R.id.rb_professor_login);
-        rb_student_login = findViewById(R.id.rb_student_login);
-        rg_login = findViewById(R.id.rg_login);
         backPressedEvent = new BackPressedEvent(this);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN); // 키보드가 focus된 edittext 밑으로 옴
-
-        rg_login.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.rb_student_login){
-                    rb_student_login.setChecked(true);
-                }else{
-                    rb_professor_login.setChecked(true);
-                }
-            }
-        });
 
         // 회원가입 버튼을 클릭 시 수행
 
@@ -75,9 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View view) {
-                if (rb_professor_login.isChecked()) {     // 교수가 회원가입을 하는 경우
-                    login_professor();
-                }
+                login_professor();
             }
         });
 
@@ -109,8 +90,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
-                    // TODO : 인코딩 문제때문에 한글 DB인 경우 로그인 불가
-                    System.out.println("harang" + response);
                     JSONObject jsonObject = new JSONObject(response);
                     boolean success = jsonObject.getBoolean("success");
 
@@ -119,9 +98,6 @@ public class LoginActivity extends AppCompatActivity {
                         String user_pass = jsonObject.getString("password");
                         String user_primaryKey = jsonObject.getString("p_id");
                         String user_name = jsonObject.getString("p_name");
-
-
-                        Log.d("minu",user_primaryKey);
 
 //                        Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, PBaseActivity.class);
